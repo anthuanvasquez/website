@@ -6,26 +6,49 @@
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-8">
         <!-- Left content -->
         <div class="max-w-2xl text-left lg:pr-8">
-          <p
-            class="mb-4 inline-flex items-center text-lg font-medium text-[var(--text-secondary)]"
+          <motion.div
+            :initial="{ opacity: 0, x: -20 }"
+            :animate="{ opacity: 1, x: 0 }"
+            :transition="{ duration: 0.5, delay: 0.1 }"
           >
-            Hey, I'm Anthuan <span class="ml-2 text-2xl">👋</span>
-          </p>
-          <h1
-            class="mb-6 text-6xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
+            <p
+              class="mb-4 inline-flex items-center text-lg font-medium text-[var(--text-secondary)]"
+            >
+              Hey, I'm Anthuan <span class="ml-2 text-2xl">👋</span>
+            </p>
+          </motion.div>
+          <motion.div
+            :initial="{ opacity: 0, x: -20 }"
+            :animate="{ opacity: 1, x: 0 }"
+            :transition="{ duration: 0.5, delay: 0.2 }"
           >
-            <span class="block text-[var(--color-primary)]">Full-Stack</span>
-            <span class="block text-[var(--text-primary)]">Engineer</span>
-          </h1>
-          <p
-            class="mb-10 max-w-xl text-lg leading-relaxed font-normal text-[var(--text-secondary)] sm:text-xl"
+            <h1
+              class="mb-6 text-6xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
+            >
+              <span class="block text-[var(--color-primary)]">Full-Stack</span>
+              <span class="block text-[var(--text-primary)]">Engineer</span>
+            </h1>
+          </motion.div>
+          <motion.div
+            :initial="{ opacity: 0, x: -20 }"
+            :animate="{ opacity: 1, x: 0 }"
+            :transition="{ duration: 0.5, delay: 0.3 }"
           >
-            I'm a Full-Stack JavaScript Engineer living in DR, and I focus on
-            making digital experiences that are easy to use, enjoyable, and get
-            the job done.
-          </p>
+            <p
+              class="mb-10 max-w-xl text-lg leading-relaxed font-normal text-[var(--text-secondary)] sm:text-xl"
+            >
+              I'm a Full-Stack JavaScript Engineer living in DR, and I focus on
+              making digital experiences that are easy to use, enjoyable, and
+              get the job done.
+            </p>
+          </motion.div>
 
-          <div class="flex flex-col gap-4 sm:flex-row">
+          <motion.div
+            :initial="{ opacity: 0, y: 20 }"
+            :animate="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.4 }"
+            class="flex flex-col gap-4 sm:flex-row"
+          >
             <UButton
               size="lg"
               color="primary"
@@ -42,11 +65,16 @@
             >
               Browse Projects
             </UButton>
-          </div>
+          </motion.div>
         </div>
 
         <!-- Right content (Image) -->
-        <div class="relative mt-12 flex justify-center lg:mt-0 lg:justify-end">
+        <motion.div
+          :initial="{ opacity: 0, scale: 0.8 }"
+          :animate="{ opacity: 1, scale: 1 }"
+          :transition="{ duration: 0.7, ease: 'easeOut' }"
+          class="relative mt-12 flex justify-center lg:mt-0 lg:justify-end"
+        >
           <div
             class="relative h-72 w-72 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px]"
           >
@@ -67,7 +95,7 @@
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   </div>
