@@ -1,11 +1,39 @@
 <script setup lang="ts">
 import type { Project } from '../types';
+import { gsap } from 'gsap';
 
 const { data: projects } = await useGetFetch<Project[]>('/api/projects');
+
+const projectsContainer = ref<HTMLElement | null>(null);
+let ctx: gsap.Context;
+
+onMounted(() => {
+  nextTick(() => {
+    if (projectsContainer.value) {
+      ctx = gsap.context(() => {
+        gsap.from('.project-card', {
+          scrollTrigger: {
+            trigger: projectsContainer.value,
+            start: 'top 85%',
+          },
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out',
+        });
+      }, projectsContainer.value);
+    }
+  });
+});
+
+onUnmounted(() => {
+  ctx?.revert();
+});
 </script>
 
 <template>
-  <div class="container mx-auto px-4 md:px-0">
+  <div class="container mx-auto px-4 md:px-0" ref="projectsContainer">
     <div
       v-if="projects"
       class="mb-16 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2"
@@ -13,7 +41,7 @@ const { data: projects } = await useGetFetch<Project[]>('/api/projects');
       <div
         v-for="(project, index) in projects"
         :key="index"
-        class="group flex flex-col gap-4"
+        class="project-card group flex flex-col gap-4"
       >
         <!-- Image Container -->
         <a
