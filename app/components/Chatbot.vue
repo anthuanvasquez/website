@@ -18,6 +18,7 @@ interface Message {
 const { $i18n } = useNuxtApp();
 const { t } = useI18n();
 const isOpen = ref(false);
+const showNotification = ref(false);
 const isLoading = ref(false);
 const messages = ref<Message[]>([]);
 const currentMessage = ref('');
@@ -42,6 +43,14 @@ onMounted(() => {
       timestamp: new Date(),
     },
   ];
+
+  // Show the welcome bubble after 2 seconds
+  setTimeout(() => {
+    // Only show if the user hasn't opened the chat yet
+    if (!isOpen.value) {
+      showNotification.value = true;
+    }
+  }, 2000);
 });
 
 const sendMessage = async () => {
@@ -123,15 +132,52 @@ watch(
 </script>
 
 <template>
-  <!-- Floating Chat Button -->
-  <div class="fixed right-6 bottom-6 z-50">
+  <!-- Floating Chat Button & Notification -->
+  <div
+    class="fixed right-6 bottom-6 z-50 flex items-end gap-3 transition-all duration-300"
+    :class="{ 'pointer-events-none translate-y-4 opacity-0': isOpen }"
+  >
+    <!-- Notification Bubble -->
     <button
-      class="rounded-full bg-blue-600 p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-700"
-      :class="{ hidden: isOpen }"
-      @click="isOpen = true"
+      v-if="showNotification"
+      class="group relative mb-2 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5 transition-transform hover:scale-105"
+      @click="
+        isOpen = true;
+        showNotification = false;
+      "
     >
-      <ChatBubbleLeftRightIcon class="h-6 w-6" />
+      <p
+        class="text-sm font-medium text-[var(--color-tertiary)] transition-colors group-hover:text-[var(--color-primary)]"
+      >
+        👋 Psst... what does my AI know about me?
+      </p>
+      <!-- Tail pointing right -->
+      <div
+        class="absolute -right-1.5 bottom-4 h-3 w-3 rotate-45 rounded-sm bg-white ring-1 ring-black/5"
+      ></div>
     </button>
+
+    <!-- Chat Trigger -->
+    <div class="relative">
+      <!-- Active Green Dot Indicator -->
+      <span class="absolute top-0 right-0 z-10 flex h-3.5 w-3.5">
+        <span
+          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
+        ></span>
+        <span
+          class="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-white bg-green-500"
+        ></span>
+      </span>
+      <button
+        class="rounded-full bg-blue-600 p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-700"
+        @click="
+          isOpen = true;
+          showNotification = false;
+        "
+      >
+        <ChatBubbleLeftRightIcon class="h-6 w-6" />
+      </button>
+    </div>
   </div>
 
   <!-- Chat Dialog -->
