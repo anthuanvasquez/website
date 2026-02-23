@@ -12,7 +12,6 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxtjs/i18n',
     'nuxt-mapbox',
-    '@nuxt/content',
   ],
   css: ['~/assets/main.css'],
   components: ['~/components'],
@@ -93,4 +92,5 @@ export default defineNuxtConfig({
       mapboxToken: process.env.MAPBOX_TOKEN,
     },
   },
+  compatibilityDate: '2026-02-23',
 });

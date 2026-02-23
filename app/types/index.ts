@@ -2,6 +2,8 @@ export type Project = {
   name: string;
   description: string;
   skills: string;
+  image?: string;
+  link?: string;
 };
 
 export type Experience = {
