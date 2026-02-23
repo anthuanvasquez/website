@@ -1,18 +1,44 @@
 <script setup lang="ts">
 import type { Experience } from '../types';
+import { gsap } from 'gsap';
 
 const activeIndex = ref(0);
-const {
-  data: experiences,
-  error,
-  pending,
-} = await useGetFetch<Experience[]>('api/experiences');
+const { data: experiences } = await useGetFetch<Experience[]>(
+  'api/experiences'
+);
+
+const experienceContainer = ref<HTMLElement | null>(null);
+let ctx: gsap.Context;
+
+onMounted(() => {
+  nextTick(() => {
+    if (experienceContainer.value) {
+      ctx = gsap.context(() => {
+        gsap.from('.experience-animate', {
+          scrollTrigger: {
+            trigger: experienceContainer.value,
+            start: 'top 85%',
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.2,
+          ease: 'power2.out',
+        });
+      }, experienceContainer.value);
+    }
+  });
+});
+
+onUnmounted(() => {
+  ctx?.revert();
+});
 </script>
 
 <template>
-  <div class="container mx-auto px-4 md:px-0">
+  <div class="container mx-auto px-4 md:px-0" ref="experienceContainer">
     <p
-      class="mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]"
+      class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]"
     >
       Over the past 10+ years. I've the opportunity to work with wide range of
       ecommerce, web apps and websites projects, collaborating with diverse
@@ -21,7 +47,7 @@ const {
 
     <div
       v-if="experiences && experiences.length > 0"
-      class="mx-auto flex w-full max-w-4xl flex-col gap-8 md:flex-row md:gap-12"
+      class="experience-animate mx-auto flex w-full max-w-4xl flex-col gap-8 md:flex-row md:gap-12"
     >
       <!-- Left side: Tabs -->
       <div
