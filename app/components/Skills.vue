@@ -17,15 +17,48 @@ const groupedSkills = computed(() => {
     {} as Record<string, Skill[]>
   );
 });
+
+import { gsap } from 'gsap';
+
+const skillsContainer = ref<HTMLElement | null>(null);
+let ctx: gsap.Context;
+
+onMounted(() => {
+  nextTick(() => {
+    if (skillsContainer.value) {
+      ctx = gsap.context(() => {
+        gsap.from('.skill-group', {
+          scrollTrigger: {
+            trigger: skillsContainer.value,
+            start: 'top 85%',
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: 'power2.out',
+        });
+      }, skillsContainer.value);
+    }
+  });
+});
+
+onUnmounted(() => {
+  ctx?.revert();
+});
 </script>
 
 <template>
-  <div class="container mx-auto px-4 md:px-0">
+  <div class="container mx-auto px-4 md:px-0" ref="skillsContainer">
     <div
       v-if="skills"
       class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4"
     >
-      <div v-for="(group, categoryName) in groupedSkills" :key="categoryName">
+      <div
+        v-for="(group, categoryName) in groupedSkills"
+        :key="categoryName"
+        class="skill-group"
+      >
         <h3 class="mb-6 text-xl font-bold text-[var(--text-primary)]">
           {{ categoryName }}
         </h3>
