@@ -7,12 +7,16 @@ const data = inject('data') as HeadingData;
 </script>
 
 <template>
-  <div class="mb-12 text-center">
-    <p class="text-xs font-firacode text-[var(--text-tertiary)] tracking-widest uppercase mb-2">
+  <div class="mb-16 text-center">
+    <p
+      class="font-firacode mb-3 text-sm tracking-[0.2em] text-[var(--text-tertiary)] uppercase sm:text-base"
+    >
       // {{ data.subtitle }}
     </p>
 
-    <h2 class="font-firacode text-3xl font-bold tracking-tight text-[var(--text-primary)]">
+    <h2
+      class="font-firacode text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl"
+    >
       {{ data.title }}
     </h2>
   </div>

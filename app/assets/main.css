@@ -25,7 +25,6 @@
   --text-accent: var(--color-primary);
 }
 
-
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -42,6 +41,10 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
