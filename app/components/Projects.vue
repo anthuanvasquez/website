@@ -5,7 +5,7 @@ const { data: projects } = await useGetFetch<Project[]>('/api/projects');
 </script>
 
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto px-4 md:px-0">
     <div
       v-if="projects"
       class="mb-16 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2"

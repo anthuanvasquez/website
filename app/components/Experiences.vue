@@ -10,16 +10,23 @@ const {
 </script>
 
 <template>
-  <div class="container mx-auto">
-    <p class="mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]">
+  <div class="container mx-auto px-4 md:px-0">
+    <p
+      class="mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]"
+    >
       Over the past 10+ years. I've the opportunity to work with wide range of
       ecommerce, web apps and websites projects, collaborating with diverse
       teams and clients.
     </p>
 
-    <div v-if="experiences && experiences.length > 0" class="mx-auto flex w-full max-w-4xl flex-col gap-8 md:flex-row md:gap-12">
+    <div
+      v-if="experiences && experiences.length > 0"
+      class="mx-auto flex w-full max-w-4xl flex-col gap-8 md:flex-row md:gap-12"
+    >
       <!-- Left side: Tabs -->
-      <div class="flex w-full flex-row overflow-x-auto border-b border-white/10 md:w-1/4 md:flex-col md:overflow-x-visible md:border-b-0 md:border-l md:pl-0">
+      <div
+        class="flex w-full flex-row overflow-x-auto border-b border-white/10 md:w-1/4 md:flex-col md:overflow-x-visible md:border-b-0 md:border-l md:pl-0"
+      >
         <button
           v-for="(experience, index) in experiences"
           :key="index"
@@ -59,14 +66,17 @@ const {
                 class="mt-1 mr-4 h-5 w-5 shrink-0 text-[var(--color-primary)]"
               />
               <div>
-                <span class="block text-base leading-relaxed text-[var(--text-secondary)]">
+                <span
+                  class="block text-base leading-relaxed text-[var(--text-secondary)]"
+                >
                   {{ project.description }}
                 </span>
                 <span
                   v-if="project.skills"
                   class="font-firacode mt-2 block text-xs text-[var(--text-tertiary)]"
                 >
-                  Skills: <span class="text-[var(--text-secondary)]">
+                  Skills:
+                  <span class="text-[var(--text-secondary)]">
                     {{ project.skills }}
                   </span>
                 </span>

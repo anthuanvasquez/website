@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-[500px] w-full">
+  <div class="absolute inset-0">
     <MapboxMap
       map-id="map-rd"
       class="h-full w-full"

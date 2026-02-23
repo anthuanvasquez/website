@@ -6,18 +6,21 @@ const { data: skills } = await useGetFetch<Skill[]>('/api/skills');
 const groupedSkills = computed(() => {
   if (!skills.value) return {};
 
-  return skills.value.reduce((acc, skill) => {
-    if (!acc[skill.category]) {
-      acc[skill.category] = [];
-    }
-    acc[skill.category].push(skill);
-    return acc;
-  }, {} as Record<string, Skill[]>);
+  return skills.value.reduce(
+    (acc, skill) => {
+      if (!acc[skill.category]) {
+        acc[skill.category] = [];
+      }
+      acc[skill.category].push(skill);
+      return acc;
+    },
+    {} as Record<string, Skill[]>
+  );
 });
 </script>
 
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto px-4 md:px-0">
     <div
       v-if="skills"
       class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4"
@@ -36,7 +39,7 @@ const groupedSkills = computed(() => {
                 :name="skill.icon"
                 class="me-3 inline-block h-5 w-5 shrink-0"
               />
-              <span class="text-base font-normal leading-relaxed">
+              <span class="text-base leading-relaxed font-normal">
                 {{ skill.name }}
               </span>
             </div>

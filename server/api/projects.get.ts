@@ -8,7 +8,8 @@ export default defineEventHandler(async (): Promise<Project[]> => {
         'Task management system with drag-and-drop, real-time collaboration, and responsive layout.',
       skills: 'Vue, Nuxt, Tailwind',
       link: '#',
-      image: 'https://placehold.co/800x600/e2e8f0/1e293b?text=TaskFlow+Dashboard',
+      image:
+        'https://placehold.co/800x600/e2e8f0/1e293b?text=TaskFlow+Dashboard',
     },
     {
       name: 'EcoCart',
@@ -24,7 +25,8 @@ export default defineEventHandler(async (): Promise<Project[]> => {
         'Interactive scheduling and calendar application for managing complex internal team workflows.',
       skills: 'Angular, Node.js',
       link: '#',
-      image: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Timeline+Calendar',
+      image:
+        'https://placehold.co/800x600/e2e8f0/1e293b?text=Timeline+Calendar',
     },
     {
       name: 'Maps Delivery',

@@ -14,25 +14,35 @@ defineProps<Props>();
 
 <template>
   <div class="col-span-12 mt-6 mb-2">
-    <h3 class="font-firacode text-sm uppercase tracking-widest text-[var(--text-tertiary)] mb-4">// Showcase Projects</h3>
+    <h3
+      class="font-firacode mb-4 text-sm tracking-widest text-[var(--text-tertiary)] uppercase"
+    >
+      // Showcase Projects
+    </h3>
 
-    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <li
         v-for="project in projects"
         :key="project.name"
-        class="rounded-xl flex flex-col justify-between bg-[var(--surface-float)] ring-1 ring-white/5 p-5 transition-all hover:bg-[var(--surface-elevated)]"
+        class="flex flex-col justify-between rounded-xl bg-[var(--surface-float)] p-5 ring-1 ring-white/5 transition-all hover:bg-[var(--surface-elevated)]"
       >
         <div>
-          <h4 class="font-firacode text-base font-bold text-[var(--text-primary)] mb-2">
+          <h4
+            class="font-firacode mb-2 text-base font-bold text-[var(--text-primary)]"
+          >
             {{ project.name }}
           </h4>
-          <p class="text-sm font-normal text-[var(--text-secondary)] leading-relaxed mb-4">
-               {{ project.description }}
+          <p
+            class="mb-4 text-sm leading-relaxed font-normal text-[var(--text-secondary)]"
+          >
+            {{ project.description }}
           </p>
         </div>
         <p class="text-sm text-[var(--text-secondary)]">
-          <span class="me-2 font-medium text-[var(--text-primary)]">Skills:</span>
-          <span class="text-xs font-firacode text-[var(--text-tertiary)]">{{
+          <span class="me-2 font-medium text-[var(--text-primary)]"
+            >Skills:</span
+          >
+          <span class="font-firacode text-xs text-[var(--text-tertiary)]">{{
             project.skills
           }}</span>
         </p>
