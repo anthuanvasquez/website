@@ -112,7 +112,7 @@ onUnmounted(() => {
           <!-- Description -->
           <div class="flex-1">
             <p
-              class="max-w-2xl text-md leading-relaxed text-[var(--text-secondary)]"
+              class="text-md max-w-2xl leading-relaxed text-[var(--text-secondary)]"
             >
               {{ item.description }}
             </p>
