@@ -37,7 +37,7 @@
             <p
               class="mb-10 max-w-xl text-lg leading-relaxed font-normal text-[var(--text-secondary)] sm:text-xl"
             >
-              I'm a Full-Stack JavaScript Engineer living in DR, and I focus on
+              I'm a Full-Stack Engineer living in DR, and I focus on
               making digital experiences that are easy to use, enjoyable, and
               get the job done.
             </p>
