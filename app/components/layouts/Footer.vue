@@ -31,7 +31,7 @@
               color="neutral"
               variant="outline"
               class="justify-center rounded-lg bg-[var(--surface-base)] px-6 py-2.5 font-medium text-[var(--text-primary)] ring-1 ring-[var(--surface-elevated)] transition-all hover:bg-[var(--surface-elevated)]"
-              to="#footer"
+              to="#projects"
             >
               Browse Projects
             </UButton>

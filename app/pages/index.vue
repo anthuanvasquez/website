@@ -61,6 +61,7 @@
               Get In Touch
             </UButton>
             <UButton
+              to="#projects"
               size="lg"
               color="neutral"
               variant="outline"
@@ -121,7 +122,7 @@
   </Section>
 
   <Section id="location" title="Where I'm Based" subtitle="Location">
-    <div class="container mx-auto max-w-7xl px-4 pb-20 md:px-0">
+    <div class="container mx-auto max-w-7xl px-4 md:px-0">
       <p
         class="mx-auto mb-12 max-w-2xl text-center leading-relaxed font-normal text-[var(--text-secondary)]"
       >
