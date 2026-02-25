@@ -19,7 +19,8 @@ const mobileMenuOpen = ref(false);
 </script>
 
 <template>
-  <motion.div
+  <Motion
+    as="div"
     :initial="{ y: -100, opacity: 0 }"
     :animate="{ y: 0, opacity: 1 }"
     :transition="{ duration: 0.5, ease: 'easeOut' }"
@@ -151,5 +152,5 @@ const mobileMenuOpen = ref(false);
         </DialogPanel>
       </Dialog>
     </header>
-  </motion.div>
+  </Motion>
 </template>
