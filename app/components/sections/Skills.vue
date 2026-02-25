@@ -49,7 +49,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container max-w-7xl mx-auto px-4 md:px-0" ref="skillsContainer">
+  <div class="container mx-auto max-w-7xl px-4 md:px-0" ref="skillsContainer">
     <div
       v-if="skills"
       class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4"

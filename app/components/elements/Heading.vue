@@ -7,7 +7,8 @@ const data = inject('data') as HeadingData;
 </script>
 
 <template>
-  <motion.div
+  <Motion
+    as="div"
     :initial="{ opacity: 0, y: 30 }"
     :whileInView="{ opacity: 1, y: 0 }"
     :viewport="{ once: true, margin: '-50px' }"
@@ -26,5 +27,5 @@ const data = inject('data') as HeadingData;
         {{ data.title }}
       </h2>
     </div>
-  </motion.div>
+  </Motion>
 </template>

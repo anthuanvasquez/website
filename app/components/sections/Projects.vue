@@ -37,7 +37,9 @@ onUnmounted(() => {
     <p
       class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]"
     >
-      These are personal projects I've developed independently. Due to confidentiality agreements, enterprise projects from my professional experience are not showcased here.
+      These are personal projects I've developed independently. Due to
+      confidentiality agreements, enterprise projects from my professional
+      experience are not showcased here.
     </p>
 
     <div

@@ -39,7 +39,7 @@ const mobileMenuOpen = ref(false);
             >
               <span
                 class="font-firacode text-xl font-bold text-[var(--color-primary)]"
-                >//AV</span
+                >{{ '<av />' }}</span
               >
             </a>
           </div>
@@ -104,7 +104,7 @@ const mobileMenuOpen = ref(false);
             <a href="/" class="-m-1.5 p-1.5">
               <span
                 class="font-firacode text-xl font-bold text-[var(--color-primary)]"
-                >//AV</span
+                >{{ '<av />' }}</span
               >
             </a>
             <button

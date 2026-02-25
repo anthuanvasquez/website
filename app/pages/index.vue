@@ -6,7 +6,8 @@
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-8">
         <!-- Left content -->
         <div class="max-w-2xl text-left lg:pr-8">
-          <motion.div
+          <Motion
+            as="div"
             :initial="{ opacity: 0, x: -20 }"
             :animate="{ opacity: 1, x: 0 }"
             :transition="{ duration: 0.5, delay: 0.1 }"
@@ -16,8 +17,9 @@
             >
               Hey, I'm Anthuan <span class="ml-2 text-2xl">👋</span>
             </p>
-          </motion.div>
-          <motion.div
+          </Motion>
+          <Motion
+            as="div"
             :initial="{ opacity: 0, x: -20 }"
             :animate="{ opacity: 1, x: 0 }"
             :transition="{ duration: 0.5, delay: 0.2 }"
@@ -28,8 +30,9 @@
               <span class="block text-[var(--color-primary)]">Full-Stack</span>
               <span class="block text-[var(--text-primary)]">Engineer</span>
             </h1>
-          </motion.div>
-          <motion.div
+          </Motion>
+          <Motion
+            as="div"
             :initial="{ opacity: 0, x: -20 }"
             :animate="{ opacity: 1, x: 0 }"
             :transition="{ duration: 0.5, delay: 0.3 }"
@@ -37,13 +40,13 @@
             <p
               class="mb-10 max-w-xl text-lg leading-relaxed font-normal text-[var(--text-secondary)] sm:text-xl"
             >
-              I'm a Full-Stack Engineer living in DR, and I focus on
-              making digital experiences that are easy to use, enjoyable, and
-              get the job done.
+              A Full-Stack Engineer living in DR, and I focus on making digital
+              experiences that are easy to use, enjoyable, and get the job done.
             </p>
-          </motion.div>
+          </Motion>
 
-          <motion.div
+          <Motion
+            as="div"
             :initial="{ opacity: 0, y: 20 }"
             :animate="{ opacity: 1, y: 0 }"
             :transition="{ duration: 0.5, delay: 0.4 }"
@@ -65,11 +68,12 @@
             >
               Browse Projects
             </UButton>
-          </motion.div>
+          </Motion>
         </div>
 
         <!-- Right content (Image) -->
-        <motion.div
+        <Motion
+          as="div"
           :initial="{ opacity: 0, scale: 0.8 }"
           :animate="{ opacity: 1, scale: 1 }"
           :transition="{ duration: 0.7, ease: 'easeOut' }"
@@ -95,7 +99,7 @@
               />
             </div>
           </div>
-        </motion.div>
+        </Motion>
       </div>
     </div>
   </div>

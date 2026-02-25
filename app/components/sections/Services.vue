@@ -33,7 +33,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container max-w-7xl mx-auto px-4 md:px-0" ref="servicesContainer">
+  <div class="container mx-auto max-w-7xl px-4 md:px-0" ref="servicesContainer">
     <div
       v-if="services"
       class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
