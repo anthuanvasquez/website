@@ -22,15 +22,19 @@ This document provides essential context for AI models interacting with this Nux
 
 - **Architecture:** Modular Monolith / Full-Stack SSR. The application leverages Nuxt's file-system-based routing and auto-import features.
 - **Directory Philosophy (Nuxt Standard):**
-  - `/pages`: Application views and routes (File-based routing).
-  - `/components`: Vue components (Auto-imported).
-  - `/composables`: Reusable logic/hooks (Auto-imported).
+  - `/app/assets`: Assets processed by Vite (Sass, images).
+  - `/app/components`: Vue components (Auto-imported).
+  - `/app/composables`: Reusable logic/hooks (Auto-imported).
+  - `/app/layouts`: Page wrapper layouts.
+  - `/app/pages`: Application views and routes (File-based routing).
+  - `/app/plugins`: Client/Server plugins.
+  - `/app/utils`: Helper functions (Auto-imported).
+  - `/app/app.vue`: Root component.
+  - `/app/app.config.ts`: Nuxt configuration.
+  - `/app/error.vue`: Error page.
+  - `/content`: Content files (Markdown, JSON, etc.).
   - `/server`: Backend logic powered by Nitro (`/api`, `/routes`, `/middleware`).
-  - `/layouts`: Page wrapper layouts.
-  - `/plugins`: Client/Server plugins.
-  - `/utils`: Helper functions (Auto-imported).
   - `/public`: Static assets served at root.
-  - `/assets`: Assets processed by Vite (Sass, images).
 
 ## 4. Coding Conventions & Style Guide
 
