@@ -13,9 +13,9 @@
             :transition="{ duration: 0.5, delay: 0.1 }"
           >
             <p
-              class="mb-4 inline-flex items-center text-lg font-medium text-[var(--text-secondary)]"
+              class="wave-container mb-4 inline-flex items-center text-lg font-medium text-[var(--text-secondary)]"
             >
-              Hey, I'm Anthuan <span class="ml-2 text-2xl">👋</span>
+              Hey, I'm Anthuan <span class="wave-hand ml-2 text-2xl">👋</span>
             </p>
           </Motion>
           <Motion
@@ -139,3 +139,38 @@
     </div>
   </Section>
 </template>
+
+<style scoped>
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.wave-hand {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave 2.5s infinite;
+}
+</style>
