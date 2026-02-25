@@ -2,7 +2,7 @@
   <div
     class="relative flex min-h-screen items-center justify-center pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pb-24"
   >
-    <div class="container mx-auto px-4 md:px-0">
+    <div class="container max-w-7xl mx-auto px-4 md:px-0">
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-8">
         <!-- Left content -->
         <div class="max-w-2xl text-left lg:pr-8">
@@ -116,7 +116,7 @@
     <Services />
   </Section>
 
-  <div id="location" class="container mx-auto scroll-mt-32 px-4 pb-20 md:px-0">
+  <div id="location" class="container max-w-7xl mx-auto scroll-mt-32 px-4 pb-20 md:px-0">
     <div
       class="relative h-[500px] w-full overflow-hidden rounded-2xl bg-[var(--surface-base)] shadow-sm ring-1 ring-white/10 transition-all hover:ring-[var(--color-primary)]/50"
     >
