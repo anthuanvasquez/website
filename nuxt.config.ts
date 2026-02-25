@@ -63,10 +63,11 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
+    baseUrl: process.env.BASE_URL || 'https://anthuanvasquez.net',
     locales: [
       {
         code: 'en',
-        iso: 'en-US',
+        language: 'en-US',
         file: 'en-US.json',
         name: 'English',
         flag: '🇺🇸',
@@ -74,7 +75,7 @@ export default defineNuxtConfig({
       },
       {
         code: 'es',
-        iso: 'es-ES',
+        language: 'es-ES',
         file: 'es-ES.json',
         name: 'Español',
         flag: '🇩🇴',
