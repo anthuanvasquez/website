@@ -15,7 +15,12 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
   ],
   css: ['~/assets/main.css'],
-  components: ['~/components'],
+  components: [
+    '~/components/',
+    '~/components/layouts',
+    '~/components/sections',
+    '~/components/elements',
+  ],
   ui: {
     prefix: 'U',
   },
