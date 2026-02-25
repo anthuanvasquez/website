@@ -4,6 +4,16 @@ import { gsap } from 'gsap';
 
 const { data: services } = await useGetFetch<Service[]>('api/services');
 
+const accordionItems = computed(() => {
+  return (services.value || []).map((service) => ({
+    id: service.id,
+    label: service.name,
+    icon: service.icon,
+    description: service.description,
+    categories: service.categories,
+  }));
+});
+
 const servicesContainer = ref<HTMLElement | null>(null);
 let ctx: gsap.Context;
 
@@ -11,16 +21,16 @@ onMounted(() => {
   nextTick(() => {
     if (servicesContainer.value) {
       ctx = gsap.context(() => {
-        gsap.from('.service-card', {
+        gsap.from('.service-row', {
           scrollTrigger: {
             trigger: servicesContainer.value,
             start: 'top 85%',
           },
-          y: 40,
+          y: 30,
           opacity: 0,
           duration: 0.6,
-          stagger: 0.15,
-          ease: 'back.out(1.7)',
+          stagger: 0.1,
+          ease: 'power3.out',
         });
       }, servicesContainer.value);
     }
@@ -34,31 +44,99 @@ onUnmounted(() => {
 
 <template>
   <div class="container mx-auto max-w-7xl px-4 md:px-0" ref="servicesContainer">
-    <div
-      v-if="services"
-      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+    <UAccordion
+      v-if="accordionItems.length"
+      :items="accordionItems"
+      multiple
+      :ui="{
+        root: 'w-full flex flex-col gap-0 border-t border-[var(--surface-elevated)]',
+        item: 'service-row border-b my-2 border-[var(--surface-elevated)] transition-colors hover:border-transparent',
+        trigger:
+          'group flex w-full items-center justify-between py-8 focus-visible:ring-0 text-left hover:bg-transparent p-0 transition-all',
+        label: 'flex-1 text-left',
+        body: 'pt-0 pb-8 pl-0',
+      }"
     >
-      <div
-        v-for="(service, index) in services"
-        :key="index"
-        class="service-card h-full"
-      >
+      <template #default="{ item }">
         <div
-          class="group flex h-full flex-col items-center justify-center rounded-2xl bg-[var(--surface-elevated)] p-8 text-center ring-1 ring-white/5 transition-all duration-400 hover:-translate-y-2 hover:bg-[var(--surface-float)] hover:ring-[var(--color-primary)]/30"
+          class="flex w-full flex-1 flex-col gap-6 pr-4 md:flex-row md:items-center md:gap-8"
         >
-          <div
-            class="mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-[var(--surface-base)] text-[var(--text-secondary)] transition-colors duration-300 group-hover:text-[var(--color-primary)]"
+          <!-- ID -->
+          <span
+            class="w-12 shrink-0 text-left font-mono text-lg text-[var(--text-secondary)]"
           >
-            <UIcon v-if="service?.icon" :name="service.icon" class="h-8 w-8" />
+            {{ item.id }}
+          </span>
+
+          <!-- Thumbnail Box -->
+          <div
+            class="relative flex h-[90px] w-[180px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-[var(--surface-elevated)] transition-transform duration-500 group-hover:scale-[1.02]"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/10 to-transparent"
+            ></div>
+            <UIcon
+              :name="item.icon"
+              class="relative z-10 h-10 w-10 text-[var(--color-primary)]"
+            />
           </div>
 
-          <h3
-            class="font-firacode text-xl font-bold tracking-tight text-[var(--text-primary)] transition-colors duration-300 group-hover:text-white"
-          >
-            {{ service.name }}
-          </h3>
+          <!-- Title -->
+          <div class="flex-1 text-left">
+            <h3
+              class="text-2xl font-medium tracking-tight text-[var(--text-primary)] transition-colors duration-300"
+            >
+              {{ item.label }}
+            </h3>
+          </div>
         </div>
-      </div>
-    </div>
+      </template>
+
+      <template #trailing="{ open }">
+        <div
+          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[var(--surface-elevated)] bg-[var(--surface-base)] transition-colors duration-300 group-hover:border-white/10 group-hover:bg-[var(--surface-elevated)]"
+          :class="open ? 'bg-[var(--surface-elevated)]' : ''"
+        >
+          <UIcon
+            :name="open ? 'i-lucide-minus' : 'i-lucide-plus'"
+            class="h-5 w-5 text-[var(--text-secondary)] transition-transform duration-300"
+            :class="open ? 'rotate-180' : ''"
+          />
+        </div>
+      </template>
+
+      <template #content="{ item }">
+        <div
+          class="flex flex-col items-start gap-8 pt-6 pr-4 pb-4 text-left md:pl-28 lg:flex-row lg:pr-16"
+        >
+          <!-- Description -->
+          <div class="flex-1">
+            <p
+              class="max-w-2xl text-md leading-relaxed text-[var(--text-secondary)]"
+            >
+              {{ item.description }}
+            </p>
+          </div>
+
+          <!-- Categories -->
+          <div class="w-full shrink-0 lg:w-[320px]">
+            <div
+              class="mb-4 text-xs tracking-wider text-[var(--text-tertiary)]"
+            >
+              Categories
+            </div>
+            <div class="flex flex-wrap gap-2.5">
+              <span
+                v-for="cat in item.categories"
+                :key="cat"
+                class="rounded-full border border-white/5 bg-[var(--surface-elevated)] px-5 py-2 text-sm font-medium text-[var(--text-primary)] shadow-sm transition-colors hover:border-[var(--color-primary)]/30 hover:text-white"
+              >
+                {{ cat }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </template>
+    </UAccordion>
   </div>
 </template>
