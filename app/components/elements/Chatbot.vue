@@ -129,6 +129,66 @@ watch(
   },
   { deep: true }
 );
+
+// Typewriter Effect Logic for Notification Bubble
+const notificationMessages = [
+  '👋 Psst... what does my AI know about me?',
+  '🤖 Ask my AI about my tech stack...',
+  '✨ Get instant answers about my work!',
+];
+const currentNotificationText = ref('');
+const notificationIndex = ref(0);
+const textIndex = ref(0);
+const isDeleting = ref(false);
+const typewriterSpeed = computed(() => (isDeleting.value ? 50 : 100));
+const pauseDelay = 2000;
+
+let typewriterTimeout: NodeJS.Timeout;
+
+const typeText = () => {
+  const currentFullText = notificationMessages[notificationIndex.value];
+
+  if (isDeleting.value) {
+    currentNotificationText.value = currentFullText.substring(
+      0,
+      textIndex.value - 1
+    );
+    textIndex.value--;
+  } else {
+    currentNotificationText.value = currentFullText.substring(
+      0,
+      textIndex.value + 1
+    );
+    textIndex.value++;
+  }
+
+  let nextSpeed = typewriterSpeed.value;
+
+  if (!isDeleting.value && currentNotificationText.value === currentFullText) {
+    nextSpeed = pauseDelay;
+    isDeleting.value = true;
+  } else if (isDeleting.value && currentNotificationText.value === '') {
+    isDeleting.value = false;
+    notificationIndex.value =
+      (notificationIndex.value + 1) % notificationMessages.length;
+    nextSpeed = 500;
+  }
+
+  typewriterTimeout = setTimeout(typeText, nextSpeed);
+};
+
+// Start typewriter effect when notification is shown
+watch(showNotification, (newVal) => {
+  if (newVal) {
+    typeText();
+  } else {
+    clearTimeout(typewriterTimeout);
+  }
+});
+
+onUnmounted(() => {
+  clearTimeout(typewriterTimeout);
+});
 </script>
 
 <template>
@@ -140,16 +200,16 @@ watch(
     <!-- Notification Bubble -->
     <button
       v-if="showNotification"
-      class="group relative mb-2 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5 transition-transform hover:scale-105"
+      class="group relative mb-2 flex h-12 items-center gap-2 rounded-2xl bg-white px-4 shadow-xl ring-1 ring-black/5 transition-transform hover:scale-105"
       @click="
         isOpen = true;
         showNotification = false;
       "
     >
       <p
-        class="text-sm font-medium text-[var(--color-tertiary)] transition-colors group-hover:text-[var(--color-primary)]"
+        class="text-sm font-medium whitespace-nowrap text-[var(--color-tertiary)] transition-colors group-hover:text-[var(--color-primary)]"
       >
-        👋 Psst... what does my AI know about me?
+        {{ currentNotificationText }}<span class="animate-pulse">|</span>
       </p>
       <!-- Tail pointing right -->
       <div
