@@ -33,11 +33,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container max-w-7xl mx-auto px-4 md:px-0" ref="projectsContainer">
+  <div class="container mx-auto max-w-7xl px-4 md:px-0" ref="projectsContainer">
     <p
       class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]"
     >
-      This only my personal - side projects. In the pass years I have been working on a lot of projects, but most of them are private.
+      These are personal projects I've developed independently. Due to confidentiality agreements, enterprise projects from my professional experience are not showcased here.
     </p>
 
     <div
