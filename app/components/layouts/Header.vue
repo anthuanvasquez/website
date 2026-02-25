@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Dialog, DialogPanel } from '@headlessui/vue';
-import LangSwitcher from './LangSwitcher.vue';
 
 const navigation = [
   { name: 'Resume', href: '/anthuan_vasquez_resume.pdf' },

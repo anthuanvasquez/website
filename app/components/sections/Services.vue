@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Service } from '../types';
+import type { Service } from '../../types';
 import { gsap } from 'gsap';
 
 const { data: services } = await useGetFetch<Service[]>('api/services');
@@ -33,7 +33,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 md:px-0" ref="servicesContainer">
+  <div class="container max-w-7xl mx-auto px-4 md:px-0" ref="servicesContainer">
     <div
       v-if="services"
       class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Project } from '../types';
+import type { Project } from '../../types';
 import { gsap } from 'gsap';
 
 const { data: projects } = await useGetFetch<Project[]>('/api/projects');
@@ -33,7 +33,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 md:px-0" ref="projectsContainer">
+  <div class="container max-w-7xl mx-auto px-4 md:px-0" ref="projectsContainer">
+    <p
+      class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]"
+    >
+      This only my personal - side projects. In the pass years I have been working on a lot of projects, but most of them are private.
+    </p>
+
     <div
       v-if="projects"
       class="mb-16 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2"

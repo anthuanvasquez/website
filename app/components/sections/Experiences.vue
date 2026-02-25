@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import type { Experience } from '../types';
+import type { Experience } from '../../types';
 import { gsap } from 'gsap';
 
 const activeIndex = ref(0);
-const { data: experiences } = await useGetFetch<Experience[]>(
-  'api/experiences'
-);
+const { data: experiences } =
+  await useGetFetch<Experience[]>('api/experiences');
 
 const experienceContainer = ref<HTMLElement | null>(null);
 let ctx: gsap.Context;
@@ -36,7 +35,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 md:px-0" ref="experienceContainer">
+  <div
+    class="container mx-auto max-w-7xl px-4 md:px-0"
+    ref="experienceContainer"
+  >
     <p
       class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]"
     >
@@ -47,7 +49,7 @@ onUnmounted(() => {
 
     <div
       v-if="experiences && experiences.length > 0"
-      class="experience-animate mx-auto flex w-full max-w-4xl flex-col gap-8 md:flex-row md:gap-12"
+      class="experience-animate mx-auto flex w-full flex-col gap-8 md:flex-row md:gap-12"
     >
       <!-- Left side: Tabs -->
       <div

@@ -3,7 +3,7 @@
     id="footer"
     class="mt-20 border-t border-[var(--surface-elevated)] py-12"
   >
-    <div class="container mx-auto px-4 md:px-0">
+    <div class="container max-w-7xl mx-auto px-4 md:px-0">
       <div
         class="flex flex-col items-center justify-between gap-8 md:flex-row md:items-end"
       >

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Skill } from '../types';
+import type { Skill } from '../../types';
 
 const { data: skills } = await useGetFetch<Skill[]>('/api/skills');
 
@@ -49,7 +49,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 md:px-0" ref="skillsContainer">
+  <div class="container max-w-7xl mx-auto px-4 md:px-0" ref="skillsContainer">
     <div
       v-if="skills"
       class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4"
