@@ -3,38 +3,22 @@ import type { Project } from '../../app/types';
 export default defineEventHandler(async (): Promise<Project[]> => {
   return [
     {
-      name: 'TaskFlow',
+      name: 'Devlogs',
       description:
-        'Task management system with drag-and-drop, real-time collaboration, and responsive layout.',
-      skills: 'Vue, Nuxt, Tailwind',
-      link: '#',
+        'Generates daily commit reports and sends them to Discord or whatever you want.',
+      skills: 'Node.js, Discord API, Telegram API',
+      link: 'https://github.com/anthuanvasquez/devlogs',
       image:
-        'https://placehold.co/800x600/e2e8f0/1e293b?text=TaskFlow+Dashboard',
+        'https://placehold.co/800x600/e2e8f0/1e293b?text=Devlogs',
     },
     {
-      name: 'EcoCart',
+      name: 'Timevent',
       description:
-        'E-commerce platform promoting eco-friendly products with payment integration.',
-      skills: 'React, NextJS, Stripe',
-      link: '#',
-      image: 'https://placehold.co/800x600/e2e8f0/1e293b?text=EcoCart+Store',
-    },
-    {
-      name: 'Timeline',
-      description:
-        'Interactive scheduling and calendar application for managing complex internal team workflows.',
-      skills: 'Angular, Node.js',
-      link: '#',
+        'A modern, aesthetic web application that displays a countdown timer to your next upcoming Google Calendar event.',
+      skills: 'Node.js, Google Calendar API, React, TypeScript, Tailwind CSS',
+      link: 'https://github.com/anthuanvasquez/timevent',
       image:
-        'https://placehold.co/800x600/e2e8f0/1e293b?text=Timeline+Calendar',
-    },
-    {
-      name: 'Maps Delivery',
-      description:
-        'A food delivery tracking application using real-time geolocation and route optimization.',
-      skills: 'Vue, Google Maps API',
-      link: '#',
-      image: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Maps+Delivery',
+        'https://placehold.co/800x600/e2e8f0/1e293b?text=Timevent',
     },
   ];
 });

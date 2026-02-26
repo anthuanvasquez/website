@@ -58,7 +58,7 @@ export default defineEventHandler(async (): Promise<Skill[]> => {
       icon: 'i-skill-icons-postgresql-dark',
     },
     {
-      name: 'Prisma / Drizzle',
+      name: 'Prisma / SQL',
       category: 'Backend',
       icon: 'i-skill-icons-prisma',
     },
@@ -88,9 +88,8 @@ export default defineEventHandler(async (): Promise<Skill[]> => {
       icon: 'i-skill-icons-vercel-dark',
     },
     {
-      name: 'Figma / UI Design',
+      name: 'UX / UI Design',
       category: 'Design & Soft Skills',
-      icon: 'i-skill-icons-figma-dark',
     },
     {
       name: 'Effective Communication',
