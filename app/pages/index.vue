@@ -111,6 +111,12 @@
 
   <Section id="experiences" title="Experiences" subtitle="Latest">
     <Experiences />
+
+    <p
+      class="experience-animate mx-auto mt-12 max-w-lg text-center text-sm leading-relaxed font-normal text-[var(--text-secondary)] italic"
+    >
+      This is a curated selection – view my full resume for additional experience.
+    </p>
   </Section>
 
   <Section id="projects" title="Projects" subtitle="Built">
