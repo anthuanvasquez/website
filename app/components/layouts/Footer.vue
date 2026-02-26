@@ -1,21 +1,14 @@
 <template>
-  <footer
-    id="footer"
-    class="mt-20 border-t border-[var(--surface-elevated)] py-12"
-  >
+  <footer id="footer" class="mt-20 border-t border-(--surface-elevated) py-12">
     <div class="container mx-auto max-w-7xl px-4 md:px-0">
       <div
         class="flex flex-col items-center justify-between gap-8 md:flex-row md:items-end"
       >
-        <!-- Left Side: Title & Actions -->
         <div class="flex flex-col text-center md:text-left">
           <h2
-            class="mb-6 text-3xl font-bold tracking-tight text-[var(--text-primary)]"
+            class="mb-6 text-3xl font-bold tracking-tight text-(--text-primary)"
           >
-            Interested in working together<span
-              class="text-[var(--color-primary)]"
-              >?</span
-            >
+            Interested in working together<span class="text-primary">?</span>
           </h2>
 
           <div class="flex items-center justify-center gap-4 md:justify-start">
@@ -30,7 +23,7 @@
             <UButton
               color="neutral"
               variant="outline"
-              class="justify-center rounded-lg bg-[var(--surface-base)] px-6 py-2.5 font-medium text-[var(--text-primary)] ring-1 ring-[var(--surface-elevated)] transition-all hover:bg-[var(--surface-elevated)]"
+              class="justify-center rounded-lg bg-(--surface-base) px-6 py-2.5 font-medium text-(--text-primary) ring-1 ring-(--surface-elevated) transition-all hover:bg-(--surface-elevated)"
               to="#projects"
             >
               Browse Projects
@@ -38,20 +31,20 @@
           </div>
         </div>
 
-        <!-- Right Side: Copyright -->
         <div
-          class="flex flex-col text-center text-sm font-medium text-[var(--text-tertiary)] md:text-right"
+          class="flex flex-col text-center text-sm font-medium text-(--text-tertiary) md:text-right"
         >
           <p class="mb-1">
             © {{ new Date().getFullYear() }} All Rights Reserved.
           </p>
           <p>
-            Developed with <span class="text-[var(--color-primary)]">♥</span> by
+            Developed with <span class="text-primary">♥</span> by
             <a
-              href="https://anthuanvasquez.net"
-              class="text-[var(--text-primary)] transition-colors hover:text-[var(--color-primary)]"
-              >Anthuan</a
+              href="/"
+              class="hover:text-primary text-(--text-primary) transition-colors"
             >
+              Anthuan
+            </a>
           </p>
         </div>
       </div>
@@ -68,7 +61,7 @@ const copied = ref(false);
  * Copy email address to clipboard. Notify after copy.
  */
 const copyEmailAddress = () => {
-  const email = 'info@purplefolio.com'; // using the one from the image reference if user wishes, or the previous placeholder
+  const email = useRuntimeConfig().public.emailAddress as string;
   navigator.clipboard.writeText(email);
   copied.value = true;
   useToast().add({
