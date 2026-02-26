@@ -101,6 +101,7 @@ onUnmounted(() => {
           >
             {{ project.description }}
           </p>
+          <p class="mt-2 text-xs font-firacode leading-relaxed font-normal text-[var(--text-secondary)]">{{ project.skills }}</p>
         </div>
       </div>
     </div>
