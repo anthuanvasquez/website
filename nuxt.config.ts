@@ -63,7 +63,7 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
-    baseUrl: process.env.BASE_URL || 'https://anthuanvasquez.net',
+    baseUrl: process.env.BASE_URL,
     locales: [
       {
         code: 'en',
@@ -95,8 +95,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     groqApiKey: process.env.GROQ_API_KEY,
     public: {
-      BASE_URL: process.env.BASE_URL,
-      mapboxToken: process.env.MAPBOX_TOKEN,
+      baseUrl: process.env.BASE_URL,
+      emailAddress: process.env.EMAIL_ADDRESS,
     },
   },
   compatibilityDate: '2026-02-23',
