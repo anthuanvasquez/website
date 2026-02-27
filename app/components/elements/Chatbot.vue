@@ -7,6 +7,7 @@ import {
   UserIcon,
   ComputerDesktopIcon,
 } from '@heroicons/vue/24/outline';
+import { generateSessionToken } from '~/utils/chatSession';
 
 interface Message {
   id: string;
@@ -75,11 +76,13 @@ const sendMessage = async () => {
   }
 
   try {
+    const sessionToken = await generateSessionToken();
     const response = await $fetch<ChatResponse>('/api/chatbot/chat', {
       method: 'POST',
       body: {
         message: messageToSend,
         locale: $i18n.locale.value,
+        sessionToken,
       },
     });
 
