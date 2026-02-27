@@ -82,7 +82,6 @@ export default defineNuxtConfig({
         description: 'Español',
       },
     ],
-
     langDir: 'lang',
     strategy: 'prefix_except_default',
     defaultLocale: 'en',
@@ -93,6 +92,9 @@ export default defineNuxtConfig({
     '/api/*': {},
   },
   runtimeConfig: {
+    allowedOrigin: process.env.ALLOWED_ORIGIN,
+    internalApiSecret: process.env.INTERNAL_SECRET,
+    chatSessionSecret: process.env.CHAT_SESSION_SECRET,
     groqApiKey: process.env.GROQ_API_KEY,
     public: {
       baseUrl: process.env.BASE_URL,
