@@ -127,7 +127,7 @@ const profile = {
 const links = [
   {
     label: 'Check Out My Latest Projects',
-    url: 'https://anthuanvasquez.net/projects',
+    url: 'https://anthuanvasquez.net/#projects',
     icon: 'i-lucide-briefcase',
   },
   {
