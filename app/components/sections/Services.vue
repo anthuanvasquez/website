@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Service } from '../../types';
+import type { Service } from '~/types';
 import { gsap } from 'gsap';
 
 const { data: services } = await useGetFetch<Service[]>('api/services');

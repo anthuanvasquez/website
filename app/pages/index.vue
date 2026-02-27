@@ -4,7 +4,6 @@
   >
     <div class="container mx-auto max-w-7xl px-4 md:px-0">
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-8">
-        <!-- Left content -->
         <div class="max-w-2xl text-left lg:pr-8">
           <Motion
             as="div"
@@ -27,8 +26,8 @@
             <h1
               class="mb-6 text-6xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
             >
-              <span class="block text-(--color-primary)">Full-Stack</span>
-              <span class="block text-(--text-primary)">Engineer</span>
+              <span class="text-primary block">Full-Stack</span>
+              <span class="text-primary block">Engineer</span>
             </h1>
           </Motion>
           <Motion
@@ -72,7 +71,6 @@
           </Motion>
         </div>
 
-        <!-- Right content (Image) -->
         <Motion
           as="div"
           :initial="{ opacity: 0, scale: 0.8 }"
@@ -83,12 +81,10 @@
           <div
             class="relative h-72 w-72 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px]"
           >
-            <!-- Decorative outer ring -->
             <div
-              class="absolute inset-0 scale-[1.15] animate-[spin_60s_linear_infinite] rounded-full border border-(--color-primary)/30"
+              class="border-primary/30 absolute inset-0 scale-[1.15] animate-[spin_60s_linear_infinite] rounded-full border"
             ></div>
 
-            <!-- Image container -->
             <div
               class="relative h-full w-full overflow-hidden rounded-full border-4 border-(--surface-base) bg-(--surface-elevated) shadow-2xl"
             >
@@ -139,7 +135,7 @@
         every project.
       </p>
       <div
-        class="relative h-[500px] w-full overflow-hidden rounded-2xl bg-(--surface-base) shadow-sm ring-1 ring-white/10 transition-all hover:ring-(--color-primary)/50"
+        class="hover:ring-primary/50 relative h-[500px] w-full overflow-hidden rounded-2xl bg-(--surface-base) shadow-sm ring-1 ring-white/10 transition-all"
       >
         <MapRD />
       </div>

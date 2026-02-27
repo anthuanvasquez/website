@@ -23,7 +23,3 @@
     </MapboxMap>
   </div>
 </template>
-
-<script setup lang="ts">
-// nuxt-mapbox handles the loading and lifecycle automatically
-</script>

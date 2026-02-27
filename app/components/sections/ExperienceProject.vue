@@ -39,9 +39,7 @@ defineProps<Props>();
           </p>
         </div>
         <p class="text-sm text-(--text-secondary)">
-          <span class="me-2 font-medium text-(--text-primary)"
-            >Skills:</span
-          >
+          <span class="text-primary me-2 font-medium">Skills:</span>
           <span class="font-firacode text-xs text-(--text-tertiary)">{{
             project.skills
           }}</span>

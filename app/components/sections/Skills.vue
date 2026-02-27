@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Skill } from '../../types';
+import type { Skill } from '~/types';
 
 const { data: skills } = await useGetFetch<Skill[]>('/api/skills');
 

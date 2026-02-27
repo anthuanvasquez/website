@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Experience } from '../../types';
+import type { Experience } from '~/types';
 import { gsap } from 'gsap';
 
 const activeIndex = ref(0);
