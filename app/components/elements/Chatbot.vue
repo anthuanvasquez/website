@@ -28,7 +28,6 @@ const placeholderText = computed(() => t('chatbot.placeholder'));
 const chatbotTitle = computed(() => t('chatbot.title'));
 const errorMessage = computed(() => t('chatbot.error'));
 
-// Initialize with welcome message
 onMounted(() => {
   messages.value = [
     {
@@ -45,9 +44,7 @@ onMounted(() => {
     },
   ];
 
-  // Show the welcome bubble after 2 seconds
   setTimeout(() => {
-    // Only show if the user hasn't opened the chat yet
     if (!isOpen.value) {
       showNotification.value = true;
     }
@@ -118,8 +115,8 @@ const handleKeyPress = (event: KeyboardEvent) => {
   }
 };
 
-// Auto-scroll to bottom when new message is added
 const messagesContainer = ref<HTMLElement>();
+
 watch(
   messages,
   () => {
@@ -133,7 +130,6 @@ watch(
   { deep: true }
 );
 
-// Typewriter Effect Logic for Notification Bubble
 const notificationMessages = [
   '👋 Psst... what does my AI know about me?',
   '🤖 Ask my AI about my tech stack...',
@@ -150,6 +146,8 @@ let typewriterTimeout: NodeJS.Timeout;
 
 const typeText = () => {
   const currentFullText = notificationMessages[notificationIndex.value];
+
+  if (!currentFullText) return;
 
   if (isDeleting.value) {
     currentNotificationText.value = currentFullText.substring(
@@ -180,7 +178,6 @@ const typeText = () => {
   typewriterTimeout = setTimeout(typeText, nextSpeed);
 };
 
-// Start typewriter effect when notification is shown
 watch(showNotification, (newVal) => {
   if (newVal) {
     typeText();
@@ -195,12 +192,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- Floating Chat Button & Notification -->
   <div
     class="fixed right-6 bottom-6 z-50 flex items-end gap-3 transition-all duration-300"
     :class="{ 'pointer-events-none translate-y-4 opacity-0': isOpen }"
   >
-    <!-- Notification Bubble -->
     <button
       v-if="showNotification"
       class="group relative mb-2 flex h-12 items-center gap-2 rounded-2xl bg-white px-4 shadow-xl ring-1 ring-black/5 transition-transform hover:scale-105"
@@ -210,11 +205,11 @@ onUnmounted(() => {
       "
     >
       <p
-        class="text-sm font-medium whitespace-nowrap text-[var(--color-tertiary)] transition-colors group-hover:text-[var(--color-primary)]"
+        class="text-tertiary group-hover:text-primary text-sm font-medium whitespace-nowrap transition-colors"
       >
         {{ currentNotificationText }}<span class="animate-pulse">|</span>
       </p>
-      <!-- Tail pointing right -->
+
       <div
         class="absolute -right-1.5 bottom-4 h-3 w-3 rotate-45 rounded-sm bg-white ring-1 ring-black/5"
       ></div>
