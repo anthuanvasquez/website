@@ -1,4 +1,4 @@
-import type { Service } from '../../app/types';
+import type { Service } from '~/types';
 
 export default defineEventHandler(async (): Promise<Service[]> => {
   return [

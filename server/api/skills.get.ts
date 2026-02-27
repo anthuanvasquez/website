@@ -1,4 +1,4 @@
-import type { Skill } from '../../app/types';
+import type { Skill } from '~/types';
 
 export default defineEventHandler(async (): Promise<Skill[]> => {
   return [
