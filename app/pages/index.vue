@@ -13,7 +13,7 @@
             :transition="{ duration: 0.5, delay: 0.1 }"
           >
             <p
-              class="wave-container mb-4 inline-flex items-center text-lg font-medium text-[var(--text-secondary)]"
+              class="wave-container mb-4 inline-flex items-center text-lg font-medium text-(--text-secondary)"
             >
               Hey, I'm Anthuan <span class="wave-hand ml-2 text-2xl">👋</span>
             </p>
@@ -27,8 +27,8 @@
             <h1
               class="mb-6 text-6xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
             >
-              <span class="block text-[var(--color-primary)]">Full-Stack</span>
-              <span class="block text-[var(--text-primary)]">Engineer</span>
+              <span class="block text-(--color-primary)">Full-Stack</span>
+              <span class="block text-(--text-primary)">Engineer</span>
             </h1>
           </Motion>
           <Motion
@@ -38,7 +38,7 @@
             :transition="{ duration: 0.5, delay: 0.3 }"
           >
             <p
-              class="mb-10 max-w-xl text-lg leading-relaxed font-normal text-[var(--text-secondary)] sm:text-xl"
+              class="mb-10 max-w-xl text-lg leading-relaxed font-normal text-(--text-secondary) sm:text-xl"
             >
               A Full-Stack Engineer living in DR, and I focus on making digital
               experiences that are easy to use, enjoyable, and get the job done.
@@ -65,7 +65,7 @@
               size="lg"
               color="neutral"
               variant="outline"
-              class="justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1 ring-[var(--text-tertiary)] hover:bg-[var(--surface-elevated)]"
+              class="justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1 ring-(--text-tertiary) hover:bg-(--surface-elevated)"
             >
               Browse Projects
             </UButton>
@@ -85,12 +85,12 @@
           >
             <!-- Decorative outer ring -->
             <div
-              class="absolute inset-0 scale-[1.15] animate-[spin_60s_linear_infinite] rounded-full border border-[var(--color-primary)]/30"
+              class="absolute inset-0 scale-[1.15] animate-[spin_60s_linear_infinite] rounded-full border border-(--color-primary)/30"
             ></div>
 
             <!-- Image container -->
             <div
-              class="relative h-full w-full overflow-hidden rounded-full border-4 border-[var(--surface-base)] bg-[var(--surface-elevated)] shadow-2xl"
+              class="relative h-full w-full overflow-hidden rounded-full border-4 border-(--surface-base) bg-(--surface-elevated) shadow-2xl"
             >
               <NuxtImg
                 src="/yo.jpeg"
@@ -113,9 +113,10 @@
     <Experiences />
 
     <p
-      class="experience-animate mx-auto mt-12 max-w-lg text-center text-sm leading-relaxed font-normal text-[var(--text-secondary)] italic"
+      class="experience-animate mx-auto mt-12 max-w-lg text-center text-sm leading-relaxed font-normal text-(--text-secondary) italic"
     >
-      This is a curated selection – view my full resume for additional experience.
+      This is a curated selection – view my full resume for additional
+      experience.
     </p>
   </Section>
 
@@ -130,7 +131,7 @@
   <Section id="location" title="Where I'm Based" subtitle="Location">
     <div class="container mx-auto max-w-7xl px-4 md:px-0">
       <p
-        class="mx-auto mb-12 max-w-2xl text-center leading-relaxed font-normal text-[var(--text-secondary)]"
+        class="mx-auto mb-12 max-w-2xl text-center leading-relaxed font-normal text-(--text-secondary)"
       >
         I'm proudly located in the Dominican Republic, right in the heart of the
         Caribbean. From this tropical paradise, I collaborate with clients
@@ -138,7 +139,7 @@
         every project.
       </p>
       <div
-        class="relative h-[500px] w-full overflow-hidden rounded-2xl bg-[var(--surface-base)] shadow-sm ring-1 ring-white/10 transition-all hover:ring-[var(--color-primary)]/50"
+        class="relative h-[500px] w-full overflow-hidden rounded-2xl bg-(--surface-base) shadow-sm ring-1 ring-white/10 transition-all hover:ring-(--color-primary)/50"
       >
         <MapRD />
       </div>

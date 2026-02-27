@@ -49,8 +49,8 @@ onUnmounted(() => {
       :items="accordionItems"
       multiple
       :ui="{
-        root: 'w-full flex flex-col gap-0 border-t border-[var(--surface-elevated)]',
-        item: 'service-row border-b my-2 border-[var(--surface-elevated)] transition-colors hover:border-transparent',
+        root: 'w-full flex flex-col gap-0 border-t border-(--surface-elevated)',
+        item: 'service-row border-b my-2 border-(--surface-elevated) transition-colors hover:border-transparent',
         trigger:
           'group flex w-full items-center justify-between py-8 focus-visible:ring-0 text-left hover:bg-transparent p-0 transition-all',
         label: 'flex-1 text-left',
@@ -63,28 +63,28 @@ onUnmounted(() => {
         >
           <!-- ID -->
           <span
-            class="w-12 shrink-0 text-left font-mono text-lg text-[var(--text-secondary)]"
+            class="w-12 shrink-0 text-left font-mono text-lg text-(--text-secondary)"
           >
             {{ item.id }}
           </span>
 
           <!-- Thumbnail Box -->
           <div
-            class="relative flex h-[90px] w-[180px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-[var(--surface-elevated)] transition-transform duration-500 group-hover:scale-[1.02]"
+            class="relative flex h-[90px] w-[180px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-(--surface-elevated) transition-transform duration-500 group-hover:scale-[1.02]"
           >
             <div
-              class="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/10 to-transparent"
+              class="absolute inset-0 bg-gradient-to-br from-(--color-primary)/10 to-transparent"
             ></div>
             <UIcon
               :name="item.icon"
-              class="relative z-10 h-10 w-10 text-[var(--color-primary)]"
+              class="relative z-10 h-10 w-10 text-(--color-primary)"
             />
           </div>
 
           <!-- Title -->
           <div class="flex-1 text-left">
             <h3
-              class="text-2xl font-medium tracking-tight text-[var(--text-primary)] transition-colors duration-300"
+              class="text-2xl font-medium tracking-tight text-(--text-primary) transition-colors duration-300"
             >
               {{ item.label }}
             </h3>
@@ -94,12 +94,12 @@ onUnmounted(() => {
 
       <template #trailing="{ open }">
         <div
-          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[var(--surface-elevated)] bg-[var(--surface-base)] transition-colors duration-300 group-hover:border-white/10 group-hover:bg-[var(--surface-elevated)]"
-          :class="open ? 'bg-[var(--surface-elevated)]' : ''"
+          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-(--surface-elevated) bg-(--surface-base) transition-colors duration-300 group-hover:border-white/10 group-hover:bg-(--surface-elevated)"
+          :class="open ? 'bg-(--surface-elevated)' : ''"
         >
           <UIcon
             :name="open ? 'i-lucide-minus' : 'i-lucide-plus'"
-            class="h-5 w-5 text-[var(--text-secondary)] transition-transform duration-300"
+            class="h-5 w-5 text-(--text-secondary) transition-transform duration-300"
             :class="open ? 'rotate-180' : ''"
           />
         </div>
@@ -112,7 +112,7 @@ onUnmounted(() => {
           <!-- Description -->
           <div class="flex-1">
             <p
-              class="text-md max-w-2xl leading-relaxed text-[var(--text-secondary)]"
+              class="text-md max-w-2xl leading-relaxed text-(--text-secondary)"
             >
               {{ item.description }}
             </p>
@@ -120,16 +120,14 @@ onUnmounted(() => {
 
           <!-- Categories -->
           <div class="w-full shrink-0 lg:w-[320px]">
-            <div
-              class="mb-4 text-xs tracking-wider text-[var(--text-tertiary)]"
-            >
+            <div class="mb-4 text-xs tracking-wider text-(--text-tertiary)">
               Categories
             </div>
             <div class="flex flex-wrap gap-2.5">
               <span
                 v-for="cat in item.categories"
                 :key="cat"
-                class="rounded-full border border-white/5 bg-[var(--surface-elevated)] px-5 py-2 text-sm font-medium text-[var(--text-primary)] shadow-sm transition-colors hover:border-[var(--color-primary)]/30 hover:text-white"
+                class="rounded-full border border-white/5 bg-(--surface-elevated) px-5 py-2 text-sm font-medium text-(--text-primary) shadow-sm transition-colors hover:border-(--color-primary)/30 hover:text-white"
               >
                 {{ cat }}
               </span>

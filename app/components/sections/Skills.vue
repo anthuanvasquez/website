@@ -59,13 +59,13 @@ onUnmounted(() => {
         :key="categoryName"
         class="skill-group"
       >
-        <h3 class="mb-6 text-xl font-bold text-[var(--text-primary)]">
+        <h3 class="mb-6 text-xl font-bold text-(--text-primary)">
           {{ categoryName }}
         </h3>
         <ul class="flex flex-col gap-4">
           <li v-for="(skill, index) in group" :key="index">
             <div
-              class="inline-flex items-center text-[var(--text-secondary)] transition-all hover:-translate-y-0.5 hover:text-[var(--text-primary)]"
+              class="inline-flex items-center text-(--text-secondary) transition-all hover:-translate-y-0.5 hover:text-(--text-primary)"
             >
               <UIcon
                 v-if="skill.icon"

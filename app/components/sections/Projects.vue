@@ -35,7 +35,7 @@ onUnmounted(() => {
 <template>
   <div class="container mx-auto max-w-7xl px-4 md:px-0" ref="projectsContainer">
     <p
-      class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]"
+      class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-(--text-secondary)"
     >
       These are personal projects I've developed independently. Due to
       confidentiality agreements, enterprise projects from my professional
@@ -55,7 +55,7 @@ onUnmounted(() => {
         <a
           :href="project.link || '#'"
           target="_blank"
-          class="aspect-[4/3] w-full overflow-hidden rounded-3xl bg-[var(--surface-elevated)] shadow-sm ring-1 ring-white/5 transition-transform duration-300 group-hover:-translate-y-1"
+          class="aspect-[4/3] w-full overflow-hidden rounded-3xl bg-(--surface-elevated) shadow-sm ring-1 ring-white/5 transition-transform duration-300 group-hover:-translate-y-1"
         >
           <NuxtImg
             v-if="project.image"
@@ -67,10 +67,10 @@ onUnmounted(() => {
           />
           <div
             v-else
-            class="flex h-full w-full items-center justify-center bg-[var(--surface-base)]"
+            class="flex h-full w-full items-center justify-center bg-(--surface-base)"
           >
             <span
-              class="font-firacode text-sm tracking-widest text-[var(--text-tertiary)] uppercase"
+              class="font-firacode text-sm tracking-widest text-(--text-tertiary) uppercase"
             >
               No Image
             </span>
@@ -81,14 +81,14 @@ onUnmounted(() => {
         <div class="flex flex-col px-2">
           <div class="mb-3 flex items-center gap-3">
             <h3
-              class="text-2xl font-bold text-[var(--text-primary)] transition-colors group-hover:text-white"
+              class="text-2xl font-bold text-(--text-primary) transition-colors group-hover:text-white"
             >
               {{ project.name }}
             </h3>
             <a
               :href="project.link || '#'"
               target="_blank"
-              class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--surface-base)] text-[var(--color-primary)] ring-1 ring-[var(--color-primary)] transition-all hover:bg-[var(--color-primary)] hover:text-white"
+              class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-(--surface-base) text-(--color-primary) ring-1 ring-(--color-primary) transition-all hover:bg-(--color-primary) hover:text-white"
             >
               <UIcon
                 name="i-heroicons-arrow-up-right-20-solid"
@@ -97,11 +97,15 @@ onUnmounted(() => {
             </a>
           </div>
           <p
-            class="text-base leading-relaxed font-normal text-[var(--text-secondary)]"
+            class="text-base leading-relaxed font-normal text-(--text-secondary)"
           >
             {{ project.description }}
           </p>
-          <p class="mt-2 text-xs font-firacode leading-relaxed font-normal text-[var(--text-secondary)]">{{ project.skills }}</p>
+          <p
+            class="font-firacode mt-2 text-xs leading-relaxed font-normal text-(--text-secondary)"
+          >
+            {{ project.skills }}
+          </p>
         </div>
       </div>
     </div>

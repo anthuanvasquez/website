@@ -40,13 +40,13 @@ onUnmounted(() => {
     ref="experienceContainer"
   >
     <p
-      class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-[var(--text-secondary)]"
+      class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-(--text-secondary)"
     >
       Over the past 10+ years. I've the opportunity to work with wide range of
       projects, collaborating with diverse teams and clients.
     </p>
 
-    <div class="border border-white/10 p-6 rounded-xl">
+    <div class="rounded-xl border border-white/10 p-6">
       <div
         v-if="experiences && experiences.length > 0"
         class="experience-animate mx-auto flex w-full flex-col gap-8 md:flex-row md:gap-12"
@@ -61,8 +61,8 @@ onUnmounted(() => {
             class="shrink-0 px-5 py-3 text-left text-sm font-medium whitespace-nowrap transition-all md:border-l-2 md:text-base md:whitespace-normal"
             :class="
               activeIndex === index
-                ? 'border-[var(--color-primary)] bg-[var(--surface-elevated)] text-[var(--color-primary)] md:border-b-0'
-                : 'border-transparent text-[var(--text-secondary)] hover:bg-[var(--surface-float)] hover:text-white md:border-b-0'
+                ? 'border-(--color-primary) bg-(--surface-elevated) text-(--color-primary) md:border-b-0'
+                : 'border-transparent text-(--text-secondary) hover:bg-(--surface-float) hover:text-white md:border-b-0'
             "
             @click="activeIndex = index"
           >
@@ -73,13 +73,13 @@ onUnmounted(() => {
         <!-- Right side: Content -->
         <div class="pt-2 md:w-3/4 md:pt-0">
           <div v-if="experiences[activeIndex]">
-            <h3 class="mb-1 text-2xl font-bold text-[var(--text-primary)]">
+            <h3 class="mb-1 text-2xl font-bold text-(--text-primary)">
               {{ experiences[activeIndex]?.position }}
-              <span class="text-[var(--color-primary)]">
+              <span class="text-(--color-primary)">
                 @ {{ experiences[activeIndex]?.name }}
               </span>
             </h3>
-            <p class="font-firacode mb-8 text-sm text-[var(--text-tertiary)]">
+            <p class="font-firacode mb-8 text-sm text-(--text-tertiary)">
               {{ experiences[activeIndex]?.date }}
             </p>
 
@@ -91,20 +91,20 @@ onUnmounted(() => {
               >
                 <UIcon
                   name="i-lucide-check"
-                  class="mt-1 mr-4 h-5 w-5 shrink-0 text-[var(--color-primary)]"
+                  class="mt-1 mr-4 h-5 w-5 shrink-0 text-(--color-primary)"
                 />
                 <div>
                   <span
-                    class="block text-base leading-relaxed text-[var(--text-secondary)]"
+                    class="block text-base leading-relaxed text-(--text-secondary)"
                   >
                     {{ project.description }}
                   </span>
                   <span
                     v-if="project.skills"
-                    class="font-firacode mt-2 block text-xs text-[var(--text-tertiary)]"
+                    class="font-firacode mt-2 block text-xs text-(--text-tertiary)"
                   >
                     Skills:
-                    <span class="text-[var(--text-secondary)]">
+                    <span class="text-(--text-secondary)">
                       {{ project.skills }}
                     </span>
                   </span>

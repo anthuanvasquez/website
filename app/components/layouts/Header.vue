@@ -30,7 +30,7 @@ const mobileMenuOpen = ref(false);
     >
       <div class="mx-auto max-w-7xl">
         <nav
-          class="flex items-center justify-between rounded-full bg-[var(--surface-elevated)]/70 px-6 py-3 shadow-lg ring-1 ring-white/10 backdrop-blur-md"
+          class="flex items-center justify-between rounded-full bg-(--surface-elevated)/70 px-6 py-3 shadow-lg ring-1 ring-white/10 backdrop-blur-md"
           aria-label="Global"
         >
           <div class="flex lg:flex-1">
@@ -39,7 +39,7 @@ const mobileMenuOpen = ref(false);
               class="-m-1.5 p-1.5 transition-opacity hover:opacity-80"
             >
               <span
-                class="font-firacode text-xl font-bold text-[var(--color-primary)]"
+                class="font-firacode text-xl font-bold text-(--color-primary)"
                 >{{ '<av />' }}</span
               >
             </a>
@@ -48,7 +48,7 @@ const mobileMenuOpen = ref(false);
           <div class="flex lg:hidden">
             <button
               type="button"
-              class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-[var(--text-secondary)] transition-colors hover:text-white"
+              class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-(--text-secondary) transition-colors hover:text-white"
               @click="mobileMenuOpen = true"
             >
               <span class="sr-only">Open main menu</span>
@@ -61,7 +61,7 @@ const mobileMenuOpen = ref(false);
               v-for="item in navigation"
               :key="item.name"
               :href="item.href"
-              class="text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+              class="text-sm font-medium text-(--text-secondary) transition-colors hover:text-(--text-primary) hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
               :target="item.href.includes('http') ? '_blank' : '_self'"
             >
               {{ item.name }}
@@ -74,7 +74,7 @@ const mobileMenuOpen = ref(false);
 
         <!-- Bottom Sub Navigation (Sections) -->
         <nav
-          class="no-scrollbar mx-auto mt-2 flex w-full max-w-xl items-center justify-start overflow-x-auto rounded-full bg-[var(--surface-elevated)]/80 px-6 py-2.5 shadow-lg ring-1 ring-white/5 backdrop-blur-md md:w-auto md:justify-center lg:gap-x-8"
+          class="no-scrollbar mx-auto mt-2 flex w-full max-w-xl items-center justify-start overflow-x-auto rounded-full bg-(--surface-elevated)/80 px-6 py-2.5 shadow-lg ring-1 ring-white/5 backdrop-blur-md md:w-auto md:justify-center lg:gap-x-8"
           aria-label="Section Navigation"
         >
           <div class="flex items-center gap-x-6">
@@ -82,7 +82,7 @@ const mobileMenuOpen = ref(false);
               v-for="item in subNavigation"
               :key="item.name"
               :href="item.href"
-              class="font-firacode text-xs font-medium tracking-widest whitespace-nowrap text-[var(--text-tertiary)] uppercase transition-colors hover:text-[var(--text-primary)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+              class="font-firacode text-xs font-medium tracking-widest whitespace-nowrap text-(--text-tertiary) uppercase transition-colors hover:text-(--text-primary) hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             >
               {{ item.name }}
             </a>
@@ -99,18 +99,18 @@ const mobileMenuOpen = ref(false);
         <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
 
         <DialogPanel
-          class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[var(--surface-base)] p-6 sm:max-w-sm sm:ring-1 sm:ring-white/10"
+          class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-(--surface-base) p-6 sm:max-w-sm sm:ring-1 sm:ring-white/10"
         >
           <div class="flex items-center justify-between">
             <a href="/" class="-m-1.5 p-1.5">
               <span
-                class="font-firacode text-xl font-bold text-[var(--color-primary)]"
+                class="font-firacode text-xl font-bold text-(--color-primary)"
                 >{{ '<av />' }}</span
               >
             </a>
             <button
               type="button"
-              class="-m-2.5 rounded-md p-2.5 text-[var(--text-secondary)] transition-colors hover:text-white"
+              class="-m-2.5 rounded-md p-2.5 text-(--text-secondary) transition-colors hover:text-white"
               @click="mobileMenuOpen = false"
             >
               <span class="sr-only">Close menu</span>
@@ -125,7 +125,7 @@ const mobileMenuOpen = ref(false);
                   v-for="item in navigation"
                   :key="item.name"
                   :href="item.href"
-                  class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-elevated)] hover:text-white"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-medium text-(--text-secondary) transition-colors hover:bg-(--surface-elevated) hover:text-white"
                 >
                   {{ item.name }}
                 </a>
@@ -134,7 +134,7 @@ const mobileMenuOpen = ref(false);
               <!-- Sections Navigation -->
               <div class="space-y-2 py-6">
                 <span
-                  class="font-firacode mb-4 block px-3 text-xs tracking-widest text-[var(--text-tertiary)] uppercase"
+                  class="font-firacode mb-4 block px-3 text-xs tracking-widest text-(--text-tertiary) uppercase"
                   >Sections</span
                 >
                 <a
@@ -142,7 +142,7 @@ const mobileMenuOpen = ref(false);
                   :key="item.name"
                   :href="item.href"
                   @click="mobileMenuOpen = false"
-                  class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-elevated)] hover:text-[var(--color-primary)]"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-medium text-(--text-secondary) transition-colors hover:bg-(--surface-elevated) hover:text-(--color-primary)"
                 >
                   {{ item.name }}
                 </a>
