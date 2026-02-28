@@ -9,10 +9,20 @@
 @theme {
   --font-firacode: 'Fira Code', monospace;
   --font-opensans: 'Mona Sans', sans-serif;
-  --color-primary: #4c47fe;
-  --color-secondary: #27bcfd;
-  --color-tertiary: #a0facf;
-  --color-black: #010810;
+  --color-primary: #38bdf8; /* Clean Cyan accent */
+  --color-secondary: #0ea5e9;
+  --color-tertiary: #0284c7;
+  --color-black: #010810; /* Deep IDE Canvas */
+
+  --surface-base: var(--color-black);
+  --surface-elevated: #0a111a;
+  --surface-float: #111a24;
+
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --text-muted: #475569;
+  --text-accent: var(--color-primary);
 }
 
 /*
@@ -33,15 +43,21 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 #__nuxt {
-  @apply h-full;
+  @apply h-full antialiased;
 }
 
 html,
 body {
-  @apply font-opensans bg-black font-medium text-white;
+  @apply font-opensans bg-black font-medium text-slate-100;
+  background-color: var(--surface-base);
+  color: var(--text-primary);
 }
 
 h1,
@@ -50,13 +66,10 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-firacode font-bold tracking-tighter;
+  @apply font-firacode font-bold tracking-tighter text-white;
 }
 
-.gradient-text {
-  @apply from-primary via-secondary to-tertiary inline-block bg-linear-to-r bg-clip-text text-transparent;
-}
-
-.gradient-bg {
-  @apply from-primary via-secondary to-tertiary bg-linear-to-r;
+.text-primary-gradient {
+  /* Retaining a subtle option if extremely needed, but favoring standard accent */
+  @apply from-primary to-secondary inline-block bg-linear-to-r bg-clip-text text-transparent;
 }

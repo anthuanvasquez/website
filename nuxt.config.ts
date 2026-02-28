@@ -12,10 +12,15 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxtjs/i18n',
     'nuxt-mapbox',
-    '@nuxt/content',
+    'motion-v/nuxt',
   ],
   css: ['~/assets/main.css'],
-  components: ['~/components'],
+  components: [
+    '~/components/',
+    '~/components/layouts',
+    '~/components/sections',
+    '~/components/elements',
+  ],
   ui: {
     prefix: 'U',
   },
@@ -58,10 +63,11 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
+    baseUrl: process.env.BASE_URL,
     locales: [
       {
         code: 'en',
-        iso: 'en-US',
+        language: 'en-US',
         file: 'en-US.json',
         name: 'English',
         flag: '🇺🇸',
@@ -69,14 +75,13 @@ export default defineNuxtConfig({
       },
       {
         code: 'es',
-        iso: 'es-ES',
+        language: 'es-ES',
         file: 'es-ES.json',
         name: 'Español',
         flag: '🇩🇴',
         description: 'Español',
       },
     ],
-
     langDir: 'lang',
     strategy: 'prefix_except_default',
     defaultLocale: 'en',
@@ -87,10 +92,14 @@ export default defineNuxtConfig({
     '/api/*': {},
   },
   runtimeConfig: {
+    allowedOrigin: process.env.ALLOWED_ORIGIN,
+    internalApiSecret: process.env.INTERNAL_SECRET,
+    chatSessionSecret: process.env.CHAT_SESSION_SECRET,
     groqApiKey: process.env.GROQ_API_KEY,
     public: {
-      BASE_URL: process.env.BASE_URL,
-      mapboxToken: process.env.MAPBOX_TOKEN,
+      baseUrl: process.env.BASE_URL,
+      emailAddress: process.env.EMAIL_ADDRESS,
     },
   },
+  compatibilityDate: '2026-02-23',
 });

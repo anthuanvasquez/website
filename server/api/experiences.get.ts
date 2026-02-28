@@ -1,4 +1,4 @@
-import type { Experience } from '../../app/types';
+import type { Experience } from '~/types';
 
 export default defineEventHandler(async (event): Promise<Experience[]> => {
   return [

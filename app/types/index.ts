@@ -2,6 +2,8 @@ export type Project = {
   name: string;
   description: string;
   skills: string;
+  image?: string;
+  link?: string;
 };
 
 export type Experience = {
@@ -24,8 +26,11 @@ export type Skill = {
 };
 
 export type Service = {
+  id: string;
   name: string;
+  description: string;
   icon: string;
+  categories: string[];
 };
 // types/chat.ts
 export interface ChatMessage {

@@ -1,26 +1,22 @@
-import type { Project } from '../../app/types';
+import type { Project } from '~/types';
 
-export default defineEventHandler(async (event): Promise<Project[]> => {
+export default defineEventHandler(async (): Promise<Project[]> => {
   return [
     {
-      name: 'IM Diagnosis',
-      description: 'Medical Images & Diagnosis by Dra. Idelsa Martínez',
-      skills: 'Coming Soon',
+      name: 'Devlogs',
+      description:
+        'Generates daily commit reports and sends them to Discord or whatever you want.',
+      skills: 'Node.js, Discord API, Telegram API',
+      link: 'https://github.com/anthuanvasquez/devlogs',
+      image: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Devlogs',
     },
     {
-      name: 'Sweet Fruit RD',
-      description: 'A Small Ice Cream Shop at Monte Cristi',
-      skills: 'Coming Soon',
-    },
-    {
-      name: 'Vásquez Morel & Asocs.',
-      description: 'Lawyer Office & Consulting',
-      skills: 'WordPress, PHP, HTML5/CSS, JavaScript, jQuery',
-    },
-    {
-      name: 'Lic. Laura Vásquez',
-      description: 'A Personal Website for Mentorship',
-      skills: 'WordPress, PHP, HTML5/CSS, JavaScript, jQuery',
+      name: 'Timevent',
+      description:
+        'A modern, aesthetic web application that displays a countdown timer to your next upcoming Google Calendar event.',
+      skills: 'Node.js, Google Calendar API, React, TypeScript, Tailwind CSS',
+      link: 'https://github.com/anthuanvasquez/timevent',
+      image: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Timevent',
     },
   ];
 });

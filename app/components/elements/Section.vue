@@ -10,6 +10,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  id: {
+    type: String,
+    required: false,
+  },
 });
 
 provide('data', {
@@ -19,7 +23,7 @@ provide('data', {
 </script>
 
 <template>
-  <section class="py-20">
+  <section :id="id" class="scroll-mt-32 py-20">
     <Heading />
     <slot />
   </section>

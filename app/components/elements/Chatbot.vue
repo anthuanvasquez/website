@@ -7,6 +7,7 @@ import {
   UserIcon,
   ComputerDesktopIcon,
 } from '@heroicons/vue/24/outline';
+import { generateSessionToken } from '~/utils/chatSession';
 
 interface Message {
   id: string;
@@ -18,6 +19,7 @@ interface Message {
 const { $i18n } = useNuxtApp();
 const { t } = useI18n();
 const isOpen = ref(false);
+const showNotification = ref(false);
 const isLoading = ref(false);
 const messages = ref<Message[]>([]);
 const currentMessage = ref('');
@@ -26,7 +28,6 @@ const placeholderText = computed(() => t('chatbot.placeholder'));
 const chatbotTitle = computed(() => t('chatbot.title'));
 const errorMessage = computed(() => t('chatbot.error'));
 
-// Initialize with welcome message
 onMounted(() => {
   messages.value = [
     {
@@ -42,6 +43,12 @@ onMounted(() => {
       timestamp: new Date(),
     },
   ];
+
+  setTimeout(() => {
+    if (!isOpen.value) {
+      showNotification.value = true;
+    }
+  }, 2000);
 });
 
 const sendMessage = async () => {
@@ -66,11 +73,13 @@ const sendMessage = async () => {
   }
 
   try {
+    const sessionToken = await generateSessionToken();
     const response = await $fetch<ChatResponse>('/api/chatbot/chat', {
       method: 'POST',
       body: {
         message: messageToSend,
         locale: $i18n.locale.value,
+        sessionToken,
       },
     });
 
@@ -106,8 +115,8 @@ const handleKeyPress = (event: KeyboardEvent) => {
   }
 };
 
-// Auto-scroll to bottom when new message is added
 const messagesContainer = ref<HTMLElement>();
+
 watch(
   messages,
   () => {
@@ -120,18 +129,113 @@ watch(
   },
   { deep: true }
 );
+
+const notificationMessages = [
+  '👋 Psst... what does my AI know about me?',
+  '🤖 Ask my AI about my tech stack...',
+  '✨ Get instant answers about my work!',
+];
+const currentNotificationText = ref('');
+const notificationIndex = ref(0);
+const textIndex = ref(0);
+const isDeleting = ref(false);
+const typewriterSpeed = computed(() => (isDeleting.value ? 50 : 100));
+const pauseDelay = 2000;
+
+let typewriterTimeout: NodeJS.Timeout;
+
+const typeText = () => {
+  const currentFullText = notificationMessages[notificationIndex.value];
+
+  if (!currentFullText) return;
+
+  if (isDeleting.value) {
+    currentNotificationText.value = currentFullText.substring(
+      0,
+      textIndex.value - 1
+    );
+    textIndex.value--;
+  } else {
+    currentNotificationText.value = currentFullText.substring(
+      0,
+      textIndex.value + 1
+    );
+    textIndex.value++;
+  }
+
+  let nextSpeed = typewriterSpeed.value;
+
+  if (!isDeleting.value && currentNotificationText.value === currentFullText) {
+    nextSpeed = pauseDelay;
+    isDeleting.value = true;
+  } else if (isDeleting.value && currentNotificationText.value === '') {
+    isDeleting.value = false;
+    notificationIndex.value =
+      (notificationIndex.value + 1) % notificationMessages.length;
+    nextSpeed = 500;
+  }
+
+  typewriterTimeout = setTimeout(typeText, nextSpeed);
+};
+
+watch(showNotification, (newVal) => {
+  if (newVal) {
+    typeText();
+  } else {
+    clearTimeout(typewriterTimeout);
+  }
+});
+
+onUnmounted(() => {
+  clearTimeout(typewriterTimeout);
+});
 </script>
 
 <template>
-  <!-- Floating Chat Button -->
-  <div class="fixed right-6 bottom-6 z-50">
+  <div
+    class="fixed right-6 bottom-6 z-50 flex items-end gap-3 transition-all duration-300"
+    :class="{ 'pointer-events-none translate-y-4 opacity-0': isOpen }"
+  >
     <button
-      class="rounded-full bg-blue-600 p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-700"
-      :class="{ hidden: isOpen }"
-      @click="isOpen = true"
+      v-if="showNotification"
+      class="group relative mb-2 flex h-12 items-center gap-2 rounded-2xl bg-white px-4 shadow-xl ring-1 ring-black/5 transition-transform hover:scale-105"
+      @click="
+        isOpen = true;
+        showNotification = false;
+      "
     >
-      <ChatBubbleLeftRightIcon class="h-6 w-6" />
+      <p
+        class="text-tertiary group-hover:text-primary text-sm font-medium whitespace-nowrap transition-colors"
+      >
+        {{ currentNotificationText }}<span class="animate-pulse">|</span>
+      </p>
+
+      <div
+        class="absolute -right-1.5 bottom-4 h-3 w-3 rotate-45 rounded-sm bg-white ring-1 ring-black/5"
+      ></div>
     </button>
+
+    <!-- Chat Trigger -->
+    <div class="relative">
+      <!-- Active Green Dot Indicator -->
+      <span class="absolute top-0 right-0 z-10 flex h-3.5 w-3.5">
+        <span
+          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
+        ></span>
+        <span
+          class="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-white bg-green-500"
+        ></span>
+      </span>
+      <button
+        class="rounded-full bg-blue-600 p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-700"
+        @click="
+          isOpen = true;
+          showNotification = false;
+        "
+      >
+        <ChatBubbleLeftRightIcon class="h-6 w-6" />
+      </button>
+    </div>
   </div>
 
   <!-- Chat Dialog -->
