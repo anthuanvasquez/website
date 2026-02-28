@@ -1,3 +1,61 @@
+<script setup lang="ts">
+const profile = {
+  name: 'Anthuan Vásquez',
+  title: 'Full Stack Engineer',
+  location: 'Dominican Republic',
+  bio: 'Building polished, innovative web experiences. Passionate about UI/UX and modern web technologies.',
+  image: 'https://github.com/anthuanvasquez.png',
+  handle: '@anthuanvasquez',
+};
+
+const links = [
+  {
+    label: 'Check Out My Latest Projects',
+    url: 'https://anthuanvasquez.net/#projects',
+    icon: 'i-lucide-briefcase',
+  },
+  {
+    label: 'Read My Tech Blog',
+    url: 'https://anthuanvasquez.net/blog',
+    icon: 'i-lucide-book-open',
+  },
+  {
+    label: 'Contact Me',
+    url: 'mailto:me@anthuanvasquez.net',
+    icon: 'i-lucide-mail',
+  },
+  {
+    label: 'Download My Resume',
+    url: '/resume.pdf',
+    icon: 'i-lucide-file-text',
+  },
+];
+
+const socials = [
+  { icon: 'i-simple-icons-github', url: 'https://github.com/anthuanvasquez' },
+  {
+    icon: 'i-simple-icons-linkedin',
+    url: 'https://linkedin.com/in/anthuanvasquez',
+  },
+  { icon: 'i-simple-icons-x', url: 'https://x.com/anthuanvasquez' },
+  {
+    icon: 'i-simple-icons-instagram',
+    url: 'https://instagram.com/anthuanvasquez',
+  },
+];
+
+useHead({
+  title: 'Links | Anthuan Vásquez',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Connect with Anthuan Vásquez. Find all my important links, social profiles, and latest updates in one place.',
+    },
+  ],
+});
+</script>
+
 <template>
   <div
     class="flex min-h-screen w-full flex-col items-center px-4 py-16 font-sans text-white"
@@ -42,7 +100,7 @@
         >
           {{ profile.bio }} <br />
           <a
-            href="#"
+            href="https://github.com/anthuanvasquez"
             class="mt-2 inline-block text-blue-400 transition-colors hover:text-blue-300"
             >{{ profile.handle }}</a
           >
@@ -113,61 +171,3 @@
   }
 }
 </style>
-
-<script setup lang="ts">
-const profile = {
-  name: 'Anthuan Vásquez',
-  title: 'Full Stack Engineer',
-  location: 'Dominican Republic',
-  bio: 'Building polished, innovative web experiences. Passionate about UI/UX and modern web technologies.',
-  image: 'https://github.com/anthuanvasquez.png',
-  handle: '@anthuanvasquez',
-};
-
-const links = [
-  {
-    label: 'Check Out My Latest Projects',
-    url: 'https://anthuanvasquez.net/#projects',
-    icon: 'i-lucide-briefcase',
-  },
-  {
-    label: 'Read My Tech Blog',
-    url: 'https://anthuanvasquez.net/blog',
-    icon: 'i-lucide-book-open',
-  },
-  {
-    label: 'Contact Me',
-    url: 'mailto:me@anthuanvasquez.net',
-    icon: 'i-lucide-mail',
-  },
-  {
-    label: 'Download My Resume',
-    url: '/resume.pdf',
-    icon: 'i-lucide-file-text',
-  },
-];
-
-const socials = [
-  { icon: 'i-simple-icons-github', url: 'https://github.com/anthuanvasquez' },
-  {
-    icon: 'i-simple-icons-linkedin',
-    url: 'https://linkedin.com/in/anthuanvasquez',
-  },
-  { icon: 'i-simple-icons-x', url: 'https://x.com/anthuanvasquez' },
-  {
-    icon: 'i-simple-icons-instagram',
-    url: 'https://instagram.com/anthuanvasquez',
-  },
-];
-
-useHead({
-  title: 'Links | Anthuan Vásquez',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Connect with Anthuan Vásquez. Find all my important links, social profiles, and latest updates in one place.',
-    },
-  ],
-});
-</script>
