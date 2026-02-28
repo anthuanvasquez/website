@@ -53,12 +53,12 @@ export default defineEventHandler(async (): Promise<Skill[]> => {
       icon: 'i-skill-icons-mongodb',
     },
     {
-      name: 'PostgreSQL',
+      name: 'PostgreSQL / SQL',
       category: 'Backend',
       icon: 'i-skill-icons-postgresql-dark',
     },
     {
-      name: 'Prisma / SQL',
+      name: 'Prisma / Drizzle',
       category: 'Backend',
       icon: 'i-skill-icons-prisma',
     },
