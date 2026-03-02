@@ -6,6 +6,7 @@ const isLinksPage = computed(() => route.path === '/links');
 const isBlogPage = computed(() => route.path.startsWith('/blog'));
 
 const navigation = [
+  { name: 'Blog', href: '/blog' },
   { name: 'Resume', href: '/anthuan_vasquez_resume.pdf' },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/anthuanvasquez/' },
   { name: 'GitHub', href: 'https://github.com/anthuanvasquez' },
@@ -61,14 +62,14 @@ onMounted(() => {
               aria-label="Global"
             >
               <div class="flex lg:flex-1">
-                <a
-                  href="/"
+                <NuxtLink
+                  to="/"
                   class="-m-1.5 p-1.5 transition-opacity hover:opacity-80"
                 >
                   <span class="text-primary font-firacode text-xl font-bold"
-                    >{{ '<av />' }}</span
+                    >{{ '<AV />' }}</span
                   >
-                </a>
+                </NuxtLink>
               </div>
 
               <div class="flex lg:hidden">
@@ -96,9 +97,6 @@ onMounted(() => {
                 >
                   {{ item.name }}
                 </a>
-
-                <div class="h-4 w-px bg-white/10"></div>
-                <LangSwitcher />
               </div>
             </nav>
           </div>

@@ -1,3 +1,27 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const copied = ref(false);
+
+/**
+ * Copy email address to clipboard. Notify after copy.
+ */
+const copyEmailAddress = () => {
+  const email = useRuntimeConfig().public.emailAddress as string;
+  navigator.clipboard.writeText(email);
+  copied.value = true;
+  useToast().add({
+    title: 'Success',
+    description: 'Email copied to clipboard',
+    color: 'primary',
+  });
+
+  setTimeout(() => {
+    copied.value = false;
+  }, 3000);
+};
+</script>
+
 <template>
   <footer id="footer" class="mt-20 border-t border-(--surface-elevated) py-12">
     <div class="container mx-auto max-w-7xl px-4 md:px-0">
@@ -51,27 +75,3 @@
     </div>
   </footer>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const copied = ref(false);
-
-/**
- * Copy email address to clipboard. Notify after copy.
- */
-const copyEmailAddress = () => {
-  const email = useRuntimeConfig().public.emailAddress as string;
-  navigator.clipboard.writeText(email);
-  copied.value = true;
-  useToast().add({
-    title: 'Success',
-    description: 'Email copied to clipboard',
-    color: 'primary',
-  });
-
-  setTimeout(() => {
-    copied.value = false;
-  }, 3000);
-};
-</script>
