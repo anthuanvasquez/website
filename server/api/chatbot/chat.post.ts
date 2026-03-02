@@ -1,13 +1,12 @@
 import { ChatPromptTemplate } from '@langchain/core/prompts';
 import { StringOutputParser } from '@langchain/core/output_parsers';
 import { createHash } from 'crypto';
-import { SYSTEM_PROMPT_EN, SYSTEM_PROMPT_ES } from '~/utils/prompts';
-import { knowledgeBase } from '~/utils/knowledge';
+import { SYSTEM_PROMPT } from '~/data/prompts';
+import { knowledgeBase } from '~/data/knowledge';
 import { containsAbusePattern } from '~/utils/abustePatterns';
 
 interface ChatRequest {
   message: string;
-  locale?: string;
   sessionToken?: string;
 }
 
@@ -79,7 +78,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody<ChatRequest>(event);
-  const { message, locale = 'en', sessionToken } = body;
+  const { message, sessionToken } = body;
 
   if (!validateSessionToken(sessionToken)) {
     throw createError({
@@ -122,15 +121,12 @@ export default defineEventHandler(async (event) => {
 
   if (containsAbusePattern(trimmed)) {
     const msg =
-      locale === 'es'
-        ? 'Solo puedo responder preguntas sobre Anthuan Vásquez y su trabajo.'
-        : 'I can only answer questions about Anthuan Vásquez and his work.';
-    return { success: true, response: msg, locale };
+      'I can only answer questions about Anthuan Vásquez and his work.';
+    return { success: true, response: msg };
   }
 
   const apiKey = useRuntimeConfig().groqApiKey;
-  const knowledge =
-    knowledgeBase[locale as keyof typeof knowledgeBase] || knowledgeBase.en;
+  const knowledge = knowledgeBase;
 
   if (!apiKey) {
     const lowerMessage = trimmed.toLowerCase();
@@ -144,15 +140,13 @@ export default defineEventHandler(async (event) => {
       fallbackResponse = knowledge.contact;
     } else {
       fallbackResponse =
-        locale === 'es'
-          ? 'Puedes encontrar más información sobre Anthuan en su sitio web o contactarlo directamente.'
-          : 'You can find more information about Anthuan on his website or contact him directly.';
+        'You can find more information about Anthuan on his website or contact him directly.';
     }
 
-    return { success: true, response: fallbackResponse, locale };
+    return { success: true, response: fallbackResponse };
   }
 
-  const systemPrompt = locale === 'es' ? SYSTEM_PROMPT_ES : SYSTEM_PROMPT_EN;
+  const systemPrompt = SYSTEM_PROMPT;
 
   try {
     const { ChatGroq } = await import('@langchain/groq');
@@ -172,7 +166,7 @@ export default defineEventHandler(async (event) => {
     const chain = promptTemplate.pipe(chatModel).pipe(new StringOutputParser());
     const response = await chain.invoke({ input: trimmed });
 
-    return { success: true, response, locale };
+    return { success: true, response };
   } catch (error) {
     console.error('Chatbot error:', error);
 

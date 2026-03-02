@@ -16,17 +16,19 @@ interface Message {
   timestamp: Date;
 }
 
-const { $i18n } = useNuxtApp();
-const { t } = useI18n();
 const isOpen = ref(false);
 const showNotification = ref(false);
 const isLoading = ref(false);
 const messages = ref<Message[]>([]);
 const currentMessage = ref('');
-const welcomeMessage = computed(() => t('chatbot.welcome'));
-const placeholderText = computed(() => t('chatbot.placeholder'));
-const chatbotTitle = computed(() => t('chatbot.title'));
-const errorMessage = computed(() => t('chatbot.error'));
+const welcomeMessage = computed(
+  () => 'Hi! I am the Anthuan AI assistant. How can I help you today?'
+);
+const placeholderText = computed(() => 'Type your message...');
+const chatbotTitle = computed(() => 'Anthuan Assistant');
+const errorMessage = computed(
+  () => 'Oops! Something went wrong. Please try again later.'
+);
 
 onMounted(() => {
   messages.value = [
@@ -38,7 +40,8 @@ onMounted(() => {
     },
     {
       id: '2',
-      content: t('chat-description'),
+      content:
+        "I am trained on Anthuan's resume, blog, and projects. Ask me anything!",
       isUser: false,
       timestamp: new Date(),
     },
@@ -69,7 +72,6 @@ const sendMessage = async () => {
   interface ChatResponse {
     success: boolean;
     response: string;
-    locale: string;
   }
 
   try {
@@ -78,7 +80,6 @@ const sendMessage = async () => {
       method: 'POST',
       body: {
         message: messageToSend,
-        locale: $i18n.locale.value,
         sessionToken,
       },
     });
