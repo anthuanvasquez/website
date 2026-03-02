@@ -5,25 +5,45 @@ export default defineNuxtConfig({
   devtools: {
     enabled: false,
   },
+
+  /**
+   * Nuxt Modules
+   */
   modules: [
     '@nuxt/ui',
     '@nuxt/image',
     '@nuxt/eslint',
     '@nuxt/test-utils/module',
-    '@nuxtjs/i18n',
+    '@nuxt/content',
     'nuxt-mapbox',
     'motion-v/nuxt',
   ],
+
+  /**
+   * CSS
+   */
   css: ['~/assets/main.css'],
+
+  /**
+   * Components
+   */
   components: [
     '~/components/',
     '~/components/layouts',
     '~/components/sections',
     '~/components/elements',
   ],
+
+  /**
+   * Nuxt UI
+   */
   ui: {
     prefix: 'U',
   },
+
+  /**
+   * TypeScript
+   */
   typescript: {
     typeCheck: false,
     tsConfig: {
@@ -32,21 +52,34 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  /**
+   * ESLint Config
+   */
   eslint: {
     checker: true,
   },
+
+  /**
+   * Mapbox Config
+   */
   mapbox: {
     accessToken: process.env.MAPBOX_TOKEN,
   },
+
+  /**
+   * Vite Config
+   */
   vite: {
     plugins: [tailwindcss()],
   },
-  nitro: {
-    compressPublicAssets: true,
-  },
+
+  /**
+   * App Metadata
+   */
   app: {
     head: {
-      title: 'Anthuan Vásquez | Senior Full-Stack Engineer',
+      title: 'Anthuan Vásquez | Full-Stack Engineer',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -62,35 +95,45 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/*', href: '/favicon.ico' }],
     },
   },
-  i18n: {
-    baseUrl: process.env.BASE_URL,
-    locales: [
-      {
-        code: 'en',
-        language: 'en-US',
-        file: 'en-US.json',
-        name: 'English',
-        flag: '🇺🇸',
-        description: 'English',
-      },
-      {
-        code: 'es',
-        language: 'es-ES',
-        file: 'es-ES.json',
-        name: 'Español',
-        flag: '🇩🇴',
-        description: 'Español',
-      },
-    ],
-    langDir: 'lang',
-    strategy: 'prefix_except_default',
-    defaultLocale: 'en',
-    vueI18n: 'i18n.config.ts',
+
+  /**
+   * Nitro Config
+   */
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/rss.xml'],
+    },
   },
+
+  /**
+   * Content Config
+   */
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: 'github-dark',
+        },
+      },
+    },
+    experimental: {
+      nativeSqlite: true,
+    },
+  },
+
+  /**
+   * Route Rules
+   */
   routeRules: {
     '/': { prerender: true },
     '/api/*': {},
   },
+
+  /**
+   * Runtime Config
+   */
   runtimeConfig: {
     allowedOrigin: process.env.ALLOWED_ORIGIN,
     internalApiSecret: process.env.INTERNAL_SECRET,
@@ -101,5 +144,9 @@ export default defineNuxtConfig({
       emailAddress: process.env.EMAIL_ADDRESS,
     },
   },
+
+  /**
+   * Compatibility Date
+   */
   compatibilityDate: '2026-02-23',
 });
