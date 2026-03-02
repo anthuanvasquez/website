@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { data: posts } = await useAsyncData('blog-posts', () => {
-  return queryCollection('blog').order('date', 'DESC').all();
+  return queryCollection('blog').all();
 });
 
 useHead({
@@ -15,78 +15,65 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#0a0a0a] px-4 py-16 font-sans text-white">
-    <div class="animate-fade-in mx-auto max-w-3xl space-y-12">
-      <!-- Header -->
-      <header class="space-y-4 text-center sm:text-left">
-        <h1
-          class="bg-linear-to-r from-purple-400 to-blue-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent"
-        >
-          Blog
-        </h1>
-        <p class="max-w-xl text-gray-400">
-          Sharing my journey and experiences in full-stack development, design
-          systems, and modern web architecture.
-        </p>
-      </header>
+  <div class="relative min-h-screen overflow-hidden bg-gray-900 pt-32 pb-24">
+    <!-- Background glow similar to homepage -->
+    <div
+      class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-gray-900 to-gray-900"
+    ></div>
 
-      <!-- Post List -->
+    <div class="relative mx-auto max-w-4xl px-6 sm:px-12 lg:px-8">
+      <div class="mb-16 text-center">
+        <h1
+          class="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-5xl"
+        >
+          Latest
+          <span
+            class="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent"
+            >Articles</span
+          >
+        </h1>
+        <p class="mx-auto max-w-2xl text-lg text-gray-400">
+          Thoughts, tutorials, and insights about full-stack development,
+          software architecture, and the modern web ecosystem.
+        </p>
+      </div>
+
       <div class="space-y-8">
         <article
           v-for="post in posts"
           :key="post.path"
-          class="group relative -mx-6 flex flex-col items-start gap-3 rounded-2xl p-6 transition-colors duration-300 hover:bg-white/5"
+          class="group relative flex flex-col items-start justify-between rounded-2xl bg-white/5 p-8 ring-1 ring-white/10 backdrop-blur-md transition-all hover:bg-white/10 hover:ring-white/20"
         >
-          <NuxtLink :to="post.path" class="absolute inset-0 z-0"></NuxtLink>
-
-          <div
-            class="z-10 flex items-center gap-3 text-xs font-medium tracking-wide text-gray-500 uppercase"
-          >
-            <time :datetime="post.date">{{
-              new Date(post.date).toLocaleDateString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-              })
-            }}</time>
-            <span v-if="post.duration">&middot; {{ post.duration }}</span>
+          <div class="mb-4 flex items-center gap-x-4 text-xs">
+            <time :datetime="post.date" class="font-firacode text-gray-400">
+              {{
+                new Date(post.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })
+              }}
+            </time>
           </div>
-
-          <h2
-            class="z-10 text-2xl font-semibold text-gray-100 transition-colors group-hover:text-blue-400"
-          >
-            {{ post.title }}
-          </h2>
-
-          <p class="z-10 line-clamp-2 leading-relaxed text-gray-400">
-            {{ post.description }}
-          </p>
-
-          <div
-            class="z-10 mt-2 text-sm font-medium text-blue-400 transition-transform group-hover:translate-x-1"
-          >
-            Read more &rarr;
+          <div class="group relative">
+            <h3
+              class="mt-3 text-2xl leading-6 font-semibold text-white transition-colors group-hover:text-blue-400"
+            >
+              <NuxtLink :to="post.path">
+                <span class="absolute inset-0" />
+                {{ post.title }}
+              </NuxtLink>
+            </h3>
+            <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-300">
+              {{ post.description }}
+            </p>
           </div>
         </article>
+
+        <div v-if="!posts?.length" class="py-20 text-center">
+          <p class="text-lg text-gray-400">No posts available right now.</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-</style>
