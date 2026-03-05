@@ -1,6 +1,6 @@
 export async function generateSessionToken(): Promise<string> {
   const timestamp = Date.now().toString();
-  const secret = import.meta.env.VITE_CHAT_SESSION_SECRET || '';
+  const secret = useRuntimeConfig().public.chatSessionSecret;
   const encoder = new TextEncoder();
 
   // The backend uses a standard SHA-256 hash, so the client must match.
