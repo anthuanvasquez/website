@@ -144,7 +144,6 @@ export default defineNuxtConfig({
       baseUrl: '',
       emailAddress: '',
       mapboxAccessToken: '',
-      chatSessionSecret: '',
     },
   },
 
