@@ -2,7 +2,7 @@
 import type { Service } from '~/types';
 import { gsap } from 'gsap';
 
-const { data: services } = await useGetFetch<Service[]>('api/services');
+const { data: services } = await useGetFetch<Service[]>('/api/services');
 
 const accordionItems = computed(() => {
   return (services.value || []).map((service) => ({
