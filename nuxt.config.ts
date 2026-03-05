@@ -64,7 +64,7 @@ export default defineNuxtConfig({
    * Mapbox Config
    */
   mapbox: {
-    accessToken: process.env.MAPBOX_TOKEN,
+    accessToken: '',
   },
 
   /**
@@ -102,8 +102,9 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
     prerender: {
-      crawlLinks: true,
-      routes: ['/', '/rss.xml'],
+      crawlLinks: false,
+      routes: [],
+      failOnError: false,
     },
   },
 
@@ -127,21 +128,23 @@ export default defineNuxtConfig({
    * Route Rules
    */
   routeRules: {
-    '/': { prerender: true },
-    '/api/*': {},
+    '/': { prerender: false },
+    '/api/*': { cors: true },
   },
 
   /**
    * Runtime Config
    */
   runtimeConfig: {
-    allowedOrigin: process.env.ALLOWED_ORIGIN,
-    internalApiSecret: process.env.INTERNAL_SECRET,
-    chatSessionSecret: process.env.CHAT_SESSION_SECRET,
-    groqApiKey: process.env.GROQ_API_KEY,
+    allowedOrigin: '',
+    internalApiSecret: '',
+    chatSessionSecret: '',
+    groqApiKey: '',
     public: {
-      baseUrl: process.env.BASE_URL,
-      emailAddress: process.env.EMAIL_ADDRESS,
+      baseUrl: '',
+      emailAddress: '',
+      mapboxAccessToken: '',
+      chatSessionSecret: '',
     },
   },
 
