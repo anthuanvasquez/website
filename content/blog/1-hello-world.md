@@ -1,8 +1,12 @@
 ---
-title: 'Welcome to My Blog'
-date: '2026-02-02'
-description: 'This is the first post on my new blog built with Nuxt Content.'
-duration: '2 min read'
+title: Welcome to My Blog
+date: 2026-02-02
+description: This is the first post on my new blog built with Nuxt Content.
+image: /images/blog/hello-world.png
+alt: Welcome to My Blog
+duration: 2 min read
+tags: ['blog']
+published: true
 ---
 
 # Hello World

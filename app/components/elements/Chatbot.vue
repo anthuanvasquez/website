@@ -16,17 +16,19 @@ interface Message {
   timestamp: Date;
 }
 
-const { $i18n } = useNuxtApp();
-const { t } = useI18n();
 const isOpen = ref(false);
 const showNotification = ref(false);
 const isLoading = ref(false);
 const messages = ref<Message[]>([]);
 const currentMessage = ref('');
-const welcomeMessage = computed(() => t('chatbot.welcome'));
-const placeholderText = computed(() => t('chatbot.placeholder'));
-const chatbotTitle = computed(() => t('chatbot.title'));
-const errorMessage = computed(() => t('chatbot.error'));
+const welcomeMessage = computed(
+  () => 'Hi! I am the Anthuan AI assistant. How can I help you today?'
+);
+const placeholderText = computed(() => 'Type your message...');
+const chatbotTitle = computed(() => 'Anthuan Assistant');
+const errorMessage = computed(
+  () => 'Oops! Something went wrong. Please try again later.'
+);
 
 onMounted(() => {
   messages.value = [
@@ -38,7 +40,8 @@ onMounted(() => {
     },
     {
       id: '2',
-      content: t('chat-description'),
+      content:
+        "I am trained on Anthuan's resume, blog, and projects. Ask me anything!",
       isUser: false,
       timestamp: new Date(),
     },
@@ -69,7 +72,6 @@ const sendMessage = async () => {
   interface ChatResponse {
     success: boolean;
     response: string;
-    locale: string;
   }
 
   try {
@@ -78,7 +80,6 @@ const sendMessage = async () => {
       method: 'POST',
       body: {
         message: messageToSend,
-        locale: $i18n.locale.value,
         sessionToken,
       },
     });
@@ -242,116 +243,107 @@ onUnmounted(() => {
   <Dialog :open="isOpen" class="relative z-50" @close="isOpen = false">
     <div class="fixed inset-0 flex items-end justify-end p-4 sm:p-6">
       <DialogPanel
-        class="flex h-96 w-full max-w-md flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+      class="flex h-[32rem] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a111a] shadow-2xl ring-1 ring-white/5"
       >
-        <!-- Header -->
-        <div
-          class="flex items-center justify-between bg-gradient-to-r from-blue-600 to-blue-700 p-4 text-white"
-        >
-          <div class="flex items-center space-x-2">
-            <UIcon name="i-lucide-bot" class="h-6 w-6" />
-            <h3 class="font-semibold">
+      <!-- Header -->
+      <div
+        class="flex items-center justify-between border-b border-white/5 bg-linear-to-r from-[#0a111a] to-[#111a24] p-4 text-white"
+      >
+        <div class="flex items-center space-x-3">
+          <div class="rounded-lg bg-primary/10 p-2 ring-1 ring-primary/20">
+            <UIcon name="i-lucide-bot" class="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <h3 class="font-firacode text-sm font-bold tracking-tight">
               {{ chatbotTitle }}
             </h3>
+            <p class="text-tertiary text-[10px] uppercase tracking-widest">
+              AI Assistant • Online
+            </p>
           </div>
+        </div>
+        <button
+          class="rounded-lg p-1 text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+          @click="isOpen = false"
+        >
+          <XMarkIcon class="h-5 w-5" />
+        </button>
+      </div>
+
+      <!-- Messages -->
+      <div
+        ref="messagesContainer"
+        class="flex-1 space-y-4 overflow-y-auto bg-[#010810] p-4"
+      >
+        <div
+          v-for="message in messages"
+          :key="message.id"
+          class="flex"
+          :class="message.isUser ? 'justify-end' : 'justify-start'"
+        >
+          <div class="flex max-w-[85%] items-end space-x-2">
+            <div
+              v-if="!message.isUser"
+              class="mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10 shadow-sm"
+            >
+              <UIcon name="i-lucide-bot" class="h-3.5 w-3.5 text-primary" />
+            </div>
+
+            <div
+              class="px-4 py-2.5 text-sm leading-relaxed"
+              :class="
+                message.isUser
+                  ? 'rounded-2xl rounded-br-sm bg-primary text-black font-semibold'
+                  : 'rounded-2xl rounded-bl-sm bg-[#111a24] text-slate-100 border border-white/5'
+              "
+            >
+              {{ message.content }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div v-if="isLoading" class="flex justify-start">
+          <div class="flex items-end space-x-2">
+            <div
+              class="mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10"
+            >
+              <UIcon name="i-lucide-bot" class="h-3.5 w-3.5 text-primary" />
+            </div>
+            <div
+              class="rounded-2xl rounded-bl-sm border border-white/5 bg-[#111a24] px-4 py-3"
+            >
+              <div class="flex space-x-1.5">
+                <div class="h-1.5 w-1.5 animate-bounce rounded-full bg-primary/40"></div>
+                <div class="h-1.5 w-1.5 animate-bounce rounded-full bg-primary/40" style="animation-delay: 0.2s"></div>
+                <div class="h-1.5 w-1.5 animate-bounce rounded-full bg-primary/40" style="animation-delay: 0.4s"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="border-t border-white/5 bg-[#0a111a] p-4">
+        <div class="relative flex items-center gap-2">
+          <textarea
+            v-model="currentMessage"
+            :placeholder="placeholderText"
+            class="max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 bg-[#010810] px-4 py-2.5 text-sm text-white placeholder-slate-500 transition-all focus:border-primary/50 focus:ring-1 focus:ring-primary/20 focus:outline-none disabled:opacity-50"
+            rows="1"
+            :disabled="isLoading"
+            @keypress="handleKeyPress"
+          ></textarea>
           <button
-            class="text-white transition-colors hover:text-gray-200"
-            @click="isOpen = false"
+            :disabled="!currentMessage.trim() || isLoading"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-black transition-all hover:scale-105 hover:bg-secondary active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-500 disabled:opacity-50"
+            @click="sendMessage"
           >
-            <XMarkIcon class="h-5 w-5" />
+            <PaperAirplaneIcon class="h-5 w-5" />
           </button>
         </div>
-
-        <!-- Messages -->
-        <div
-          ref="messagesContainer"
-          class="flex-1 space-y-4 overflow-y-auto bg-gray-50 p-4"
-        >
-          <div
-            v-for="message in messages"
-            :key="message.id"
-            class="flex"
-            :class="message.isUser ? 'justify-end' : 'justify-start'"
-          >
-            <div class="flex max-w-xs items-start space-x-2">
-              <div
-                v-if="!message.isUser"
-                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-600"
-              >
-                <UIcon name="i-lucide-bot" class="h-4 w-4 text-white" />
-              </div>
-
-              <div
-                class="rounded-2xl px-4 py-2 text-sm"
-                :class="
-                  message.isUser
-                    ? 'rounded-br-md bg-blue-600 text-white'
-                    : 'rounded-bl-md bg-white text-gray-800 shadow-sm'
-                "
-              >
-                {{ message.content }}
-              </div>
-
-              <div
-                v-if="message.isUser"
-                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gray-400"
-              >
-                <UserIcon class="h-4 w-4 text-white" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Loading indicator -->
-          <div v-if="isLoading" class="flex justify-start">
-            <div class="flex items-start space-x-2">
-              <div
-                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-600"
-              >
-                <ComputerDesktopIcon class="h-4 w-4 text-white" />
-              </div>
-              <div
-                class="rounded-2xl rounded-bl-md bg-white px-4 py-2 text-gray-800 shadow-sm"
-              >
-                <div class="flex space-x-1">
-                  <div
-                    class="h-2 w-2 animate-bounce rounded-full bg-gray-400"
-                  ></div>
-                  <div
-                    class="h-2 w-2 animate-bounce rounded-full bg-gray-400"
-                    style="animation-delay: 0.1s"
-                  ></div>
-                  <div
-                    class="h-2 w-2 animate-bounce rounded-full bg-gray-400"
-                    style="animation-delay: 0.2s"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Input -->
-        <div class="border-t bg-white p-4 text-gray-800">
-          <div class="flex space-x-2">
-            <textarea
-              v-model="currentMessage"
-              :placeholder="placeholderText"
-              class="flex-1 resize-none rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-transparent focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              rows="2"
-              :disabled="isLoading"
-              @keypress="handleKeyPress"
-            ></textarea>
-            <button
-              :disabled="!currentMessage.trim() || isLoading"
-              class="flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-300"
-              @click="sendMessage"
-            >
-              <PaperAirplaneIcon class="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      </DialogPanel>
-    </div>
+      </div>
+      </DialogPanel>    </div>
   </Dialog>
 </template>
 

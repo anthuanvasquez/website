@@ -1,12 +1,5 @@
-<script setup lang="ts">
-const head = useLocaleHead({
-  seo: true,
-});
-const htmlAttrs = computed(() => head.value.htmlAttrs!);
-</script>
-
 <template>
-  <Html :lang="htmlAttrs.lang">
+  <Html lang="en">
     <Body>
       <Header />
       <main class="min-h-screen">

@@ -5,25 +5,45 @@ export default defineNuxtConfig({
   devtools: {
     enabled: false,
   },
+
+  /**
+   * Nuxt Modules
+   */
   modules: [
     '@nuxt/ui',
     '@nuxt/image',
     '@nuxt/eslint',
     '@nuxt/test-utils/module',
-    '@nuxtjs/i18n',
+    '@nuxt/content',
     'nuxt-mapbox',
     'motion-v/nuxt',
   ],
+
+  /**
+   * CSS
+   */
   css: ['~/assets/main.css'],
+
+  /**
+   * Components
+   */
   components: [
     '~/components/',
     '~/components/layouts',
     '~/components/sections',
     '~/components/elements',
   ],
+
+  /**
+   * Nuxt UI
+   */
   ui: {
     prefix: 'U',
   },
+
+  /**
+   * TypeScript
+   */
   typescript: {
     typeCheck: false,
     tsConfig: {
@@ -32,21 +52,34 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  /**
+   * ESLint Config
+   */
   eslint: {
     checker: true,
   },
+
+  /**
+   * Mapbox Config
+   */
   mapbox: {
-    accessToken: process.env.MAPBOX_TOKEN,
+    accessToken: '',
   },
+
+  /**
+   * Vite Config
+   */
   vite: {
     plugins: [tailwindcss()],
   },
-  nitro: {
-    compressPublicAssets: true,
-  },
+
+  /**
+   * App Metadata
+   */
   app: {
     head: {
-      title: 'Anthuan Vásquez | Senior Full-Stack Engineer',
+      title: 'Anthuan Vásquez | Full-Stack Engineer',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -62,44 +95,60 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/*', href: '/favicon.ico' }],
     },
   },
-  i18n: {
-    baseUrl: process.env.BASE_URL,
-    locales: [
-      {
-        code: 'en',
-        language: 'en-US',
-        file: 'en-US.json',
-        name: 'English',
-        flag: '🇺🇸',
-        description: 'English',
-      },
-      {
-        code: 'es',
-        language: 'es-ES',
-        file: 'es-ES.json',
-        name: 'Español',
-        flag: '🇩🇴',
-        description: 'Español',
-      },
-    ],
-    langDir: 'lang',
-    strategy: 'prefix_except_default',
-    defaultLocale: 'en',
-    vueI18n: 'i18n.config.ts',
-  },
-  routeRules: {
-    '/': { prerender: true },
-    '/api/*': {},
-  },
-  runtimeConfig: {
-    allowedOrigin: process.env.ALLOWED_ORIGIN,
-    internalApiSecret: process.env.INTERNAL_SECRET,
-    chatSessionSecret: process.env.CHAT_SESSION_SECRET,
-    groqApiKey: process.env.GROQ_API_KEY,
-    public: {
-      baseUrl: process.env.BASE_URL,
-      emailAddress: process.env.EMAIL_ADDRESS,
+
+  /**
+   * Nitro Config
+   */
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      crawlLinks: false,
+      routes: [],
+      failOnError: false,
     },
   },
+
+  /**
+   * Content Config
+   */
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: 'github-dark',
+        },
+      },
+    },
+    experimental: {
+      nativeSqlite: true,
+    },
+  },
+
+  /**
+   * Route Rules
+   */
+  routeRules: {
+    '/': { prerender: false },
+    '/api/*': { cors: true },
+  },
+
+  /**
+   * Runtime Config
+   */
+  runtimeConfig: {
+    allowedOrigin: '',
+    internalApiSecret: '',
+    chatSessionSecret: '',
+    groqApiKey: '',
+    public: {
+      baseUrl: '',
+      emailAddress: '',
+      mapboxAccessToken: '',
+    },
+  },
+
+  /**
+   * Compatibility Date
+   */
   compatibilityDate: '2026-02-23',
 });

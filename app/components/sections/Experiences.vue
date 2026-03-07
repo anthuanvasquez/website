@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 
 const activeIndex = ref(0);
 const { data: experiences } =
-  await useGetFetch<Experience[]>('api/experiences');
+  await useGetFetch<Experience[]>('/api/experiences');
 
 const experienceContainer = ref<HTMLElement | null>(null);
 let ctx: gsap.Context;
