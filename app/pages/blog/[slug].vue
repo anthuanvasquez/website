@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const route = useRoute();
-const path = computed(() => route.path);
 
 const { data: page } = await useAsyncData('page-' + route.path, () => {
   return queryCollection('blog').path(route.path).first();

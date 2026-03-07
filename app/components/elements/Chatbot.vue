@@ -4,8 +4,6 @@ import {
   ChatBubbleLeftRightIcon,
   XMarkIcon,
   PaperAirplaneIcon,
-  UserIcon,
-  ComputerDesktopIcon,
 } from '@heroicons/vue/24/outline';
 import { generateSessionToken } from '~/utils/chatSession';
 
@@ -243,107 +241,116 @@ onUnmounted(() => {
   <Dialog :open="isOpen" class="relative z-50" @close="isOpen = false">
     <div class="fixed inset-0 flex items-end justify-end p-4 sm:p-6">
       <DialogPanel
-      class="flex h-[32rem] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a111a] shadow-2xl ring-1 ring-white/5"
+        class="flex h-[32rem] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a111a] shadow-2xl ring-1 ring-white/5"
       >
-      <!-- Header -->
-      <div
-        class="flex items-center justify-between border-b border-white/5 bg-linear-to-r from-[#0a111a] to-[#111a24] p-4 text-white"
-      >
-        <div class="flex items-center space-x-3">
-          <div class="rounded-lg bg-primary/10 p-2 ring-1 ring-primary/20">
-            <UIcon name="i-lucide-bot" class="h-5 w-5 text-primary" />
-          </div>
-          <div>
-            <h3 class="font-firacode text-sm font-bold tracking-tight">
-              {{ chatbotTitle }}
-            </h3>
-            <p class="text-tertiary text-[10px] uppercase tracking-widest">
-              AI Assistant • Online
-            </p>
-          </div>
-        </div>
-        <button
-          class="rounded-lg p-1 text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
-          @click="isOpen = false"
-        >
-          <XMarkIcon class="h-5 w-5" />
-        </button>
-      </div>
-
-      <!-- Messages -->
-      <div
-        ref="messagesContainer"
-        class="flex-1 space-y-4 overflow-y-auto bg-[#010810] p-4"
-      >
+        <!-- Header -->
         <div
-          v-for="message in messages"
-          :key="message.id"
-          class="flex"
-          :class="message.isUser ? 'justify-end' : 'justify-start'"
+          class="flex items-center justify-between border-b border-white/5 bg-linear-to-r from-[#0a111a] to-[#111a24] p-4 text-white"
         >
-          <div class="flex max-w-[85%] items-end space-x-2">
-            <div
-              v-if="!message.isUser"
-              class="mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10 shadow-sm"
-            >
-              <UIcon name="i-lucide-bot" class="h-3.5 w-3.5 text-primary" />
+          <div class="flex items-center space-x-3">
+            <div class="bg-primary/10 ring-primary/20 rounded-lg p-2 ring-1">
+              <UIcon name="i-lucide-bot" class="text-primary h-5 w-5" />
             </div>
-
-            <div
-              class="px-4 py-2.5 text-sm leading-relaxed"
-              :class="
-                message.isUser
-                  ? 'rounded-2xl rounded-br-sm bg-primary text-black font-semibold'
-                  : 'rounded-2xl rounded-bl-sm bg-[#111a24] text-slate-100 border border-white/5'
-              "
-            >
-              {{ message.content }}
+            <div>
+              <h3 class="font-firacode text-sm font-bold tracking-tight">
+                {{ chatbotTitle }}
+              </h3>
+              <p class="text-tertiary text-[10px] tracking-widest uppercase">
+                AI Assistant • Online
+              </p>
             </div>
           </div>
+          <button
+            class="rounded-lg p-1 text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+            @click="isOpen = false"
+          >
+            <XMarkIcon class="h-5 w-5" />
+          </button>
         </div>
 
-        <!-- Loading indicator -->
-        <div v-if="isLoading" class="flex justify-start">
-          <div class="flex items-end space-x-2">
-            <div
-              class="mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10"
-            >
-              <UIcon name="i-lucide-bot" class="h-3.5 w-3.5 text-primary" />
+        <!-- Messages -->
+        <div
+          ref="messagesContainer"
+          class="flex-1 space-y-4 overflow-y-auto bg-[#010810] p-4"
+        >
+          <div
+            v-for="message in messages"
+            :key="message.id"
+            class="flex"
+            :class="message.isUser ? 'justify-end' : 'justify-start'"
+          >
+            <div class="flex max-w-[85%] items-end space-x-2">
+              <div
+                v-if="!message.isUser"
+                class="border-primary/20 bg-primary/10 mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border shadow-sm"
+              >
+                <UIcon name="i-lucide-bot" class="text-primary h-3.5 w-3.5" />
+              </div>
+
+              <div
+                class="px-4 py-2.5 text-sm leading-relaxed"
+                :class="
+                  message.isUser
+                    ? 'bg-primary rounded-2xl rounded-br-sm font-semibold text-black'
+                    : 'rounded-2xl rounded-bl-sm border border-white/5 bg-[#111a24] text-slate-100'
+                "
+              >
+                {{ message.content }}
+              </div>
             </div>
-            <div
-              class="rounded-2xl rounded-bl-sm border border-white/5 bg-[#111a24] px-4 py-3"
-            >
-              <div class="flex space-x-1.5">
-                <div class="h-1.5 w-1.5 animate-bounce rounded-full bg-primary/40"></div>
-                <div class="h-1.5 w-1.5 animate-bounce rounded-full bg-primary/40" style="animation-delay: 0.2s"></div>
-                <div class="h-1.5 w-1.5 animate-bounce rounded-full bg-primary/40" style="animation-delay: 0.4s"></div>
+          </div>
+
+          <!-- Loading indicator -->
+          <div v-if="isLoading" class="flex justify-start">
+            <div class="flex items-end space-x-2">
+              <div
+                class="border-primary/20 bg-primary/10 mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border"
+              >
+                <UIcon name="i-lucide-bot" class="text-primary h-3.5 w-3.5" />
+              </div>
+              <div
+                class="rounded-2xl rounded-bl-sm border border-white/5 bg-[#111a24] px-4 py-3"
+              >
+                <div class="flex space-x-1.5">
+                  <div
+                    class="bg-primary/40 h-1.5 w-1.5 animate-bounce rounded-full"
+                  ></div>
+                  <div
+                    class="bg-primary/40 h-1.5 w-1.5 animate-bounce rounded-full"
+                    style="animation-delay: 0.2s"
+                  ></div>
+                  <div
+                    class="bg-primary/40 h-1.5 w-1.5 animate-bounce rounded-full"
+                    style="animation-delay: 0.4s"
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Input -->
-      <div class="border-t border-white/5 bg-[#0a111a] p-4">
-        <div class="relative flex items-center gap-2">
-          <textarea
-            v-model="currentMessage"
-            :placeholder="placeholderText"
-            class="max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 bg-[#010810] px-4 py-2.5 text-sm text-white placeholder-slate-500 transition-all focus:border-primary/50 focus:ring-1 focus:ring-primary/20 focus:outline-none disabled:opacity-50"
-            rows="1"
-            :disabled="isLoading"
-            @keypress="handleKeyPress"
-          ></textarea>
-          <button
-            :disabled="!currentMessage.trim() || isLoading"
-            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-black transition-all hover:scale-105 hover:bg-secondary active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-500 disabled:opacity-50"
-            @click="sendMessage"
-          >
-            <PaperAirplaneIcon class="h-5 w-5" />
-          </button>
+        <!-- Input -->
+        <div class="border-t border-white/5 bg-[#0a111a] p-4">
+          <div class="relative flex items-center gap-2">
+            <textarea
+              v-model="currentMessage"
+              :placeholder="placeholderText"
+              class="focus:border-primary/50 focus:ring-primary/20 max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 bg-[#010810] px-4 py-2.5 text-sm text-white placeholder-slate-500 transition-all focus:ring-1 focus:outline-none disabled:opacity-50"
+              rows="1"
+              :disabled="isLoading"
+              @keypress="handleKeyPress"
+            ></textarea>
+            <button
+              :disabled="!currentMessage.trim() || isLoading"
+              class="bg-primary hover:bg-secondary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-black transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-500 disabled:opacity-50"
+              @click="sendMessage"
+            >
+              <PaperAirplaneIcon class="h-5 w-5" />
+            </button>
+          </div>
         </div>
-      </div>
-      </DialogPanel>    </div>
+      </DialogPanel>
+    </div>
   </Dialog>
 </template>
 
