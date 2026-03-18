@@ -11,12 +11,12 @@ export default defineEventHandler(async (): Promise<Project[]> => {
       image: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Devlogs',
     },
     {
-      name: 'Timevent',
+      name: 'Countdown',
       description:
-        'A modern, aesthetic web application that displays a countdown timer to your next upcoming Google Calendar event.',
-      skills: 'Node.js, Google Calendar API, React, TypeScript, Tailwind CSS',
-      link: 'https://github.com/anthuanvasquez/timevent',
-      image: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Timevent',
+        'A simple modern countdown to show the time until your next upcoming activity.',
+      skills: 'Node.js, React, TypeScript, Tailwind CSS, Vite',
+      link: 'https://github.com/anthuanvasquez/countdown',
+      image: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Countdown',
     },
   ];
 });
