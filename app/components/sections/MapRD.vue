@@ -28,7 +28,10 @@ const accessToken = runtimeConfig.public.mapboxAccessToken;
         color="#27bcfd"
       />
     </MapboxMap>
-    <div v-else class="flex h-full w-full items-center justify-center bg-gray-900 text-white">
+    <div
+      v-else
+      class="flex h-full w-full items-center justify-center bg-gray-900 text-white"
+    >
       Configuring Map...
     </div>
   </div>

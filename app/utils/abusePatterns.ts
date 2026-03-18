@@ -25,12 +25,7 @@ export const ABUSE_PATTERNS = [
   /cuál\s+es\s+tu\s+base\s+de\s+conocimientos/i,
 
   // Code/Script/App requests (Hardened)
-  /crea\s+(una?\s+)?(app|aplicación|web|script|programa|código|bot)/i,
-  /create\s+(a\s+)?(app|application|website|script|program|code|bot)/i,
-  /escribe\s+(un?\s+)?(script|código|programa|función|algoritmo)/i,
-  /write\s+(a\s+)?(script|code|program|function|algorithm)/i,
-  /genera\s+(un?\s+)?(código|script|programa|snippet)/i,
-  /generate\s+(a\s+)?(code|script|program|snippet)/i,
+  /(?:crea|create|genera|generate|escribe|write)\s+(?:.*?\s+)?(?:app|aplicación|web|script|programa|program|código|code|bot|snippet|function|función|algorithm|algoritmo)/i,
   /interprete\s+de\s+python/i,
   /python\s+interpreter/i,
   /expert\s+in\s+javascript/i,
@@ -46,10 +41,7 @@ export const ABUSE_PATTERNS = [
   /"""/i,
 
   // Homework/Tasks
-  /ayúdame\s+con\s+(mi\s+)?(proyecto|tarea|homework|examen)/i,
-  /help\s+me\s+with\s+(my\s+)?(project|homework|assignment|exam)/i,
-  /hazme\s+(la\s+)?(tarea|proyecto)/i,
-  /do\s+(my\s+)?(homework|project)/i,
+  /(?:ayúdame|help\s+me|hazme|do)\s+(?:.*?\s+)?(?:proyecto|project|tarea|homework|assignment|examen|exam)/i,
 ];
 
 /**
@@ -59,9 +51,9 @@ export const ABUSE_PATTERNS = [
  */
 export function containsAbusePattern(text: string): boolean {
   if (!text) return false;
-  
+
   // Clean text for more accurate detection (removes extra spaces, normalize)
   const normalized = text.toLowerCase().replace(/\s+/g, ' ').trim();
-  
+
   return ABUSE_PATTERNS.some((pattern) => pattern.test(normalized));
 }

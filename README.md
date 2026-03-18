@@ -44,20 +44,25 @@ Personal website and professional portfolio built with bleeding-edge web technol
 ## 🛠️ Setup
 
 ### Prerequisites
+
 - Node.js (Latest LTS recommended)
 - [pnpm](https://pnpm.io/) (v10+)
 
 ### Installation
+
 ```bash
 pnpm install
 ```
 
 ### Environment Variables
+
 Copy `.env.example` to `.env` and configure the required keys:
+
 - `GROQ_API_KEY`: For Chatbot integration.
 - `MAPBOX_ACCESS_TOKEN`: For the interactive map.
 
 ### Development
+
 ```bash
 pnpm dev
 ```
@@ -84,4 +89,5 @@ pnpm build
 ```
 
 ---
+
 Designed and developed by **Anthuan Vásquez**. 🇩🇴

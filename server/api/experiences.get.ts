@@ -1,6 +1,6 @@
 import type { Experience } from '~/types';
 
-export default defineEventHandler(async (event): Promise<Experience[]> => {
+export default defineEventHandler(async (): Promise<Experience[]> => {
   return [
     {
       name: 'CEVALDOM',
