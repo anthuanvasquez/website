@@ -4,12 +4,32 @@ import { Dialog, DialogPanel } from '@headlessui/vue';
 const route = useRoute();
 const isLinksPage = computed(() => route.path === '/links');
 const isBlogPage = computed(() => route.path.startsWith('/blog'));
+const isBrainPage = computed(() => route.path.startsWith('/brain'));
+
+const resumeLink =
+  'https://docs.google.com/document/d/e/2PACX-1vQVSF3BtZPxneS-ceNizZ1ai4s9sRpMT39al5b-GA4OjiVWR6OOHP1qFPsq83WsJn34-mArGZC9FFYy/pub';
 
 const navigation = [
-  { name: 'Blog', href: '/blog' },
-  { name: 'Resume', href: '/anthuan_vasquez_resume.pdf' },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/anthuanvasquez/' },
-  { name: 'GitHub', href: 'https://github.com/anthuanvasquez' },
+  { name: 'Blog', href: '/blog', icon: 'i-lucide-book-open' },
+  { name: 'Brain', href: '/brain', icon: 'i-lucide-brain' },
+  {
+    name: 'Resume',
+    href: resumeLink,
+    icon: 'i-lucide-file-text',
+    external: true,
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/anthuanvasquez/',
+    icon: 'i-simple-icons-linkedin',
+    external: true,
+  },
+  {
+    name: 'GitHub',
+    href: 'https://github.com/anthuanvasquez',
+    icon: 'i-simple-icons-github',
+    external: true,
+  },
 ];
 
 const subNavigation = [
@@ -88,15 +108,26 @@ onMounted(() => {
               </div>
 
               <div class="hidden lg:flex lg:items-center lg:gap-x-8">
-                <a
-                  v-for="item in navigation"
-                  :key="item.name"
-                  :href="item.href"
-                  class="text-sm font-medium text-(--text-secondary) transition-colors hover:text-(--text-primary) hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
-                  :target="item.href.includes('http') ? '_blank' : '_self'"
-                >
-                  {{ item.name }}
-                </a>
+                <template v-for="item in navigation" :key="item.name">
+                  <NuxtLink
+                    v-if="!item.external"
+                    :to="item.href"
+                    class="flex items-center gap-x-2 text-sm font-medium text-(--text-secondary) transition-colors hover:text-(--text-primary) hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                  >
+                    <UIcon v-if="item.icon" :name="item.icon" class="size-4" />
+                    {{ item.name }}
+                  </NuxtLink>
+
+                  <a
+                    v-else
+                    :href="item.href"
+                    target="_blank"
+                    class="flex items-center gap-x-2 text-sm font-medium text-(--text-secondary) transition-colors hover:text-(--text-primary) hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                  >
+                    <UIcon v-if="item.icon" :name="item.icon" class="size-4" />
+                    {{ item.name }}
+                  </a>
+                </template>
 
                 <div class="ml-2 h-4 w-px bg-white/10"></div>
 
@@ -108,7 +139,7 @@ onMounted(() => {
 
         <!-- Bottom Sub Navigation (Sections) -->
         <nav
-          v-if="!isBlogPage"
+          v-if="!isBlogPage && !isBrainPage"
           class="no-scrollbar mx-auto flex w-full max-w-xl origin-top items-center justify-start overflow-x-auto rounded-full bg-(--surface-elevated)/80 px-6 py-2.5 shadow-lg ring-1 ring-white/5 backdrop-blur-md transition-transform duration-300 ease-in-out md:w-auto md:justify-center lg:gap-x-8"
           aria-label="Section Navigation"
         >
@@ -163,8 +194,9 @@ onMounted(() => {
                   v-for="item in navigation"
                   :key="item.name"
                   :href="item.href"
-                  class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-medium text-(--text-secondary) transition-colors hover:bg-(--surface-elevated) hover:text-white"
+                  class="-mx-3 flex items-center gap-x-3 rounded-lg px-3 py-2 text-base leading-7 font-medium text-(--text-secondary) transition-colors hover:bg-(--surface-elevated) hover:text-white"
                 >
+                  <UIcon v-if="item.icon" :name="item.icon" class="size-5" />
                   {{ item.name }}
                 </a>
               </div>
