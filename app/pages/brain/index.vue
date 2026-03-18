@@ -15,95 +15,39 @@ useHead({
 
 const mocCategories = [
   {
-    title: 'Data Engineering',
-    colorClass: 'border-red-400',
+    title: 'SWE & Architecture',
+    colorClass: 'border-blue-400',
     description:
-      'Visit the Data Engineering Vault. Key topics include Data Engineering Concepts, Tools and Technologies, Practices, Modern Data Engineering and many more.',
+      'Design patterns, Clean Architecture, testing, and system design principles. The "how" we build software.',
     links: [],
   },
   {
-    title: 'Personal Knowledge Management',
-    colorClass: 'border-blue-400',
-    description: '',
-    links: [
-      { text: 'Second Brain', href: '#' },
-      { text: 'Obsidian', href: '#' },
-      { text: 'Managing My Business with Obsidian', href: '#' },
-      { text: 'Zettelkasten', href: '#' },
-      { text: 'Permanent Notes', href: '#' },
-      { text: 'Public Second Brain with Quartz', href: '#' },
-      { text: 'How to Build a Second Brain', href: '#' },
-      { text: 'Smart Note Taking', href: '#' },
-      { text: 'PKM Workflow', href: '#' },
-    ],
+    title: 'Computer Science',
+    colorClass: 'border-red-400',
+    description:
+      'Algorithms, data structures, complexity (Big O), and the mathematical foundations of computing. The science base.',
+    links: [],
   },
   {
-    title: 'Deep Life',
-    colorClass: 'border-pink-400',
-    description: '',
-    links: [
-      { text: 'Digital Minimalism', href: '#' },
-      { text: 'Deep Work', href: '#' },
-      { text: 'What Makes a Happy Life', href: '#' },
-      { text: 'Thoughts on Journaling', href: '#' },
-      { text: 'Stoic', href: '#' },
-      { text: 'Routines', href: '#' },
-      { text: 'Reading Books for a Happy Life', href: '#' },
-      { text: 'Minimalism', href: '#' },
-      { text: 'Pathless Path', href: '#' },
-      { text: 'Dumb Phone', href: '#' },
-      { text: 'What I Have Learned Abroad', href: '#' },
-    ],
+    title: 'Languages',
+    colorClass: 'border-yellow-400',
+    description:
+      'Syntax, deep dives, and idioms for TypeScript, Vue, SQL, Python, Go, and more.',
+    links: [],
   },
   {
-    title: 'Writing & Reading',
-    colorClass: 'border-purple-400',
-    description: '',
-    links: [
-      { text: 'Writing is Thinking', href: '#' },
-      { text: 'Markdown', href: '#' },
-      { text: 'On Writing', href: '#' },
-      { text: 'Reading Books for a Happy Life', href: '#' },
-      { text: 'Creative Writing', href: '#' },
-      { text: 'Distract-Free Typewriter', href: '#' },
-      { text: 'Type of Notetakers', href: '#' },
-      { text: 'Markdown vs Rich Text', href: '#' },
-      { text: 'Plaintext Files', href: '#' },
-      { text: 'Types of Content Online', href: '#' },
-    ],
-  },
-  {
-    title: 'Productivity',
-    colorClass: 'border-indigo-400',
-    description: '',
-    links: [
-      { text: 'Getting Things Done (GTD)', href: '#' },
-      { text: 'My Gigs', href: '#' },
-      { text: 'No Meetings (Async)', href: '#' },
-      { text: 'Deep Work', href: '#' },
-      { text: 'Music for Focus', href: '#' },
-      { text: 'Creativity vs Productivity', href: '#' },
-      { text: 'Hell Yeah or No', href: '#' },
-      { text: 'Ultradian Rhythm', href: '#' },
-    ],
-  },
-  {
-    title: 'Neovim',
+    title: 'Dev Tools & DevOps',
     colorClass: 'border-green-400',
-    description: '',
-    links: [
-      { text: 'Vim', href: '#' },
-      { text: 'Neovim Setup', href: '#' },
-      { text: 'Vim Motions', href: '#' },
-      { text: 'Query Databases in Vim', href: '#' },
-      { text: 'Vim Language', href: '#' },
-      { text: 'Vim for Obsidian', href: '#' },
-      { text: 'Why Vim is More Than Just an Editor', href: '#' },
-      { text: 'Vim Anywhere', href: '#' },
-      { text: 'Unix Philosophy', href: '#' },
-      { text: 'Dotfiles', href: '#' },
-      { text: 'TUIs', href: '#' },
-    ],
+    description:
+      'Terminal setups, CLI workflows, Neovim, Git, Docker, AWS, and CI/CD pipelines.',
+    links: [],
+  },
+  {
+    title: 'PKM & Productivity',
+    colorClass: 'border-purple-400',
+    description:
+      'Second Brain management, Zettelkasten workflows, Obsidian setups, GTD, and Deep Work.',
+    links: [],
   },
 ];
 
@@ -205,36 +149,14 @@ const formatDate = (dateString?: string) => {
         </p>
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <div
+          <BrainMocCard
             v-for="cat in mocCategories"
             :key="cat.title"
-            class="flex flex-col rounded-xl border-l-4 bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-md transition-all hover:bg-white/10 hover:ring-white/20"
-            :class="cat.colorClass"
-          >
-            <h3 class="mb-4 text-xl font-bold text-sky-200">{{ cat.title }}</h3>
-            <div class="mb-4 h-px w-full bg-slate-700"></div>
-
-            <p v-if="cat.description" class="text-sm text-gray-300">
-              <span
-                v-html="
-                  cat.description.replace(
-                    'Data Engineering Vault',
-                    '<a href=\'#\' class=\'border-b border-gray-400 hover:text-white transition-colors\'>Data Engineering Vault</a>'
-                  )
-                "
-              ></span>
-            </p>
-
-            <div v-if="cat.links.length" class="text-sm text-gray-300">
-              <template v-for="(link, idx) in cat.links" :key="link.text">
-                <a
-                  :href="link.href"
-                  class="border-b border-gray-500 transition-colors hover:text-white"
-                  >{{ link.text }}</a
-                ><span v-if="idx < cat.links.length - 1">, </span>
-              </template>
-            </div>
-          </div>
+            :title="cat.title"
+            :color-class="cat.colorClass"
+            :description="cat.description"
+            :links="cat.links"
+          />
         </div>
       </section>
 
@@ -254,19 +176,13 @@ const formatDate = (dateString?: string) => {
         </p>
 
         <div class="grid gap-6 sm:grid-cols-3">
-          <div
+          <BrainFeatureCard
             v-for="pillar in pillars"
             :key="pillar.title"
-            class="flex flex-col rounded-xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-md transition-all hover:bg-white/10 hover:ring-white/20"
-          >
-            <div class="mb-4 text-2xl">{{ pillar.icon }}</div>
-            <h3 class="mb-3 text-xl font-bold text-sky-200">
-              {{ pillar.title }}
-            </h3>
-            <p class="text-sm leading-relaxed text-gray-300">
-              {{ pillar.description }}
-            </p>
-          </div>
+            :title="pillar.title"
+            :icon="pillar.icon"
+            :description="pillar.description"
+          />
         </div>
       </section>
 
@@ -275,21 +191,13 @@ const formatDate = (dateString?: string) => {
         <h2 class="text-2xl font-bold text-rose-400">Recent Notes</h2>
 
         <div class="flex flex-col space-y-4">
-          <NuxtLink
+          <BrainRecentNote
             v-for="note in notes"
             :key="note.path"
-            :to="note.path"
-            class="group flex flex-col gap-2 py-2 transition-colors sm:flex-row sm:items-center sm:gap-6"
-          >
-            <span class="text-sm whitespace-nowrap text-gray-400">{{
-              formatDate(note.meta?.date || note.date)
-            }}</span>
-            <span
-              class="border-b border-transparent text-base font-medium text-gray-300 transition-all group-hover:border-gray-400 group-hover:text-white"
-            >
-              {{ note.title }}
-            </span>
-          </NuxtLink>
+            :title="note.title || ''"
+            :path="note.path || ''"
+            :date="formatDate(note.meta?.date as string)"
+          />
 
           <div v-if="!notes?.length" class="py-10 text-center">
             <p class="text-lg text-gray-400">No notes available right now.</p>
