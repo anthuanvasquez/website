@@ -13,14 +13,14 @@ mockNuxtImport('useGetFetch', () => {
             name: 'Company A',
             position: 'Senior Dev',
             date: '2022 - Present',
-            projects: [{ description: 'Project A details', skills: 'Vue, TS' }],
+            activities: ['Project A details'],
           },
           {
             name: 'Company B',
             position: 'Lead Dev',
             date: '2020 - 2022',
-            projects: [
-              { description: 'Project B details', skills: 'React, Node' },
+            activities: [
+              'Project B details',
             ],
           },
         ]),

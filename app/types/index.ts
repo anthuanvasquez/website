@@ -12,11 +12,7 @@ export type Experience = {
   position: string;
   date: string;
   coding: string;
-  projects?: {
-    name: string;
-    description: string;
-    skills: string;
-  }[];
+  activities?: string[];
 };
 
 export type Skill = {
