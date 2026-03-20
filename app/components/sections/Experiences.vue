@@ -83,32 +83,21 @@ onUnmounted(() => {
               {{ experiences[activeIndex]?.date }}
             </p>
 
-            <ul v-if="experiences[activeIndex]?.projects" class="space-y-6">
+            <ul v-if="experiences[activeIndex]?.activities" class="space-y-4">
               <li
-                v-for="(project, pIndex) in experiences[activeIndex].projects"
-                :key="pIndex"
+                v-for="(activity, aIndex) in experiences[activeIndex].activities"
+                :key="aIndex"
                 class="flex items-start"
               >
                 <UIcon
                   name="i-lucide-check"
                   class="mt-1 mr-4 h-5 w-5 shrink-0 text-(--color-primary)"
                 />
-                <div>
-                  <span
-                    class="block text-base leading-relaxed text-(--text-secondary)"
-                  >
-                    {{ project.description }}
-                  </span>
-                  <span
-                    v-if="project.skills"
-                    class="font-firacode mt-2 block text-xs text-(--text-tertiary)"
-                  >
-                    Skills:
-                    <span class="text-(--text-secondary)">
-                      {{ project.skills }}
-                    </span>
-                  </span>
-                </div>
+                <span
+                  class="block text-base leading-relaxed text-(--text-secondary)"
+                >
+                  {{ activity }}
+                </span>
               </li>
             </ul>
           </div>

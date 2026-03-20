@@ -101,11 +101,15 @@ onUnmounted(() => {
           >
             {{ project.description }}
           </p>
-          <p
-            class="font-firacode mt-2 text-xs leading-relaxed font-normal text-(--text-secondary)"
-          >
-            {{ project.skills }}
-          </p>
+          <div v-if="project.skills" class="mt-4 flex flex-wrap gap-2">
+            <span
+              v-for="skill in project.skills.split(',')"
+              :key="skill.trim()"
+              class="font-firacode rounded-full bg-(--color-primary)/10 px-3 py-1 text-xs font-medium text-(--color-primary) ring-1 ring-(--color-primary)/20"
+            >
+              {{ skill.trim() }}
+            </span>
+          </div>
         </div>
       </div>
     </div>

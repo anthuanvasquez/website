@@ -8,15 +8,17 @@ const profile = {
   handle: '@anthuanvasquez',
 };
 
+const resumeLink = 'https://docs.google.com/document/d/e/2PACX-1vQVSF3BtZPxneS-ceNizZ1ai4s9sRpMT39al5b-GA4OjiVWR6OOHP1qFPsq83WsJn34-mArGZC9FFYy/pub';
+
 const links = [
   {
     label: 'Check Out My Latest Projects',
-    url: 'https://anthuanvasquez.net/#projects',
+    url: '/#projects',
     icon: 'i-lucide-briefcase',
   },
   {
     label: 'Read My Tech Blog',
-    url: 'https://anthuanvasquez.net/blog',
+    url: '/blog',
     icon: 'i-lucide-book-open',
   },
   {
@@ -26,7 +28,7 @@ const links = [
   },
   {
     label: 'Download My Resume',
-    url: '/resume.pdf',
+    url: resumeLink,
     icon: 'i-lucide-file-text',
   },
 ];
@@ -37,10 +39,10 @@ const socials = [
     icon: 'i-simple-icons-linkedin',
     url: 'https://linkedin.com/in/anthuanvasquez',
   },
-  { icon: 'i-simple-icons-x', url: 'https://x.com/anthuanvasquez' },
+  { icon: 'i-simple-icons-x', url: 'https://x.com/anthuanvasquezm' },
   {
     icon: 'i-simple-icons-instagram',
-    url: 'https://instagram.com/anthuanvasquez',
+    url: 'https://instagram.com/anthuanvasquezm',
   },
 ];
 
