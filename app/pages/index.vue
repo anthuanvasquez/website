@@ -36,7 +36,7 @@ const copyEmailAddress = () => {
             :transition="{ duration: 0.5, delay: 0.1 }"
           >
             <p
-              class="wave-container mb-4 inline-flex items-center text-lg font-medium text-(--text-secondary)"
+              class="wave-container text-text-secondary mb-4 inline-flex items-center text-lg font-medium"
             >
               Hey, I'm Anthuan <span class="wave-hand ml-2 text-2xl">👋</span>
             </p>
@@ -61,7 +61,7 @@ const copyEmailAddress = () => {
             :transition="{ duration: 0.5, delay: 0.3 }"
           >
             <p
-              class="mb-10 max-w-xl text-lg leading-relaxed font-normal text-(--text-secondary) sm:text-xl"
+              class="text-text-secondary mb-10 max-w-xl text-lg leading-relaxed font-normal sm:text-xl"
             >
               A Full-Stack Engineer living in DR, and I focus on making digital
               experiences that are easy to use, enjoyable, and get the job done.
@@ -89,7 +89,7 @@ const copyEmailAddress = () => {
               size="lg"
               color="neutral"
               variant="outline"
-              class="justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1 ring-(--text-tertiary) hover:bg-(--surface-elevated)"
+              class="ring-text-tertiary hover:bg-surface-elevated justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1"
             >
               Browse Projects
             </UButton>
@@ -108,11 +108,11 @@ const copyEmailAddress = () => {
           >
             <!-- Ambient blurred glow (animated on hover) -->
             <div
-              class="absolute inset-0 scale-[1.05] rounded-full bg-linear-to-tr from-(--color-primary) via-(--color-tertiary) to-(--color-secondary) opacity-30 blur-2xl transition-all duration-700 ease-out group-hover:scale-[1.1] group-hover:opacity-60 group-hover:blur-3xl"
+              class="from-primary via-tertiary to-secondary absolute inset-0 scale-[1.05] rounded-full bg-linear-to-tr opacity-30 blur-2xl transition-all duration-700 ease-out group-hover:scale-[1.1] group-hover:opacity-60 group-hover:blur-3xl"
             ></div>
 
             <div
-              class="relative h-full w-full overflow-hidden rounded-full ring-2 ring-(--border-subtle) bg-(--surface-elevated) shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.02] group-hover:ring-(--color-primary)/50"
+              class="ring-border-subtle bg-surface-elevated group-hover:ring-primary/50 relative h-full w-full overflow-hidden rounded-full shadow-2xl ring-2 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
             >
               <NuxtImg
                 src="/yo.jpeg"
@@ -135,7 +135,7 @@ const copyEmailAddress = () => {
     <Experiences />
 
     <p
-      class="experience-animate mx-auto mt-12 max-w-lg text-center text-sm leading-relaxed font-normal text-(--text-secondary) italic"
+      class="experience-animate text-text-secondary mx-auto mt-12 max-w-lg text-center text-sm leading-relaxed font-normal italic"
     >
       This is a curated selection – view my full resume for additional
       experience.
@@ -153,7 +153,7 @@ const copyEmailAddress = () => {
   <Section id="location" title="Where I'm Based" subtitle="Location">
     <div class="container mx-auto max-w-7xl px-4 md:px-0">
       <p
-        class="mx-auto mb-12 max-w-2xl text-center leading-relaxed font-normal text-(--text-secondary)"
+        class="text-text-secondary mx-auto mb-12 max-w-2xl text-center leading-relaxed font-normal"
       >
         I'm proudly located in the Dominican Republic, right in the heart of the
         Caribbean. From this tropical paradise, I collaborate with clients
@@ -161,7 +161,7 @@ const copyEmailAddress = () => {
         every project.
       </p>
       <div
-        class="hover:ring-primary/50 relative h-[500px] w-full overflow-hidden rounded-2xl bg-(--surface-base) shadow-sm ring-1 ring-white/10 transition-all"
+        class="hover:ring-primary/50 bg-surface-base relative h-[500px] w-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-white/10 transition-all"
       >
         <MapRD />
       </div>

@@ -8,51 +8,59 @@
 @theme {
   --font-firacode: 'Fira Code', monospace;
   --font-opensans: 'Mona Sans', sans-serif;
-  
-  /* Vision Night Palette */
-  --color-primary: #6F9EF5;    /* Functions */
-  --color-secondary: #74C9E8;  /* Variables */
-  --color-tertiary: #B07CD6;   /* Keywords */
-  --color-accent: #E8B463;     /* Types */
-  --color-success: #A9D67A;    /* Strings */
-  --color-danger: #FF6B7D;     /* Errors */
-  --color-selection: #2F3C63;  /* Active selection */
-  --color-black: #151520;      /* Background Core surface */
 
-  --surface-base: var(--color-black);
-  --surface-elevated: #1a1a26; /* Slightly lighter than base */
-  --surface-float: #202030;    /* Even lighter */
+  /* Vision Night Palette - Core Colors */
+  --color-primary: #6f9ef5; /* Functions */
+  --color-secondary: #74c9e8; /* Variables */
+  --color-tertiary: #b07cd6; /* Keywords */
+  --color-accent: #e8b463; /* Types */
+  --color-success: #a9d67a; /* Strings */
+  --color-danger: #ff6b7d; /* Errors */
+  --color-selection: #2f3c63; /* Active selection */
+  --color-black: #151520; /* Background Core surface */
 
-  --text-primary: #D5D6E1;     /* Foreground */
-  --text-secondary: #6A7191;   /* Comments */
-  --text-tertiary: #525875;    /* Darker comments */
-  --text-muted: #414660;
-  --text-accent: var(--color-primary);
-  --border-subtle: rgba(106, 113, 145, 0.2);
+  /* Surfaces */
+  --color-surface-base: var(--color-black);
+  --color-surface-elevated: #1a1a26; /* Slightly lighter than base */
+  --color-surface-float: #202030; /* Even lighter */
+
+  /* Texts */
+  --color-text-primary: #d5d6e1; /* Foreground */
+  --color-text-secondary: #6a7191; /* Comments */
+  --color-text-tertiary: #525875; /* Darker comments */
+  --color-text-muted: #414660;
+  --color-text-accent: var(--color-primary);
+
+  /* Borders */
+  --color-border-subtle: rgba(106, 113, 145, 0.2);
 }
 
 @custom-variant light (&:where(.light, .light *));
 
 .light {
-  --surface-base: #f8fafc;
-  --surface-elevated: #ffffff;
-  --surface-float: #f1f5f9;
+  /* Surfaces */
+  --color-surface-base: #f8fafc;
+  --color-surface-elevated: #ffffff;
+  --color-surface-float: #f1f5f9;
 
-  --text-primary: #151520; /* Vision Night dark background as text */
-  --text-secondary: #525875; /* Vision Night dark comments */
-  --text-tertiary: #6A7191; /* Vision Night comments */
-  --text-muted: #94a3b8;
-  --text-accent: #4A7FE8; /* Slightly darker version of Primary for contrast */
-  --border-subtle: rgba(106, 113, 145, 0.15); /* Soft border using comments color */
-  
+  /* Texts */
+  --color-text-primary: #151520; /* Vision Night dark background as text */
+  --color-text-secondary: #525875; /* Vision Night dark comments */
+  --color-text-tertiary: #6a7191; /* Vision Night comments */
+  --color-text-muted: #94a3b8;
+  --color-text-accent: #4a7fe8; /* Slightly darker version of Primary for contrast */
+
+  /* Borders */
+  --color-border-subtle: rgba(
+    106,
+    113,
+    145,
+    0.15
+  ); /* Soft border using comments color */
+
   --color-selection: #dbeafe; /* Light blue for selection */
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-*/
 @layer base {
   *,
   ::after,
@@ -64,7 +72,7 @@
 
   ::selection {
     background-color: var(--color-selection);
-    color: var(--text-primary);
+    color: var(--color-text-primary);
   }
 }
 
@@ -81,8 +89,8 @@ body,
 html,
 body {
   @apply font-opensans font-medium;
-  background-color: var(--surface-base);
-  color: var(--text-primary);
+  background-color: var(--color-surface-base);
+  color: var(--color-text-primary);
 }
 
 h1,
@@ -91,8 +99,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-firacode font-bold tracking-tighter;
-  color: var(--text-primary);
+  @apply font-firacode text-text-primary font-bold tracking-tighter;
 }
 
 .text-primary-gradient {

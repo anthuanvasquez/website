@@ -30,7 +30,7 @@ const accessToken = runtimeConfig.public.mapboxAccessToken;
     </MapboxMap>
     <div
       v-else
-      class="flex h-full w-full items-center justify-center bg-(--surface-base) text-(--text-primary)"
+      class="bg-surface-base text-text-primary flex h-full w-full items-center justify-center"
     >
       Configuring Map...
     </div>

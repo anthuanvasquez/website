@@ -13,11 +13,11 @@ useSeoMeta({
 
 <template>
   <div
-    class="relative min-h-screen overflow-hidden bg-(--surface-base) pt-32 pb-24"
+    class="bg-surface-base relative min-h-screen overflow-hidden pt-32 pb-24"
   >
     <!-- Background glow -->
     <div
-      class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-(--color-primary)/20 via-(--surface-base) to-(--surface-base)"
+      class="from-primary/20 via-surface-base to-surface-base absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]"
     ></div>
 
     <main class="relative mx-auto max-w-3xl px-6 sm:px-12 lg:px-8">
@@ -36,10 +36,10 @@ useSeoMeta({
       </article>
 
       <div v-else class="py-20 text-center">
-        <h1 class="mb-4 text-3xl font-bold text-(--text-primary)">
+        <h1 class="text-text-primary mb-4 text-3xl font-bold">
           Note not found
         </h1>
-        <p class="text-(--text-secondary)">
+        <p class="text-text-secondary">
           The note you are looking for does not exist or hasn't been exported
           yet.
         </p>

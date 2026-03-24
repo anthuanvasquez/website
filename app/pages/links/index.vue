@@ -61,7 +61,7 @@ useHead({
 
 <template>
   <div
-    class="flex min-h-screen w-full flex-col items-center px-4 py-16 font-sans text-(--text-primary)"
+    class="text-text-primary flex min-h-screen w-full flex-col items-center px-4 py-16 font-sans"
   >
     <div
       class="pointer-events-none fixed top-0 left-0 z-0 h-full w-full overflow-hidden"
@@ -77,7 +77,7 @@ useHead({
       <div class="flex flex-col items-center gap-4 text-center">
         <div class="group relative">
           <div
-            class="absolute -inset-0.5 rounded-full bg-linear-to-r from-(--color-tertiary) to-(--color-primary) opacity-75 blur-sm transition duration-500 group-hover:opacity-100"
+            class="from-tertiary to-primary absolute -inset-0.5 rounded-full bg-linear-to-r opacity-75 blur-sm transition duration-500 group-hover:opacity-100"
           ></div>
           <NuxtImg
             :src="profile.image"
@@ -89,17 +89,17 @@ useHead({
         </div>
 
         <div class="space-y-1">
-          <h1 class="text-2xl font-bold tracking-tight text-(--text-primary)">
+          <h1 class="text-text-primary text-2xl font-bold tracking-tight">
             {{ profile.name }}
           </h1>
-          <p class="text-sm font-medium text-(--text-secondary)">
+          <p class="text-text-secondary text-sm font-medium">
             {{ profile.title }} <span class="mx-1">·</span>
             {{ profile.location }}
           </p>
         </div>
 
         <p
-          class="max-w-[90%] text-center text-sm leading-relaxed text-(--text-secondary)"
+          class="text-text-secondary max-w-[90%] text-center text-sm leading-relaxed"
         >
           {{ profile.bio }} <br />
           <a
@@ -122,16 +122,16 @@ useHead({
         >
           <div class="flex items-center gap-4">
             <!-- Optional Icon for each link if desired, currently hidden based on ref image style but data is there -->
-            <!-- <UIcon :name="link.icon" class="w-5 h-5 text-(--text-secondary) group-hover:text-white transition-colors" /> -->
+            <!-- <UIcon :name="link.icon" class="w-5 h-5 text-text-secondary group-hover:text-white transition-colors" /> -->
             <span
-              class="font-medium text-(--text-primary) transition-colors group-hover:text-(--text-primary)"
+              class="text-text-primary group-hover:text-text-primary font-medium transition-colors"
               >{{ link.label }}</span
             >
           </div>
 
           <UIcon
             name="i-lucide-arrow-up-right"
-            class="h-5 w-5 text-(--text-tertiary) transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-(--text-primary)"
+            class="text-text-tertiary group-hover:text-text-primary h-5 w-5 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
         </a>
       </div>
@@ -149,7 +149,7 @@ useHead({
         >
           <UIcon
             :name="social.icon"
-            class="h-6 w-6 text-(--text-secondary) transition-colors group-hover:text-(--text-primary)"
+            class="text-text-secondary group-hover:text-text-primary h-6 w-6 transition-colors"
           />
         </a>
       </div>

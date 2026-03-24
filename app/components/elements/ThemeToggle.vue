@@ -11,7 +11,7 @@ const isDark = computed({
 <template>
   <ClientOnly>
     <button
-      class="group relative flex h-9 w-9 items-center justify-center rounded-lg border border-(--border-subtle) bg-(--surface-elevated)/50 text-(--text-secondary) transition-all hover:bg-(--surface-elevated) hover:text-(--text-primary) hover:shadow-lg focus:outline-none"
+      class="group border-border-subtle bg-surface-elevated/50 text-text-secondary hover:bg-surface-elevated hover:text-text-primary relative flex h-9 w-9 items-center justify-center rounded-lg border transition-all hover:shadow-lg focus:outline-none"
       @click="isDark = !isDark"
       aria-label="Toggle theme"
     >

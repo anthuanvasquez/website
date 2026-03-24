@@ -78,7 +78,7 @@ onMounted(() => {
         >
           <div class="overflow-hidden">
             <nav
-              class="mb-2 flex items-center justify-between rounded-full bg-(--surface-elevated)/70 px-6 py-3 shadow-lg ring-1 ring-white/10 backdrop-blur-md"
+              class="bg-surface-elevated/70 mb-2 flex items-center justify-between rounded-full px-6 py-3 shadow-lg ring-1 ring-white/10 backdrop-blur-md"
               aria-label="Global"
             >
               <div class="flex lg:flex-1">
@@ -95,7 +95,7 @@ onMounted(() => {
               <div class="flex lg:hidden">
                 <button
                   type="button"
-                  class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-(--text-secondary) transition-colors hover:text-(--text-primary)"
+                  class="text-text-secondary hover:text-text-primary -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors"
                   @click="mobileMenuOpen = true"
                 >
                   <span class="sr-only">Open main menu</span>
@@ -112,7 +112,7 @@ onMounted(() => {
                   <NuxtLink
                     v-if="!item.external"
                     :to="item.href"
-                    class="flex items-center gap-x-2 text-sm font-medium text-(--text-secondary) transition-colors hover:text-(--text-primary) hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                    class="text-text-secondary hover:text-text-primary flex items-center gap-x-2 text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                   >
                     <UIcon v-if="item.icon" :name="item.icon" class="size-4" />
                     {{ item.name }}
@@ -122,7 +122,7 @@ onMounted(() => {
                     v-else
                     :href="item.href"
                     target="_blank"
-                    class="flex items-center gap-x-2 text-sm font-medium text-(--text-secondary) transition-colors hover:text-(--text-primary) hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                    class="text-text-secondary hover:text-text-primary flex items-center gap-x-2 text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                   >
                     <UIcon v-if="item.icon" :name="item.icon" class="size-4" />
                     {{ item.name }}
@@ -140,7 +140,7 @@ onMounted(() => {
         <!-- Bottom Sub Navigation (Sections) -->
         <nav
           v-if="!isBlogPage && !isBrainPage"
-          class="no-scrollbar mx-auto flex w-full max-w-xl origin-top items-center justify-start overflow-x-auto rounded-full bg-(--surface-elevated)/80 px-6 py-2.5 shadow-lg ring-1 ring-white/5 backdrop-blur-md transition-transform duration-300 ease-in-out md:w-auto md:justify-center lg:gap-x-8"
+          class="no-scrollbar bg-surface-elevated/80 mx-auto flex w-full max-w-xl origin-top items-center justify-start overflow-x-auto rounded-full px-6 py-2.5 shadow-lg ring-1 ring-white/5 backdrop-blur-md transition-transform duration-300 ease-in-out md:w-auto md:justify-center lg:gap-x-8"
           aria-label="Section Navigation"
         >
           <div class="flex items-center gap-x-6">
@@ -148,7 +148,7 @@ onMounted(() => {
               v-for="item in subNavigation"
               :key="item.name"
               :href="item.href"
-              class="font-firacode text-xs font-medium tracking-widest whitespace-nowrap text-(--text-tertiary) uppercase transition-colors hover:text-(--text-primary) hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+              class="font-firacode text-text-tertiary hover:text-text-primary text-xs font-medium tracking-widest whitespace-nowrap uppercase transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             >
               {{ item.name }}
             </a>
@@ -162,12 +162,10 @@ onMounted(() => {
         class="lg:hidden"
         @close="mobileMenuOpen = false"
       >
-        <div
-          class="fixed inset-0 z-50 bg-(--surface-base)/60 backdrop-blur-sm"
-        />
+        <div class="bg-surface-base/60 fixed inset-0 z-50 backdrop-blur-sm" />
 
         <DialogPanel
-          class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-(--surface-base) p-6 sm:max-w-sm sm:ring-1 sm:ring-white/10"
+          class="bg-surface-base fixed inset-y-0 right-0 z-50 w-full overflow-y-auto p-6 sm:max-w-sm sm:ring-1 sm:ring-white/10"
         >
           <div class="flex items-center justify-between">
             <a href="/" class="-m-1.5 p-1.5">
@@ -180,7 +178,7 @@ onMounted(() => {
               <ThemeToggle />
               <button
                 type="button"
-                class="-m-2.5 rounded-md p-2.5 text-(--text-secondary) transition-colors hover:text-(--text-primary)"
+                class="text-text-secondary hover:text-text-primary -m-2.5 rounded-md p-2.5 transition-colors"
                 @click="mobileMenuOpen = false"
               >
                 <span class="sr-only">Close menu</span>
@@ -196,7 +194,7 @@ onMounted(() => {
                   v-for="item in navigation"
                   :key="item.name"
                   :href="item.href"
-                  class="-mx-3 flex items-center gap-x-3 rounded-lg px-3 py-2 text-base leading-7 font-medium text-(--text-secondary) transition-colors hover:bg-(--surface-elevated) hover:text-(--text-primary)"
+                  class="text-text-secondary hover:bg-surface-elevated hover:text-text-primary -mx-3 flex items-center gap-x-3 rounded-lg px-3 py-2 text-base leading-7 font-medium transition-colors"
                 >
                   <UIcon v-if="item.icon" :name="item.icon" class="size-5" />
                   {{ item.name }}
@@ -206,7 +204,7 @@ onMounted(() => {
               <!-- Sections Navigation -->
               <div v-if="!isBlogPage" class="space-y-2 py-6">
                 <span
-                  class="font-firacode mb-4 block px-3 text-xs tracking-widest text-(--text-tertiary) uppercase"
+                  class="font-firacode text-text-tertiary mb-4 block px-3 text-xs tracking-widest uppercase"
                   >Sections</span
                 >
                 <a
@@ -214,7 +212,7 @@ onMounted(() => {
                   :key="item.name"
                   :href="item.href"
                   @click="mobileMenuOpen = false"
-                  class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-medium text-(--text-secondary) transition-colors hover:bg-(--surface-elevated) hover:text-(--color-primary)"
+                  class="text-text-secondary hover:bg-surface-elevated hover:text-primary -mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-medium transition-colors"
                 >
                   {{ item.name }}
                 </a>

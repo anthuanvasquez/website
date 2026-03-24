@@ -23,15 +23,13 @@ const copyEmailAddress = () => {
 </script>
 
 <template>
-  <footer id="footer" class="mt-20 border-t border-(--surface-elevated) py-12">
+  <footer id="footer" class="border-surface-elevated mt-20 border-t py-12">
     <div class="container mx-auto max-w-7xl px-4 md:px-0">
       <div
         class="flex flex-col items-center justify-between gap-8 md:flex-row md:items-end"
       >
         <div class="flex flex-col text-center md:text-left">
-          <h2
-            class="mb-6 text-3xl font-bold tracking-tight text-(--text-primary)"
-          >
+          <h2 class="text-text-primary mb-6 text-3xl font-bold tracking-tight">
             Interested in working together<span class="text-primary">?</span>
           </h2>
 
@@ -49,7 +47,7 @@ const copyEmailAddress = () => {
               size="lg"
               color="neutral"
               variant="outline"
-              class="justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1 ring-(--text-tertiary) hover:bg-(--surface-elevated)"
+              class="ring-text-tertiary hover:bg-surface-elevated justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1"
             >
               Browse Projects
             </UButton>
@@ -57,7 +55,7 @@ const copyEmailAddress = () => {
         </div>
 
         <div
-          class="flex flex-col text-center text-sm font-medium text-(--text-tertiary) md:text-right"
+          class="text-text-tertiary flex flex-col text-center text-sm font-medium md:text-right"
         >
           <p class="mb-1">
             © {{ new Date().getFullYear() }} All Rights Reserved.
@@ -66,7 +64,7 @@ const copyEmailAddress = () => {
             Developed with <span class="text-primary">♥</span> by
             <a
               href="/"
-              class="hover:text-primary text-(--text-primary) transition-colors"
+              class="hover:text-primary text-text-primary transition-colors"
             >
               Anthuan
             </a>
