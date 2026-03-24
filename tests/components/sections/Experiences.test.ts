@@ -42,7 +42,7 @@ describe('Experiences Section', () => {
     expect(component.text()).toContain('@ Company A');
 
     // Switch tabs
-    const buttons = component.findAll('button');
+    const buttons = component.findAll('[data-testid="experience-tab"]');
     const companyBButton = buttons.find((b) => b.text().includes('Company B'));
     if (!companyBButton) throw new Error('Company B button not found');
 

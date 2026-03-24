@@ -58,6 +58,7 @@ onUnmounted(() => {
           <button
             v-for="(experience, index) in experiences"
             :key="index"
+            data-testid="experience-tab"
             class="shrink-0 px-5 py-3 text-left text-sm font-medium whitespace-nowrap transition-all md:border-l-2 md:text-base md:whitespace-normal"
             :class="
               activeIndex === index

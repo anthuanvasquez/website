@@ -197,6 +197,7 @@ onUnmounted(() => {
   >
     <button
       v-if="showNotification"
+      data-testid="chatbot-notification"
       class="group relative mb-2 flex h-12 items-center gap-2 rounded-2xl bg-white px-4 shadow-xl ring-1 ring-black/5 transition-transform hover:scale-105"
       @click="
         isOpen = true;
@@ -226,6 +227,7 @@ onUnmounted(() => {
         ></span>
       </span>
       <button
+        data-testid="chatbot-trigger"
         class="bg-primary hover:bg-secondary rounded-full p-4 text-white shadow-lg transition-all duration-300 hover:scale-110"
         @click="
           isOpen = true;
@@ -335,6 +337,7 @@ onUnmounted(() => {
         <div class="bg-surface-elevated border-t border-white/5 p-4">
           <div class="relative flex items-center gap-2">
             <textarea
+              data-testid="chatbot-input"
               v-model="currentMessage"
               :placeholder="placeholderText"
               class="focus:border-primary/50 focus:ring-primary/20 bg-surface-base text-text-primary max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 px-4 py-2.5 text-sm placeholder-slate-500 transition-all focus:ring-1 focus:outline-none disabled:opacity-50"
@@ -343,6 +346,7 @@ onUnmounted(() => {
               @keypress="handleKeyPress"
             ></textarea>
             <button
+              data-testid="chatbot-send"
               :disabled="!currentMessage.trim() || isLoading"
               class="hover:bg-secondary bg-primary text-surface-base disabled:bg-surface-float disabled:text-text-tertiary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
               @click="sendMessage"

@@ -21,7 +21,7 @@ describe('Chatbot', () => {
 
   it('should render the trigger button initially', async () => {
     const component = await mountSuspended(Chatbot);
-    expect(component.find('button.rounded-full.bg-primary').exists()).toBe(
+    expect(component.find('[data-testid="chatbot-trigger"]').exists()).toBe(
       true
     );
   });
@@ -30,12 +30,14 @@ describe('Chatbot', () => {
     const component = await mountSuspended(Chatbot);
     vi.advanceTimersByTime(2000);
     await nextTick();
-    expect(component.find('button.group.relative.mb-2').exists()).toBe(true);
+    expect(
+      component.find('[data-testid="chatbot-notification"]').exists()
+    ).toBe(true);
   });
 
   it('should open the chat dialog when trigger is clicked', async () => {
     const component = await mountSuspended(Chatbot);
-    await component.find('button.rounded-full.bg-primary').trigger('click');
+    await component.find('[data-testid="chatbot-trigger"]').trigger('click');
     await nextTick();
     expect(document.body.innerHTML).toContain('Anthuan Assistant');
   });
@@ -54,11 +56,11 @@ describe('Chatbot', () => {
     const component = await mountSuspended(Chatbot);
 
     // Open chat
-    await component.find('button.rounded-full.bg-primary').trigger('click');
+    await component.find('[data-testid="chatbot-trigger"]').trigger('click');
     await nextTick();
 
     // Find textarea and type message correctly
-    const textarea = document.querySelector('textarea');
+    const textarea = document.querySelector('[data-testid="chatbot-input"]');
     if (!textarea) throw new Error('Textarea not found');
 
     textarea.value = 'Tell me about your projects';
@@ -68,7 +70,7 @@ describe('Chatbot', () => {
 
     // Find and click send button
     const sendButton = document.querySelector(
-      'button.bg-primary'
+      '[data-testid="chatbot-send"]'
     ) as HTMLButtonElement;
     if (!sendButton) throw new Error('Send button not found');
 
@@ -97,10 +99,10 @@ describe('Chatbot', () => {
     });
 
     const component = await mountSuspended(Chatbot);
-    await component.find('button.rounded-full.bg-primary').trigger('click');
+    await component.find('[data-testid="chatbot-trigger"]').trigger('click');
     await nextTick();
 
-    const textarea = document.querySelector('textarea');
+    const textarea = document.querySelector('[data-testid="chatbot-input"]');
     if (textarea) {
       textarea.value = 'Test error';
       textarea.dispatchEvent(new Event('input'));
@@ -108,7 +110,7 @@ describe('Chatbot', () => {
       await nextTick();
 
       const sendButton = document.querySelector(
-        'button.bg-primary'
+        '[data-testid="chatbot-send"]'
       ) as HTMLButtonElement;
       sendButton.click();
     }

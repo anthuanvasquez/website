@@ -19,7 +19,7 @@ describe('ThemeToggle', () => {
     const component = await mountSuspended(ThemeToggle);
 
     // Verify button exists
-    const button = component.find('button');
+    const button = component.find('[data-testid="theme-toggle"]');
     expect(button.exists()).toBe(true);
 
     // Verify aria-label is correct
@@ -42,7 +42,7 @@ describe('ThemeToggle', () => {
     colorModeMock.preference = 'light';
 
     const component = await mountSuspended(ThemeToggle);
-    const button = component.find('button');
+    const button = component.find('[data-testid="theme-toggle"]');
 
     // Click triggers isDark computed setter
     await button.trigger('click');
