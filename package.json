@@ -2,7 +2,7 @@
   "name": "anthuanvasquez.net",
   "description": "Personal website of Anthuan Vásquez",
   "author": "Anthuan Vásquez",
-  "version": "2026.2.2",
+  "version": "2026.3.24",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -14,7 +14,7 @@
     "lint:ts": "eslint . --ignore-pattern .output --ignore-pattern .nuxt",
     "lint:prettier": "prettier --check .",
     "lint:fix": "prettier --write --list-different . && pnpm lint:ts --fix",
-    "test": "vitest",
+    "test": "vitest run",
     "test:ui": "vitest --ui",
     "clean": "pnpm dlx rimraf .nuxt .output"
   },
