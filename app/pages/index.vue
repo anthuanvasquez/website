@@ -104,14 +104,15 @@ const copyEmailAddress = () => {
           class="relative mt-12 flex justify-center lg:mt-0 lg:justify-end"
         >
           <div
-            class="relative h-72 w-72 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px]"
+            class="group relative h-72 w-72 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px]"
           >
+            <!-- Ambient blurred glow (animated on hover) -->
             <div
-              class="border-primary/30 absolute inset-0 scale-[1.15] animate-[spin_60s_linear_infinite] rounded-full border"
+              class="absolute inset-0 scale-[1.05] rounded-full bg-linear-to-tr from-(--color-primary) via-(--color-tertiary) to-(--color-secondary) opacity-30 blur-2xl transition-all duration-700 ease-out group-hover:scale-[1.1] group-hover:opacity-60 group-hover:blur-3xl"
             ></div>
 
             <div
-              class="relative h-full w-full overflow-hidden rounded-full border-4 border-(--surface-base) bg-(--surface-elevated) shadow-2xl"
+              class="relative h-full w-full overflow-hidden rounded-full ring-2 ring-(--border-subtle) bg-(--surface-elevated) shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.02] group-hover:ring-(--color-primary)/50"
             >
               <NuxtImg
                 src="/yo.jpeg"
