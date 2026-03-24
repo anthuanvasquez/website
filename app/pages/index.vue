@@ -1,3 +1,27 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const copied = ref(false);
+
+/**
+ * Copy email address to clipboard. Notify after copy.
+ */
+const copyEmailAddress = () => {
+  const email = useRuntimeConfig().public.emailAddress as string;
+  navigator.clipboard.writeText(email);
+  copied.value = true;
+  useToast().add({
+    title: 'Success',
+    description: 'Email copied to clipboard',
+    color: 'primary',
+  });
+
+  setTimeout(() => {
+    copied.value = false;
+  }, 3000);
+};
+</script>
+
 <template>
   <div
     class="relative flex min-h-screen items-center justify-center pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pb-24"
@@ -55,9 +79,10 @@
               size="lg"
               color="primary"
               variant="solid"
-              class="justify-center rounded-xl px-8 py-3 text-base font-semibold"
+              class="justify-center rounded-xl px-8 py-3 text-base font-semibold transition-transform hover:scale-105"
+              @click="copyEmailAddress"
             >
-              Get In Touch
+              {{ copied ? 'Email Copied!' : 'Get In Touch' }}
             </UButton>
             <UButton
               to="#projects"
