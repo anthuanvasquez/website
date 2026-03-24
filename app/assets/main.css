@@ -74,6 +74,11 @@
     background-color: var(--color-selection);
     color: var(--color-text-primary);
   }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 html {
