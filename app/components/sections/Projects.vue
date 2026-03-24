@@ -81,14 +81,14 @@ onUnmounted(() => {
         <div class="flex flex-col px-2">
           <div class="mb-3 flex items-center gap-3">
             <h3
-              class="text-2xl font-bold text-(--text-primary) transition-colors group-hover:text-white"
+              class="text-2xl font-bold text-(--text-primary) transition-colors group-hover:text-(--text-primary)"
             >
               {{ project.name }}
             </h3>
             <a
               :href="project.link || '#'"
               target="_blank"
-              class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-(--surface-base) text-(--color-primary) ring-1 ring-(--color-primary) transition-all hover:bg-(--color-primary) hover:text-white"
+              class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-(--surface-base) text-(--color-primary) ring-1 ring-(--color-primary) transition-all hover:bg-(--color-primary) hover:text-(--text-primary)"
             >
               <UIcon
                 name="i-heroicons-arrow-up-right-20-solid"

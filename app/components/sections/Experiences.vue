@@ -62,7 +62,7 @@ onUnmounted(() => {
             :class="
               activeIndex === index
                 ? 'border-(--color-primary) bg-(--surface-elevated) text-(--color-primary) md:border-b-0'
-                : 'border-transparent text-(--text-secondary) hover:bg-(--surface-float) hover:text-white md:border-b-0'
+                : 'border-transparent text-(--text-secondary) hover:bg-(--surface-float) hover:text-(--text-primary) md:border-b-0'
             "
             @click="activeIndex = index"
           >
@@ -85,7 +85,8 @@ onUnmounted(() => {
 
             <ul v-if="experiences[activeIndex]?.activities" class="space-y-4">
               <li
-                v-for="(activity, aIndex) in experiences[activeIndex].activities"
+                v-for="(activity, aIndex) in experiences[activeIndex]
+                  .activities"
                 :key="aIndex"
                 class="flex items-start"
               >

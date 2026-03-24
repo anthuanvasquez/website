@@ -127,7 +127,7 @@ onUnmounted(() => {
               <span
                 v-for="cat in item.categories"
                 :key="cat"
-                class="rounded-full border border-white/5 bg-(--surface-elevated) px-5 py-2 text-sm font-medium text-(--text-primary) shadow-sm transition-colors hover:border-(--color-primary)/30 hover:text-white"
+                class="rounded-full border border-white/5 bg-(--surface-elevated) px-5 py-2 text-sm font-medium text-(--text-primary) shadow-sm transition-colors hover:border-(--color-primary)/30 hover:text-(--text-primary)"
               >
                 {{ cat }}
               </span>

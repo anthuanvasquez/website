@@ -226,7 +226,7 @@ onUnmounted(() => {
         ></span>
       </span>
       <button
-        class="rounded-full bg-blue-600 p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-700"
+        class="rounded-full bg-blue-600 p-4 text-(--text-primary) shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-700"
         @click="
           isOpen = true;
           showNotification = false;
@@ -245,7 +245,7 @@ onUnmounted(() => {
       >
         <!-- Header -->
         <div
-          class="flex items-center justify-between border-b border-white/5 bg-linear-to-r from-[#0a111a] to-[#111a24] p-4 text-white"
+          class="flex items-center justify-between border-b border-white/5 bg-linear-to-r from-(--surface-elevated) to-(--surface-float) p-4 text-(--text-primary)"
         >
           <div class="flex items-center space-x-3">
             <div class="bg-primary/10 ring-primary/20 rounded-lg p-2 ring-1">
@@ -261,7 +261,7 @@ onUnmounted(() => {
             </div>
           </div>
           <button
-            class="rounded-lg p-1 text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+            class="rounded-lg p-1 text-slate-400 transition-colors hover:bg-white/5 hover:text-(--text-primary)"
             @click="isOpen = false"
           >
             <XMarkIcon class="h-5 w-5" />
@@ -271,7 +271,7 @@ onUnmounted(() => {
         <!-- Messages -->
         <div
           ref="messagesContainer"
-          class="flex-1 space-y-4 overflow-y-auto bg-[#010810] p-4"
+          class="flex-1 space-y-4 overflow-y-auto bg-(--surface-base) p-4"
         >
           <div
             v-for="message in messages"
@@ -292,7 +292,7 @@ onUnmounted(() => {
                 :class="
                   message.isUser
                     ? 'bg-primary rounded-2xl rounded-br-sm font-semibold text-black'
-                    : 'rounded-2xl rounded-bl-sm border border-white/5 bg-[#111a24] text-slate-100'
+                    : 'rounded-2xl rounded-bl-sm border border-white/5 bg-[#111a24] text-(--text-primary)'
                 "
               >
                 {{ message.content }}
@@ -335,7 +335,7 @@ onUnmounted(() => {
             <textarea
               v-model="currentMessage"
               :placeholder="placeholderText"
-              class="focus:border-primary/50 focus:ring-primary/20 max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 bg-[#010810] px-4 py-2.5 text-sm text-white placeholder-slate-500 transition-all focus:ring-1 focus:outline-none disabled:opacity-50"
+              class="focus:border-primary/50 focus:ring-primary/20 max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 bg-(--surface-base) px-4 py-2.5 text-sm text-(--text-primary) placeholder-slate-500 transition-all focus:ring-1 focus:outline-none disabled:opacity-50"
               rows="1"
               :disabled="isLoading"
               @keypress="handleKeyPress"

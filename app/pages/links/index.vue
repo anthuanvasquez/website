@@ -8,7 +8,8 @@ const profile = {
   handle: '@anthuanvasquez',
 };
 
-const resumeLink = 'https://docs.google.com/document/d/e/2PACX-1vQVSF3BtZPxneS-ceNizZ1ai4s9sRpMT39al5b-GA4OjiVWR6OOHP1qFPsq83WsJn34-mArGZC9FFYy/pub';
+const resumeLink =
+  'https://docs.google.com/document/d/e/2PACX-1vQVSF3BtZPxneS-ceNizZ1ai4s9sRpMT39al5b-GA4OjiVWR6OOHP1qFPsq83WsJn34-mArGZC9FFYy/pub';
 
 const links = [
   {
@@ -60,7 +61,7 @@ useHead({
 
 <template>
   <div
-    class="flex min-h-screen w-full flex-col items-center px-4 py-16 font-sans text-white"
+    class="flex min-h-screen w-full flex-col items-center px-4 py-16 font-sans text-(--text-primary)"
   >
     <div
       class="pointer-events-none fixed top-0 left-0 z-0 h-full w-full overflow-hidden"
@@ -76,7 +77,7 @@ useHead({
       <div class="flex flex-col items-center gap-4 text-center">
         <div class="group relative">
           <div
-            class="absolute -inset-0.5 rounded-full bg-linear-to-r from-purple-500 to-blue-500 opacity-75 blur-sm transition duration-500 group-hover:opacity-100"
+            class="absolute -inset-0.5 rounded-full bg-linear-to-r from-(--color-tertiary) to-(--color-primary) opacity-75 blur-sm transition duration-500 group-hover:opacity-100"
           ></div>
           <NuxtImg
             :src="profile.image"
@@ -88,17 +89,17 @@ useHead({
         </div>
 
         <div class="space-y-1">
-          <h1 class="text-2xl font-bold tracking-tight text-white">
+          <h1 class="text-2xl font-bold tracking-tight text-(--text-primary)">
             {{ profile.name }}
           </h1>
-          <p class="text-sm font-medium text-gray-400">
+          <p class="text-sm font-medium text-(--text-secondary)">
             {{ profile.title }} <span class="mx-1">·</span>
             {{ profile.location }}
           </p>
         </div>
 
         <p
-          class="max-w-[90%] text-center text-sm leading-relaxed text-gray-400"
+          class="max-w-[90%] text-center text-sm leading-relaxed text-(--text-secondary)"
         >
           {{ profile.bio }} <br />
           <a
@@ -121,16 +122,16 @@ useHead({
         >
           <div class="flex items-center gap-4">
             <!-- Optional Icon for each link if desired, currently hidden based on ref image style but data is there -->
-            <!-- <UIcon :name="link.icon" class="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" /> -->
+            <!-- <UIcon :name="link.icon" class="w-5 h-5 text-(--text-secondary) group-hover:text-white transition-colors" /> -->
             <span
-              class="font-medium text-gray-200 transition-colors group-hover:text-white"
+              class="font-medium text-(--text-primary) transition-colors group-hover:text-(--text-primary)"
               >{{ link.label }}</span
             >
           </div>
 
           <UIcon
             name="i-lucide-arrow-up-right"
-            class="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white"
+            class="h-5 w-5 text-(--text-tertiary) transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-(--text-primary)"
           />
         </a>
       </div>
@@ -148,7 +149,7 @@ useHead({
         >
           <UIcon
             :name="social.icon"
-            class="h-6 w-6 text-gray-400 transition-colors group-hover:text-white"
+            class="h-6 w-6 text-(--text-secondary) transition-colors group-hover:text-(--text-primary)"
           />
         </a>
       </div>

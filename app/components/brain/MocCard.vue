@@ -15,15 +15,15 @@ defineProps<{
     <h3 class="mb-4 text-xl font-bold text-sky-200">{{ title }}</h3>
     <div class="mb-4 h-px w-full bg-slate-700"></div>
 
-    <p v-if="description" class="text-sm text-gray-300">
+    <p v-if="description" class="text-sm text-(--text-secondary)">
       <span v-html="description"></span>
     </p>
 
-    <div v-if="links?.length" class="text-sm text-gray-300">
+    <div v-if="links?.length" class="text-sm text-(--text-secondary)">
       <template v-for="(link, idx) in links" :key="link.text">
         <a
           :href="link.href"
-          class="border-b border-gray-500 transition-colors hover:text-white"
+          class="border-b border-(--border-subtle) transition-colors hover:text-(--text-primary)"
           >{{ link.text }}</a
         ><span v-if="idx < links.length - 1">, </span>
       </template>

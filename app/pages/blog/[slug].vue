@@ -12,10 +12,12 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="relative min-h-screen overflow-hidden bg-gray-900 pt-32 pb-24">
+  <div
+    class="relative min-h-screen overflow-hidden bg-(--surface-base) pt-32 pb-24"
+  >
     <!-- Background glow -->
     <div
-      class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-gray-900 to-gray-900"
+      class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-(--color-primary)/20 via-(--surface-base) to-(--surface-base)"
     ></div>
 
     <main class="relative mx-auto max-w-3xl px-6 sm:px-12 lg:px-8">
@@ -34,8 +36,10 @@ useSeoMeta({
       </article>
 
       <div v-else class="py-20 text-center">
-        <h1 class="mb-4 text-3xl font-bold text-white">Post not found</h1>
-        <p class="text-gray-400">
+        <h1 class="mb-4 text-3xl font-bold text-(--text-primary)">
+          Post not found
+        </h1>
+        <p class="text-(--text-secondary)">
           The article you are looking for does not exist.
         </p>
       </div>

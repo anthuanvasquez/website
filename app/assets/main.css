@@ -8,21 +8,27 @@
 @theme {
   --font-firacode: 'Fira Code', monospace;
   --font-opensans: 'Mona Sans', sans-serif;
-  --color-primary: #38bdf8; /* Clean Cyan accent */
-  --color-secondary: #0ea5e9;
-  --color-tertiary: #0284c7;
-  --color-black: #010810; /* Deep IDE Canvas */
+  
+  /* Vision Night Palette */
+  --color-primary: #6F9EF5;    /* Functions */
+  --color-secondary: #74C9E8;  /* Variables */
+  --color-tertiary: #B07CD6;   /* Keywords */
+  --color-accent: #E8B463;     /* Types */
+  --color-success: #A9D67A;    /* Strings */
+  --color-danger: #FF6B7D;     /* Errors */
+  --color-selection: #2F3C63;  /* Active selection */
+  --color-black: #151520;      /* Background Core surface */
 
   --surface-base: var(--color-black);
-  --surface-elevated: #0a111a;
-  --surface-float: #111a24;
+  --surface-elevated: #1a1a26; /* Slightly lighter than base */
+  --surface-float: #202030;    /* Even lighter */
 
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
-  --text-tertiary: #64748b;
-  --text-muted: #475569;
+  --text-primary: #D5D6E1;     /* Foreground */
+  --text-secondary: #6A7191;   /* Comments */
+  --text-tertiary: #525875;    /* Darker comments */
+  --text-muted: #414660;
   --text-accent: var(--color-primary);
-  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(106, 113, 145, 0.2);
 }
 
 @custom-variant light (&:where(.light, .light *));
@@ -32,22 +38,20 @@
   --surface-elevated: #ffffff;
   --surface-float: #f1f5f9;
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
+  --text-primary: #151520; /* Vision Night dark background as text */
+  --text-secondary: #525875; /* Vision Night dark comments */
+  --text-tertiary: #6A7191; /* Vision Night comments */
   --text-muted: #94a3b8;
-  --text-accent: var(--color-tertiary);
-  --border-subtle: rgba(0, 0, 0, 0.05);
+  --text-accent: #4A7FE8; /* Slightly darker version of Primary for contrast */
+  --border-subtle: rgba(106, 113, 145, 0.15); /* Soft border using comments color */
+  
+  --color-selection: #dbeafe; /* Light blue for selection */
 }
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
-...
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
 */
 @layer base {
   *,
@@ -56,6 +60,11 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
+  }
+
+  ::selection {
+    background-color: var(--color-selection);
+    color: var(--text-primary);
   }
 }
 
@@ -71,7 +80,7 @@ body,
 
 html,
 body {
-  @apply font-opensans bg-black font-medium text-slate-100;
+  @apply font-opensans font-medium;
   background-color: var(--surface-base);
   color: var(--text-primary);
 }
@@ -82,10 +91,10 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-firacode font-bold tracking-tighter text-white;
+  @apply font-firacode font-bold tracking-tighter;
+  color: var(--text-primary);
 }
 
 .text-primary-gradient {
-  /* Retaining a subtle option if extremely needed, but favoring standard accent */
   @apply from-primary to-secondary inline-block bg-linear-to-r bg-clip-text text-transparent;
 }

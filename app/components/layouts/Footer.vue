@@ -45,10 +45,11 @@ const copyEmailAddress = () => {
               {{ copied ? 'Email Copied!' : 'Get In Touch' }}
             </UButton>
             <UButton
+              to="#projects"
+              size="lg"
               color="neutral"
               variant="outline"
-              class="justify-center rounded-lg bg-(--surface-base) px-6 py-2.5 font-medium text-(--text-primary) ring-1 ring-(--surface-elevated) transition-all hover:bg-(--surface-elevated)"
-              to="#projects"
+              class="justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1 ring-(--text-tertiary) hover:bg-(--surface-elevated)"
             >
               Browse Projects
             </UButton>
