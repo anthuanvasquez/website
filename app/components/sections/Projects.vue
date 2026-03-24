@@ -49,6 +49,7 @@ onUnmounted(() => {
       <div
         v-for="(project, index) in projects"
         :key="index"
+        data-testid="project-card"
         class="project-card group flex flex-col gap-4"
       >
         <!-- Image Container -->
@@ -81,6 +82,7 @@ onUnmounted(() => {
         <div class="flex flex-col px-2">
           <div class="mb-3 flex items-center gap-3">
             <h3
+              data-testid="project-title"
               class="text-text-primary group-hover:text-text-primary text-2xl font-bold transition-colors"
             >
               {{ project.name }}

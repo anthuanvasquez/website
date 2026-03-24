@@ -46,6 +46,7 @@ onUnmounted(() => {
   <div class="container mx-auto max-w-7xl px-4 md:px-0" ref="servicesContainer">
     <UAccordion
       v-if="accordionItems.length"
+      data-testid="service-accordion"
       :items="accordionItems"
       multiple
       :ui="{
