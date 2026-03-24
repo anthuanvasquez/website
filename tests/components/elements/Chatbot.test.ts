@@ -21,7 +21,7 @@ describe('Chatbot', () => {
 
   it('should render the trigger button initially', async () => {
     const component = await mountSuspended(Chatbot);
-    expect(component.find('button.rounded-full.bg-blue-600').exists()).toBe(
+    expect(component.find('button.rounded-full.bg-primary').exists()).toBe(
       true
     );
   });
@@ -35,7 +35,7 @@ describe('Chatbot', () => {
 
   it('should open the chat dialog when trigger is clicked', async () => {
     const component = await mountSuspended(Chatbot);
-    await component.find('button.rounded-full.bg-blue-600').trigger('click');
+    await component.find('button.rounded-full.bg-primary').trigger('click');
     await nextTick();
     expect(document.body.innerHTML).toContain('Anthuan Assistant');
   });
@@ -54,7 +54,7 @@ describe('Chatbot', () => {
     const component = await mountSuspended(Chatbot);
 
     // Open chat
-    await component.find('button.rounded-full.bg-blue-600').trigger('click');
+    await component.find('button.rounded-full.bg-primary').trigger('click');
     await nextTick();
 
     // Find textarea and type message correctly
@@ -97,7 +97,7 @@ describe('Chatbot', () => {
     });
 
     const component = await mountSuspended(Chatbot);
-    await component.find('button.rounded-full.bg-blue-600').trigger('click');
+    await component.find('button.rounded-full.bg-primary').trigger('click');
     await nextTick();
 
     const textarea = document.querySelector('textarea');
