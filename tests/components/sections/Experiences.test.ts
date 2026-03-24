@@ -19,9 +19,7 @@ mockNuxtImport('useGetFetch', () => {
             name: 'Company B',
             position: 'Lead Dev',
             date: '2020 - 2022',
-            activities: [
-              'Project B details',
-            ],
+            activities: ['Project B details'],
           },
         ]),
         pending: ref(false),
