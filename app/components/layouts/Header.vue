@@ -1,44 +1,11 @@
 <script setup lang="ts">
 import { Dialog, DialogPanel } from '@headlessui/vue';
+import { navigationData } from '~/data';
 
 const route = useRoute();
 const isLinksPage = computed(() => route.path === '/links');
 const isBlogPage = computed(() => route.path.startsWith('/blog'));
 const isBrainPage = computed(() => route.path.startsWith('/brain'));
-
-const resumeLink =
-  'https://docs.google.com/document/d/e/2PACX-1vQVSF3BtZPxneS-ceNizZ1ai4s9sRpMT39al5b-GA4OjiVWR6OOHP1qFPsq83WsJn34-mArGZC9FFYy/pub';
-
-const navigation = [
-  { name: 'Blog', href: '/blog', icon: 'i-lucide-book-open' },
-  { name: 'Brain', href: '/brain', icon: 'i-lucide-brain' },
-  {
-    name: 'Resume',
-    href: resumeLink,
-    icon: 'i-lucide-file-text',
-    external: true,
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/anthuanvasquez/',
-    icon: 'i-simple-icons-linkedin',
-    external: true,
-  },
-  {
-    name: 'GitHub',
-    href: 'https://github.com/anthuanvasquez',
-    icon: 'i-simple-icons-github',
-    external: true,
-  },
-];
-
-const subNavigation = [
-  { name: 'Knowledge', href: '#knowledge' },
-  { name: 'Experiences', href: '#experiences' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Services', href: '#services' },
-  { name: 'Location', href: '#location' },
-];
 
 const mobileMenuOpen = ref(false);
 const isScrolled = ref(false);
@@ -108,7 +75,10 @@ onMounted(() => {
               </div>
 
               <div class="hidden lg:flex lg:items-center lg:gap-x-8">
-                <template v-for="item in navigation" :key="item.name">
+                <template
+                  v-for="item in navigationData.mainNavigation"
+                  :key="item.name"
+                >
                   <NuxtLink
                     v-if="!item.external"
                     :to="item.href"
@@ -142,13 +112,15 @@ onMounted(() => {
           v-if="!isBlogPage && !isBrainPage"
           :class="[
             'no-scrollbar bg-surface-elevated/80 mx-auto flex w-full max-w-xl origin-top items-center justify-start overflow-x-auto rounded-full px-6 py-2.5 shadow-lg ring-1 ring-white/5 backdrop-blur-md transition-all duration-300 ease-in-out md:w-auto md:justify-center lg:gap-x-8',
-            isScrolled ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-4 opacity-0 pointer-events-none'
+            isScrolled
+              ? 'pointer-events-auto translate-y-0 opacity-100'
+              : 'pointer-events-none -translate-y-4 opacity-0',
           ]"
           aria-label="Section Navigation"
         >
           <div class="flex items-center gap-x-6">
             <a
-              v-for="item in subNavigation"
+              v-for="item in navigationData.subNavigation"
               :key="item.name"
               :href="item.href"
               class="font-firacode text-text-tertiary hover:text-text-primary text-xs font-medium tracking-widest whitespace-nowrap uppercase transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
@@ -194,7 +166,7 @@ onMounted(() => {
               <!-- Main Navigation -->
               <div class="space-y-2 py-6">
                 <a
-                  v-for="item in navigation"
+                  v-for="item in navigationData.mainNavigation"
                   :key="item.name"
                   :href="item.href"
                   class="text-text-secondary hover:bg-surface-elevated hover:text-text-primary -mx-3 flex items-center gap-x-3 rounded-lg px-3 py-2 text-base leading-7 font-medium transition-colors"
@@ -211,7 +183,7 @@ onMounted(() => {
                   >Sections</span
                 >
                 <a
-                  v-for="item in subNavigation"
+                  v-for="item in navigationData.subNavigation"
                   :key="item.name"
                   :href="item.href"
                   @click="mobileMenuOpen = false"

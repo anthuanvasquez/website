@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { homePageData, globalData } from '~/data';
 
 const copied = ref(false);
 
@@ -11,8 +12,8 @@ const copyEmailAddress = () => {
   navigator.clipboard.writeText(email);
   copied.value = true;
   useToast().add({
-    title: 'Success',
-    description: 'Email copied to clipboard',
+    title: globalData.copyEmail.successTitle,
+    description: globalData.copyEmail.successDescription,
     color: 'primary',
   });
 
@@ -30,7 +31,10 @@ const copyEmailAddress = () => {
       >
         <div class="flex flex-col text-center md:text-left">
           <h2 class="text-text-primary mb-6 text-3xl font-bold tracking-tight">
-            Interested in working together<span class="text-primary">?</span>
+            {{ homePageData.footer.heading
+            }}<span class="text-primary">{{
+              homePageData.footer.headingHighlight
+            }}</span>
           </h2>
 
           <div class="flex items-center justify-center gap-4 md:justify-start">
@@ -40,7 +44,11 @@ const copyEmailAddress = () => {
               class="justify-center rounded-lg px-6 py-2.5 font-medium transition-transform hover:scale-105"
               @click="copyEmailAddress"
             >
-              {{ copied ? 'Email Copied!' : 'Get In Touch' }}
+              {{
+                copied
+                  ? globalData.copyEmail.buttonCopied
+                  : globalData.copyEmail.buttonDefault
+              }}
             </UButton>
             <UButton
               to="#projects"
@@ -49,7 +57,7 @@ const copyEmailAddress = () => {
               variant="outline"
               class="ring-text-tertiary hover:bg-surface-elevated justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1"
             >
-              Browse Projects
+              {{ homePageData.hero.secondaryButton }}
             </UButton>
           </div>
         </div>
@@ -58,15 +66,15 @@ const copyEmailAddress = () => {
           class="text-text-tertiary flex flex-col text-center text-sm font-medium md:text-right"
         >
           <p class="mb-1">
-            © {{ new Date().getFullYear() }} All Rights Reserved.
+            © {{ new Date().getFullYear() }} {{ homePageData.footer.copyright }}
           </p>
           <p>
-            Developed with <span class="text-primary">♥</span> by
+            {{ homePageData.footer.developedBy }}
             <a
               href="/"
               class="hover:text-primary text-text-primary transition-colors"
             >
-              Anthuan
+              {{ homePageData.footer.authorName }}
             </a>
           </p>
         </div>

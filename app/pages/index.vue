@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { homePageData, globalData } from '~/data';
 
 const copied = ref(false);
 
@@ -11,8 +12,8 @@ const copyEmailAddress = () => {
   navigator.clipboard.writeText(email);
   copied.value = true;
   useToast().add({
-    title: 'Success',
-    description: 'Email copied to clipboard',
+    title: globalData.copyEmail.successTitle,
+    description: globalData.copyEmail.successDescription,
     color: 'primary',
   });
 
@@ -38,7 +39,10 @@ const copyEmailAddress = () => {
             <p
               class="wave-container text-text-secondary mb-4 inline-flex items-center text-lg font-medium"
             >
-              Hey, I'm Anthuan <span class="wave-hand ml-2 text-2xl">👋</span>
+              {{ homePageData.hero.greeting }}
+              <span class="wave-hand ml-2 text-2xl">{{
+                homePageData.hero.emoji
+              }}</span>
             </p>
           </Motion>
           <Motion
@@ -50,8 +54,12 @@ const copyEmailAddress = () => {
             <h1
               class="mb-6 text-6xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
             >
-              <span class="text-primary block">Full-Stack</span>
-              <span class="text-primary block">Engineer</span>
+              <span class="text-primary block">{{
+                homePageData.hero.roleLine1
+              }}</span>
+              <span class="text-primary block">{{
+                homePageData.hero.roleLine2
+              }}</span>
             </h1>
           </Motion>
           <Motion
@@ -63,8 +71,7 @@ const copyEmailAddress = () => {
             <p
               class="text-text-secondary mb-10 max-w-xl text-lg leading-relaxed font-normal sm:text-xl"
             >
-              A Full-Stack Engineer living in DR, and I focus on making digital
-              experiences that are easy to use, enjoyable, and get the job done.
+              {{ homePageData.hero.description }}
             </p>
           </Motion>
 
@@ -82,7 +89,11 @@ const copyEmailAddress = () => {
               class="justify-center rounded-xl px-8 py-3 text-base font-semibold transition-transform hover:scale-105"
               @click="copyEmailAddress"
             >
-              {{ copied ? 'Email Copied!' : 'Get In Touch' }}
+              {{
+                copied
+                  ? globalData.copyEmail.buttonCopied
+                  : globalData.copyEmail.buttonDefault
+              }}
             </UButton>
             <UButton
               to="#projects"
@@ -91,7 +102,7 @@ const copyEmailAddress = () => {
               variant="outline"
               class="ring-text-tertiary hover:bg-surface-elevated justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1"
             >
-              Browse Projects
+              {{ homePageData.hero.secondaryButton }}
             </UButton>
           </Motion>
         </div>
@@ -133,48 +144,61 @@ const copyEmailAddress = () => {
       :initial="{ opacity: 0, y: -20 }"
       :animate="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.5, delay: 0.6, ease: 'easeOut' }"
-      class="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center justify-center text-text-tertiary transition-colors hover:text-primary cursor-pointer"
+      class="text-text-tertiary hover:text-primary absolute bottom-8 left-1/2 flex -translate-x-1/2 cursor-pointer flex-col items-center justify-center transition-colors"
       aria-label="Scroll down to next section"
     >
-      <UIcon
-        name="i-lucide-arrow-down"
-        class="size-8 animate-bounce"
-      />
+      <UIcon name="i-lucide-arrow-down" class="size-8 animate-bounce" />
     </Motion>
   </div>
 
-  <Section id="knowledge" title="Knowledge" subtitle="A Vast Of">
+  <Section
+    id="knowledge"
+    :title="homePageData.sections.knowledge.title"
+    :subtitle="homePageData.sections.knowledge.subtitle"
+  >
     <Skills />
   </Section>
 
-  <Section id="experiences" title="Experiences" subtitle="Latest">
+  <Section
+    id="experiences"
+    :title="homePageData.sections.experiences.title"
+    :subtitle="homePageData.sections.experiences.subtitle"
+  >
     <Experiences />
 
     <p
       class="experience-animate text-text-secondary mx-auto mt-12 max-w-lg text-center text-sm leading-relaxed font-normal italic"
     >
-      This is a curated selection – view my full resume for additional
-      experience.
+      {{ homePageData.sections.experiences.footerNote }}
     </p>
   </Section>
 
-  <Section id="projects" title="Projects" subtitle="Built">
+  <Section
+    id="projects"
+    :title="homePageData.sections.projects.title"
+    :subtitle="homePageData.sections.projects.subtitle"
+  >
     <Projects />
   </Section>
 
-  <Section id="services" title="I Can Do" subtitle="What">
+  <Section
+    id="services"
+    :title="homePageData.sections.services.title"
+    :subtitle="homePageData.sections.services.subtitle"
+  >
     <Services />
   </Section>
 
-  <Section id="location" title="Where I'm Based" subtitle="Location">
+  <Section
+    id="location"
+    :title="homePageData.sections.location.title"
+    :subtitle="homePageData.sections.location.subtitle"
+  >
     <div class="container mx-auto max-w-7xl px-4 md:px-0">
       <p
         class="text-text-secondary mx-auto mb-12 max-w-2xl text-center leading-relaxed font-normal"
       >
-        I'm proudly located in the Dominican Republic, right in the heart of the
-        Caribbean. From this tropical paradise, I collaborate with clients
-        across time zones — bringing a global perspective and timely delivery to
-        every project.
+        {{ homePageData.sections.location.description }}
       </p>
       <div
         class="hover:ring-primary/50 bg-surface-base relative h-[500px] w-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-white/10 transition-all"
