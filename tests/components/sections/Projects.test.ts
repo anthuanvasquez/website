@@ -50,7 +50,7 @@ describe('Projects Section', () => {
     expect(firstProject.text()).toContain('Description 1');
     expect(firstProject.text()).toContain('Vue');
     expect(firstProject.text()).toContain('Nuxt');
-    
+
     // Check titles
     const titles = component.findAll('[data-testid="project-title"]');
     expect(titles[0].text()).toBe('Project 1');

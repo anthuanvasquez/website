@@ -47,7 +47,7 @@ describe('Services Section', () => {
     // Verify service items are rendered
     expect(component.text()).toContain('01');
     expect(component.text()).toContain('Service 1');
-    
+
     expect(component.text()).toContain('02');
     expect(component.text()).toContain('Service 2');
   });
