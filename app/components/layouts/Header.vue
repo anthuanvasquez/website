@@ -140,7 +140,10 @@ onMounted(() => {
         <!-- Bottom Sub Navigation (Sections) -->
         <nav
           v-if="!isBlogPage && !isBrainPage"
-          class="no-scrollbar bg-surface-elevated/80 mx-auto flex w-full max-w-xl origin-top items-center justify-start overflow-x-auto rounded-full px-6 py-2.5 shadow-lg ring-1 ring-white/5 backdrop-blur-md transition-transform duration-300 ease-in-out md:w-auto md:justify-center lg:gap-x-8"
+          :class="[
+            'no-scrollbar bg-surface-elevated/80 mx-auto flex w-full max-w-xl origin-top items-center justify-start overflow-x-auto rounded-full px-6 py-2.5 shadow-lg ring-1 ring-white/5 backdrop-blur-md transition-all duration-300 ease-in-out md:w-auto md:justify-center lg:gap-x-8',
+            isScrolled ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-4 opacity-0 pointer-events-none'
+          ]"
           aria-label="Section Navigation"
         >
           <div class="flex items-center gap-x-6">

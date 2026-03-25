@@ -125,6 +125,22 @@ const copyEmailAddress = () => {
         </Motion>
       </div>
     </div>
+
+    <!-- Scroll down indicator -->
+    <Motion
+      as="a"
+      href="#knowledge"
+      :initial="{ opacity: 0, y: -20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ duration: 0.5, delay: 0.6, ease: 'easeOut' }"
+      class="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center justify-center text-text-tertiary transition-colors hover:text-primary cursor-pointer"
+      aria-label="Scroll down to next section"
+    >
+      <UIcon
+        name="i-lucide-arrow-down"
+        class="size-8 animate-bounce"
+      />
+    </Motion>
   </div>
 
   <Section id="knowledge" title="Knowledge" subtitle="A Vast Of">
