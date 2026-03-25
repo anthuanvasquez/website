@@ -8,7 +8,7 @@ const accordionItems = computed(() => {
   return (services.value || []).map((service) => ({
     id: service.id,
     label: service.name,
-    icon: service.icon,
+    thumbIcon: service.icon,
     description: service.description,
     categories: service.categories,
   }));
@@ -77,7 +77,7 @@ onUnmounted(() => {
               class="from-primary/10 absolute inset-0 bg-gradient-to-br to-transparent"
             ></div>
             <UIcon
-              :name="item.icon"
+              :name="item.thumbIcon"
               class="text-primary relative z-10 h-10 w-10"
             />
           </div>
