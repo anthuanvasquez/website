@@ -1,11 +1,9 @@
-# Base image: AlmaLinux (RHEL-based) for maximum compatibility with cPanel
-FROM almalinux:9-minimal AS base
+# Base image: Node.js 20-slim for a smaller and more secure footprint
+FROM node:20-slim AS base
 
-# Install Node.js 20.x and build essentials
-RUN microdnf install -y python3 make gcc-c++ tar gzip \
-    && curl -fsSL https://rpm.nodesource.com/setup_20.x | bash - \
-    && microdnf install -y nodejs \
-    && microdnf clean all
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
 # -------------------
 # Dependencies Stage
@@ -14,9 +12,9 @@ FROM base AS deps
 
 WORKDIR /app
 
-# Using npm with --legacy-peer-deps to ignore the ESLint version conflict
-COPY package.json ./
-RUN npm install --legacy-peer-deps
+# Copy lockfile and package.json to install dependencies
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 # -------------------
 # Builder Stage
@@ -29,22 +27,15 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Increase memory limit for Node.js to avoid OOM during build
-ENV NODE_OPTIONS="--max-old-space-size=4096"
-
 # Build the Nuxt application
-RUN npm run build
+# Increase memory limit for Node.js if needed
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+RUN pnpm build
 
 # -------------------
 # Production Stage
 # -------------------
-FROM almalinux:9-minimal AS production
-
-# Install Node.js 20 runtime
-RUN microdnf install -y tar gzip \
-    && curl -fsSL https://rpm.nodesource.com/setup_20.x | bash - \
-    && microdnf install -y nodejs \
-    && microdnf clean all
+FROM node:20-slim AS production
 
 WORKDIR /app
 
@@ -57,5 +48,5 @@ COPY --from=builder /app/.output ./.output
 
 EXPOSE 3000
 
-# No need for extra memory in production, just for the build
+# Run the server
 CMD ["node", ".output/server/index.mjs"]
