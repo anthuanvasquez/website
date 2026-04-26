@@ -40,7 +40,7 @@ onUnmounted(() => {
     ref="experienceContainer"
   >
     <p
-      class="experience-animate mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal text-(--text-secondary)"
+      class="experience-animate text-text-secondary mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal"
     >
       Over the past 10+ years. I've the opportunity to work with wide range of
       projects, collaborating with diverse teams and clients.
@@ -58,11 +58,12 @@ onUnmounted(() => {
           <button
             v-for="(experience, index) in experiences"
             :key="index"
+            data-testid="experience-tab"
             class="shrink-0 px-5 py-3 text-left text-sm font-medium whitespace-nowrap transition-all md:border-l-2 md:text-base md:whitespace-normal"
             :class="
               activeIndex === index
-                ? 'border-(--color-primary) bg-(--surface-elevated) text-(--color-primary) md:border-b-0'
-                : 'border-transparent text-(--text-secondary) hover:bg-(--surface-float) hover:text-white md:border-b-0'
+                ? 'border-primary bg-surface-elevated text-primary md:border-b-0'
+                : 'text-text-secondary hover:bg-surface-float hover:text-text-primary border-transparent md:border-b-0'
             "
             @click="activeIndex = index"
           >
@@ -73,28 +74,29 @@ onUnmounted(() => {
         <!-- Right side: Content -->
         <div class="pt-2 md:w-3/4 md:pt-0">
           <div v-if="experiences[activeIndex]">
-            <h3 class="mb-1 text-2xl font-bold text-(--text-primary)">
+            <h3 class="text-text-primary mb-1 text-2xl font-bold">
               {{ experiences[activeIndex]?.position }}
-              <span class="text-(--color-primary)">
+              <span class="text-primary">
                 @ {{ experiences[activeIndex]?.name }}
               </span>
             </h3>
-            <p class="font-firacode mb-8 text-sm text-(--text-tertiary)">
+            <p class="font-firacode text-text-tertiary mb-8 text-sm">
               {{ experiences[activeIndex]?.date }}
             </p>
 
             <ul v-if="experiences[activeIndex]?.activities" class="space-y-4">
               <li
-                v-for="(activity, aIndex) in experiences[activeIndex].activities"
+                v-for="(activity, aIndex) in experiences[activeIndex]
+                  .activities"
                 :key="aIndex"
                 class="flex items-start"
               >
                 <UIcon
                   name="i-lucide-check"
-                  class="mt-1 mr-4 h-5 w-5 shrink-0 text-(--color-primary)"
+                  class="text-primary mt-1 mr-4 h-5 w-5 shrink-0"
                 />
                 <span
-                  class="block text-base leading-relaxed text-(--text-secondary)"
+                  class="text-text-secondary block text-base leading-relaxed"
                 >
                   {{ activity }}
                 </span>

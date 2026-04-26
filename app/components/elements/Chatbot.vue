@@ -197,6 +197,7 @@ onUnmounted(() => {
   >
     <button
       v-if="showNotification"
+      data-testid="chatbot-notification"
       class="group relative mb-2 flex h-12 items-center gap-2 rounded-2xl bg-white px-4 shadow-xl ring-1 ring-black/5 transition-transform hover:scale-105"
       @click="
         isOpen = true;
@@ -226,7 +227,8 @@ onUnmounted(() => {
         ></span>
       </span>
       <button
-        class="rounded-full bg-blue-600 p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-700"
+        data-testid="chatbot-trigger"
+        class="bg-primary hover:bg-secondary rounded-full p-4 text-white shadow-lg transition-all duration-300 hover:scale-110"
         @click="
           isOpen = true;
           showNotification = false;
@@ -241,11 +243,11 @@ onUnmounted(() => {
   <Dialog :open="isOpen" class="relative z-50" @close="isOpen = false">
     <div class="fixed inset-0 flex items-end justify-end p-4 sm:p-6">
       <DialogPanel
-        class="flex h-[32rem] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a111a] shadow-2xl ring-1 ring-white/5"
+        class="bg-surface-base flex h-[32rem] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-white/10 shadow-2xl ring-1 ring-white/5"
       >
         <!-- Header -->
         <div
-          class="flex items-center justify-between border-b border-white/5 bg-linear-to-r from-[#0a111a] to-[#111a24] p-4 text-white"
+          class="from-surface-elevated to-surface-float text-text-primary flex items-center justify-between border-b border-white/5 bg-linear-to-r p-4"
         >
           <div class="flex items-center space-x-3">
             <div class="bg-primary/10 ring-primary/20 rounded-lg p-2 ring-1">
@@ -255,13 +257,15 @@ onUnmounted(() => {
               <h3 class="font-firacode text-sm font-bold tracking-tight">
                 {{ chatbotTitle }}
               </h3>
-              <p class="text-tertiary text-[10px] tracking-widest uppercase">
+              <p
+                class="dark:text-tertiary text-[10px] tracking-widest uppercase"
+              >
                 AI Assistant • Online
               </p>
             </div>
           </div>
           <button
-            class="rounded-lg p-1 text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+            class="hover:text-text-primary rounded-lg p-1 text-slate-400 transition-colors hover:bg-white/5"
             @click="isOpen = false"
           >
             <XMarkIcon class="h-5 w-5" />
@@ -271,7 +275,7 @@ onUnmounted(() => {
         <!-- Messages -->
         <div
           ref="messagesContainer"
-          class="flex-1 space-y-4 overflow-y-auto bg-[#010810] p-4"
+          class="bg-surface-base flex-1 space-y-4 overflow-y-auto p-4"
         >
           <div
             v-for="message in messages"
@@ -291,8 +295,8 @@ onUnmounted(() => {
                 class="px-4 py-2.5 text-sm leading-relaxed"
                 :class="
                   message.isUser
-                    ? 'bg-primary rounded-2xl rounded-br-sm font-semibold text-black'
-                    : 'rounded-2xl rounded-bl-sm border border-white/5 bg-[#111a24] text-slate-100'
+                    ? 'bg-primary text-surface-base rounded-2xl rounded-br-sm font-semibold'
+                    : 'bg-surface-elevated text-text-primary rounded-2xl rounded-bl-sm border border-white/5'
                 "
               >
                 {{ message.content }}
@@ -309,7 +313,7 @@ onUnmounted(() => {
                 <UIcon name="i-lucide-bot" class="text-primary h-3.5 w-3.5" />
               </div>
               <div
-                class="rounded-2xl rounded-bl-sm border border-white/5 bg-[#111a24] px-4 py-3"
+                class="bg-surface-elevated rounded-2xl rounded-bl-sm border border-white/5 px-4 py-3"
               >
                 <div class="flex space-x-1.5">
                   <div
@@ -330,19 +334,21 @@ onUnmounted(() => {
         </div>
 
         <!-- Input -->
-        <div class="border-t border-white/5 bg-[#0a111a] p-4">
+        <div class="bg-surface-elevated border-t border-white/5 p-4">
           <div class="relative flex items-center gap-2">
             <textarea
+              data-testid="chatbot-input"
               v-model="currentMessage"
               :placeholder="placeholderText"
-              class="focus:border-primary/50 focus:ring-primary/20 max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 bg-[#010810] px-4 py-2.5 text-sm text-white placeholder-slate-500 transition-all focus:ring-1 focus:outline-none disabled:opacity-50"
+              class="focus:border-primary/50 focus:ring-primary/20 bg-surface-base text-text-primary max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 px-4 py-2.5 text-sm placeholder-slate-500 transition-all focus:ring-1 focus:outline-none disabled:opacity-50"
               rows="1"
               :disabled="isLoading"
               @keypress="handleKeyPress"
             ></textarea>
             <button
+              data-testid="chatbot-send"
               :disabled="!currentMessage.trim() || isLoading"
-              class="bg-primary hover:bg-secondary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-black transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-500 disabled:opacity-50"
+              class="hover:bg-secondary bg-primary text-surface-base disabled:bg-surface-float disabled:text-text-tertiary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
               @click="sendMessage"
             >
               <PaperAirplaneIcon class="h-5 w-5" />

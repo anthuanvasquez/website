@@ -15,7 +15,7 @@ defineProps<Props>();
 <template>
   <div class="col-span-12 mt-6 mb-2">
     <h3
-      class="font-firacode mb-4 text-sm tracking-widest text-(--text-tertiary) uppercase"
+      class="font-firacode text-text-tertiary mb-4 text-sm tracking-widest uppercase"
     >
       // Showcase Projects
     </h3>
@@ -24,23 +24,21 @@ defineProps<Props>();
       <li
         v-for="project in projects"
         :key="project.name"
-        class="flex flex-col justify-between rounded-xl bg-(--surface-float) p-5 ring-1 ring-white/5 transition-all hover:bg-(--surface-elevated)"
+        class="bg-surface-float hover:bg-surface-elevated flex flex-col justify-between rounded-xl p-5 ring-1 ring-white/5 transition-all"
       >
         <div>
-          <h4
-            class="font-firacode mb-2 text-base font-bold text-(--text-primary)"
-          >
+          <h4 class="font-firacode text-text-primary mb-2 text-base font-bold">
             {{ project.name }}
           </h4>
           <p
-            class="mb-4 text-sm leading-relaxed font-normal text-(--text-secondary)"
+            class="text-text-secondary mb-4 text-sm leading-relaxed font-normal"
           >
             {{ project.description }}
           </p>
         </div>
-        <p class="text-sm text-(--text-secondary)">
+        <p class="text-text-secondary text-sm">
           <span class="text-primary me-2 font-medium">Skills:</span>
-          <span class="font-firacode text-xs text-(--text-tertiary)">{{
+          <span class="font-firacode text-text-tertiary text-xs">{{
             project.skills
           }}</span>
         </p>

@@ -19,9 +19,7 @@ mockNuxtImport('useGetFetch', () => {
             name: 'Company B',
             position: 'Lead Dev',
             date: '2020 - 2022',
-            activities: [
-              'Project B details',
-            ],
+            activities: ['Project B details'],
           },
         ]),
         pending: ref(false),
@@ -44,7 +42,7 @@ describe('Experiences Section', () => {
     expect(component.text()).toContain('@ Company A');
 
     // Switch tabs
-    const buttons = component.findAll('button');
+    const buttons = component.findAll('[data-testid="experience-tab"]');
     const companyBButton = buttons.find((b) => b.text().includes('Company B'));
     if (!companyBButton) throw new Error('Company B button not found');
 

@@ -86,22 +86,22 @@ const formatDate = (dateString?: string) => {
 
 <template>
   <div
-    class="relative min-h-screen overflow-hidden bg-gray-900 pt-32 pb-24 text-gray-300"
+    class="bg-surface-base text-text-secondary relative min-h-screen overflow-hidden pt-32 pb-24"
   >
     <!-- Background glow similar to homepage -->
     <div
-      class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-blue-900/10 via-gray-900 to-gray-900"
+      class="from-primary/10 via-surface-base to-surface-base absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))]"
     ></div>
 
     <div class="relative mx-auto max-w-4xl space-y-24 px-6 sm:px-12 lg:px-8">
       <!-- HERO SECTION -->
       <section class="space-y-6 text-center">
         <h1
-          class="text-4xl font-extrabold tracking-tight text-gray-300 md:text-5xl"
+          class="text-text-secondary text-4xl font-extrabold tracking-tight md:text-5xl"
         >
           Second
           <span
-            class="bg-linear-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent"
+            class="from-primary to-secondary bg-linear-to-r bg-clip-text text-transparent"
             >Brain</span
           >
         </h1>
@@ -112,21 +112,22 @@ const formatDate = (dateString?: string) => {
         <div
           class="mx-auto max-w-3xl rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-md sm:p-8"
         >
-          <p class="text-base leading-relaxed text-gray-300 sm:text-lg">
+          <p class="text-text-secondary text-base leading-relaxed sm:text-lg">
             Welcome to my public Second Brain, a crafted knowledge vault where
             my notes, ideas, and insights are carefully
-            <span class="font-bold text-white">curated, connected,</span> and
-            <span class="font-bold text-white">compounded</span> over time. This
-            vault is modeled as a digital
+            <span class="text-text-primary font-bold">curated, connected,</span>
+            and
+            <span class="text-text-primary font-bold">compounded</span> over
+            time. This vault is modeled as a digital
             <a
               href="#"
-              class="border-b border-gray-400 transition-colors hover:text-white"
+              class="border-border-subtle hover:text-text-primary border-b transition-colors"
               >Zettelkasten</a
             >
             and
             <a
               href="#"
-              class="border-b border-gray-400 transition-colors hover:text-white"
+              class="border-border-subtle hover:text-text-primary border-b transition-colors"
               >Garden</a
             >.
           </p>
@@ -136,12 +137,12 @@ const formatDate = (dateString?: string) => {
       <!-- MAP OF CONTENT -->
       <section class="space-y-8">
         <h2 class="text-2xl font-bold text-rose-400">Map of Content</h2>
-        <p class="max-w-3xl leading-relaxed text-gray-300">
+        <p class="text-text-secondary max-w-3xl leading-relaxed">
           My Second Brain is continuously growing, and while I have some
           essential
           <a
             href="#"
-            class="border-b border-gray-400 transition-colors hover:text-white"
+            class="border-border-subtle hover:text-text-primary border-b transition-colors"
             >Map of Content (MOC)</a
           >
           starting points listed below, there are many more topics to discover
@@ -165,11 +166,11 @@ const formatDate = (dateString?: string) => {
         <h2 class="text-2xl font-bold text-rose-400">
           About This Second Brain
         </h2>
-        <p class="max-w-3xl leading-relaxed text-gray-300">
+        <p class="text-text-secondary max-w-3xl leading-relaxed">
           For the quality of these notes and what to expect, check out the
           <a
             href="#"
-            class="border-b border-gray-400 transition-colors hover:text-white"
+            class="border-border-subtle hover:text-text-primary border-b transition-colors"
             >Disclaimer</a
           >. Otherwise, learn more about the principles behind this knowledge
           vault and how it's organized to provide lasting value.
@@ -200,7 +201,9 @@ const formatDate = (dateString?: string) => {
           />
 
           <div v-if="!notes?.length" class="py-10 text-center">
-            <p class="text-lg text-gray-400">No notes available right now.</p>
+            <p class="text-text-tertiary text-lg">
+              No notes available right now.
+            </p>
           </div>
         </div>
       </section>
