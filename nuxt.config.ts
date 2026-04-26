@@ -71,6 +71,7 @@ export default defineNuxtConfig({
    * Vite Config
    */
   vite: {
+    // @ts-expect-error - Vite plugin type mismatch between Tailwind v4 and Nuxt
     plugins: [tailwindcss()],
   },
 
@@ -128,8 +129,23 @@ export default defineNuxtConfig({
    * Route Rules
    */
   routeRules: {
-    '/': { prerender: false },
-    '/api/*': { cors: true },
+    '/': { prerender: true },
+    '/api/**': {
+      cors: true,
+      headers: {
+        'Access-Control-Allow-Methods': 'GET,POST',
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+      },
+    },
+    // Cache static data for 1 hour with SWR
+    '/api/experiences': { swr: 3600 },
+    '/api/projects': { swr: 3600 },
+    '/api/services': { swr: 3600 },
+    '/api/skills': { swr: 3600 },
+    // No cache for chatbot or sessions
+    '/api/chatbot/**': { cache: false },
   },
 
   /**
