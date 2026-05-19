@@ -34,7 +34,7 @@
     "langchain": "^1.2.27",
     "mapbox-gl": "^3.19.0",
     "motion-v": "2.0.0",
-    "nuxt": "^4.3.1",
+    "nuxt": "^4.4.6",
     "nuxt-mapbox": "1.6.4",
     "tailwindcss": "^4.2.1",
     "vue": "^3.5.29",
