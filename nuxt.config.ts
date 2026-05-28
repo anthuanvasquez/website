@@ -8,13 +8,15 @@ export default defineNuxtConfig({
 
   /**
    * Nuxt Modules
+   * @nuxt/content is excluded in test env — it initializes better-sqlite3
+   * (a native addon) which fails in CI Linux runners.
    */
   modules: [
     '@nuxt/ui',
     '@nuxt/image',
     '@nuxt/eslint',
     '@nuxt/test-utils/module',
-    '@nuxt/content',
+    ...(!process.env.VITEST ? ['@nuxt/content'] : []),
     'nuxt-mapbox',
     'motion-v/nuxt',
   ],
