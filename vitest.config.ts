@@ -4,6 +4,23 @@ import { fileURLToPath } from 'node:url';
 export default defineVitestConfig({
   test: {
     environment: 'nuxt',
+    environmentOptions: {
+      nuxt: {
+        overrides: {
+          // Exclude @nuxt/content from the test environment — it initializes
+          // better-sqlite3 (a native addon) which fails in CI Linux runners.
+          // No tests depend on content functionality.
+          modules: [
+            '@nuxt/ui',
+            '@nuxt/image',
+            '@nuxt/eslint',
+            '@nuxt/test-utils/module',
+            'nuxt-mapbox',
+            'motion-v/nuxt',
+          ],
+        },
+      },
+    },
     setupFiles: ['./tests/setup.ts'],
     alias: [
       {
