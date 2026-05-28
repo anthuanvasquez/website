@@ -18,6 +18,12 @@ export default defineVitestConfig({
           new URL('./tests/mocks/mapbox-gl.ts', import.meta.url)
         ),
       },
+      {
+        find: 'better-sqlite3',
+        replacement: fileURLToPath(
+          new URL('./tests/mocks/better-sqlite3.ts', import.meta.url)
+        ),
+      },
     ],
   },
 });
