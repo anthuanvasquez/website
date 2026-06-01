@@ -75,7 +75,7 @@
     "tailwind-merge": "^3.5.0",
     "typescript": "^5.9.3",
     "vite-plugin-eslint2": "^5.0.5",
-    "vitest": "^4.0.18",
+    "vitest": "^4.1.0",
     "vue-eslint-parser": "^10.4.0",
     "vue-tsc": "^3.2.5"
   },
