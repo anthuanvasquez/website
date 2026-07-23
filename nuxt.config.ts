@@ -75,6 +75,14 @@ export default defineNuxtConfig({
   vite: {
     // @ts-expect-error - Vite plugin type mismatch between Tailwind v4 and Nuxt
     plugins: [tailwindcss()],
+    // ponytail: ignoring .data prevents the sqlite watcher loop at dev startup
+    // root cause: @nuxt/content writes .data/content/contents.sqlite on init,
+    // vite detects the change, triggers a rebuild, which writes again → loop
+    server: {
+      watch: {
+        ignored: ['**/.data/**'],
+      },
+    },
   },
 
   /**
