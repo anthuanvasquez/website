@@ -29,7 +29,7 @@
     "@langchain/groq": "^1.1.2",
     "@nuxt/content": "^3.11.0",
     "@nuxt/image": "2.0.0",
-    "@nuxt/ui": "^4.5.0",
+    "@nuxt/ui": "^4.8.1",
     "gsap": "^3.14.2",
     "langchain": "^1.2.27",
     "mapbox-gl": "^3.19.0",
