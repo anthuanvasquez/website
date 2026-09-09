@@ -3,10 +3,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: production
+      target: dev
     ports:
       - '3000:3000'
-    restart: unless-stopped
     env_file:
       - ${ENV_FILE:-.env}
-    # Production runs the pre-built Nitro server; no volume mount.
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.nuxt
+      - /app/.output
+    command: pnpm dev
