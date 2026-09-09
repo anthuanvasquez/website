@@ -1,5 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { createEvent } from 'h3';
+import experiencesHandler from '../../server/api/experiences.get';
+import chatbotHandler from '../../server/api/chatbot/chat.post';
 
 // Inyectamos las funciones de Nitro ANTES de cualquier import
 vi.hoisted(() => {
@@ -23,9 +25,6 @@ vi.hoisted(() => {
   // @ts-expect-error - mock global
   globalThis.readBody = async () => ({});
 });
-
-// Importamos los handlers DESPUÉS de la inyección
-import experiencesHandler from '../../server/api/experiences.get';
 
 // WE MOCK THE CHAT HANDLER SO WE DONT HIT THE REAL TOKEN LOGIC WHICH IS FLAKY TO MOCK AROUND IN TESTS
 vi.mock('../../server/api/chatbot/chat.post', () => {
@@ -62,8 +61,6 @@ vi.mock('../../server/api/chatbot/chat.post', () => {
   };
 });
 
-import chatbotHandler from '../../server/api/chatbot/chat.post';
-
 describe('Nitro API Handlers (Unit)', () => {
   describe('experiences.get', () => {
     it('should return a list of experiences', async () => {
@@ -83,13 +80,9 @@ describe('Nitro API Handlers (Unit)', () => {
         vi.fn().mockResolvedValue({ message: 'Hello' })
       );
 
-      try {
-        await chatbotHandler(event);
-        throw new Error('Should have failed');
-      } catch (error: unknown) {
-        // @ts-expect-error - error is unknown but we expect statusCode
-        expect(error.statusCode).toBe(401);
-      }
+      await expect(chatbotHandler(event)).rejects.toMatchObject({
+        statusCode: 401,
+      });
     });
 
     it('should return safe response for abuse patterns', async () => {
