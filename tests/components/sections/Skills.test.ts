@@ -7,7 +7,7 @@ import Skills from '../../../app/components/sections/Skills.vue';
 mockNuxtImport('useGetFetch', () => {
   return (path: string) => {
     if (path === '/api/skills') {
-      return Promise.resolve({
+      return {
         data: ref([
           {
             name: 'Vue',
@@ -22,13 +22,13 @@ mockNuxtImport('useGetFetch', () => {
         ]),
         pending: ref(false),
         error: ref(null),
-      });
+      };
     }
-    return Promise.resolve({
+    return {
       data: ref(null),
       pending: ref(false),
       error: ref(null),
-    });
+    };
   };
 });
 

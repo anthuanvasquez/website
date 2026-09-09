@@ -52,6 +52,15 @@ onMounted(() => {
   }, 2000);
 });
 
+const activeSessionToken = ref('');
+
+const getSessionToken = async (): Promise<string> => {
+  if (!activeSessionToken.value) {
+    activeSessionToken.value = await generateSessionToken();
+  }
+  return activeSessionToken.value;
+};
+
 const sendMessage = async () => {
   if (!currentMessage.value.trim() || isLoading.value) return;
 
@@ -73,14 +82,34 @@ const sendMessage = async () => {
   }
 
   try {
-    const sessionToken = await generateSessionToken();
-    const response = await $fetch<ChatResponse>('/api/chatbot/chat', {
-      method: 'POST',
-      body: {
-        message: messageToSend,
-        sessionToken,
-      },
-    });
+    let sessionToken = await getSessionToken();
+    let response: ChatResponse;
+
+    try {
+      response = await $fetch<ChatResponse>('/api/chatbot/chat', {
+        method: 'POST',
+        body: {
+          message: messageToSend,
+          sessionToken,
+        },
+      });
+    } catch (err: unknown) {
+      // If token expired (401), refresh once and retry
+      const statusCode = (err as { statusCode?: number })?.statusCode;
+      if (statusCode === 401) {
+        sessionToken = await generateSessionToken();
+        activeSessionToken.value = sessionToken;
+        response = await $fetch<ChatResponse>('/api/chatbot/chat', {
+          method: 'POST',
+          body: {
+            message: messageToSend,
+            sessionToken,
+          },
+        });
+      } else {
+        throw err;
+      }
+    }
 
     const botMessage: Message = {
       id: (Date.now() + 1).toString(),
@@ -91,7 +120,6 @@ const sendMessage = async () => {
 
     messages.value.push(botMessage);
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Chat error:', error);
 
     const errorResponse: Message = {
@@ -141,7 +169,7 @@ const isDeleting = ref(false);
 const typewriterSpeed = computed(() => (isDeleting.value ? 50 : 100));
 const pauseDelay = 2000;
 
-let typewriterTimeout: NodeJS.Timeout;
+let typewriterTimeout: ReturnType<typeof setTimeout> | undefined;
 
 const typeText = () => {
   const currentFullText = notificationMessages[notificationIndex.value];
@@ -337,8 +365,8 @@ onUnmounted(() => {
         <div class="bg-surface-elevated border-t border-white/5 p-4">
           <div class="relative flex items-center gap-2">
             <textarea
-              data-testid="chatbot-input"
               v-model="currentMessage"
+              data-testid="chatbot-input"
               :placeholder="placeholderText"
               class="focus:border-primary/50 focus:ring-primary/20 bg-surface-base text-text-primary max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 px-4 py-2.5 text-sm placeholder-slate-500 transition-all focus:ring-1 focus:outline-none disabled:opacity-50"
               rows="1"

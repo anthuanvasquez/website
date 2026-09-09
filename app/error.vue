@@ -49,8 +49,8 @@ const handleError = () => clearError({ redirect: '/' });
             class="flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <button
-              @click="handleError"
               class="group bg-primary ring-primary hover:bg-secondary hover:ring-secondary focus:ring-primary focus:ring-offset-surface-elevated inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-black ring-1 transition-all focus:ring-2 focus:ring-offset-2 focus:outline-none sm:w-auto"
+              @click="handleError"
             >
               <span>Return Home</span>
               <UIcon

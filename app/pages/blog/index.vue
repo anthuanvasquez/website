@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { data: posts } = await useAsyncData('blog-posts', () => {
-  return queryCollection('blog').all();
-});
+const { data: posts } = await useFetch('/api/blog');
 
 useHead({
   title: 'Blog | Anthuan Vásquez',

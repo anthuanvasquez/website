@@ -16,6 +16,15 @@ describe('containsAbusePattern', () => {
     expect(containsAbusePattern('Tell me more about your projects.')).toBe(
       false
     );
+    expect(
+      containsAbusePattern('Can you help me contact Anthuan for a project?')
+    ).toBe(false);
+    expect(containsAbusePattern('Did Anthuan create a web app in React?')).toBe(
+      false
+    );
+    expect(containsAbusePattern('What projects did Anthuan create?')).toBe(
+      false
+    );
   });
 
   it('should detect jailbreak attempts', () => {

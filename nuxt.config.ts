@@ -9,15 +9,7 @@ export default defineNuxtConfig({
   /**
    * Nuxt Modules
    */
-  modules: [
-    '@nuxt/ui',
-    '@nuxt/image',
-    '@nuxt/eslint',
-    '@nuxt/test-utils/module',
-    '@nuxt/content',
-    'nuxt-mapbox',
-    'motion-v/nuxt',
-  ],
+  modules: ['@nuxt/ui', '@nuxt/image', 'nuxt-mapbox', 'motion-v/nuxt'],
 
   /**
    * CSS
@@ -54,24 +46,16 @@ export default defineNuxtConfig({
   },
 
   /**
-   * ESLint Config
-   */
-  eslint: {
-    checker: true,
-  },
-
-  /**
    * Mapbox Config
    */
   mapbox: {
-    accessToken: '',
+    accessToken: process.env.NUXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
   },
 
   /**
    * Vite Config
    */
   vite: {
-    // @ts-expect-error - Vite plugin type mismatch between Tailwind v4 and Nuxt
     plugins: [tailwindcss()],
   },
 
@@ -110,22 +94,6 @@ export default defineNuxtConfig({
   },
 
   /**
-   * Content Config
-   */
-  content: {
-    build: {
-      markdown: {
-        highlight: {
-          theme: 'github-dark',
-        },
-      },
-    },
-    experimental: {
-      nativeSqlite: true,
-    },
-  },
-
-  /**
    * Route Rules
    */
   routeRules: {
@@ -144,8 +112,10 @@ export default defineNuxtConfig({
     '/api/projects': { swr: 3600 },
     '/api/services': { swr: 3600 },
     '/api/skills': { swr: 3600 },
-    // No cache for chatbot or sessions
-    '/api/chatbot/**': { cache: false },
+    '/api/blog/**': { swr: 3600 },
+    '/api/brain/**': { swr: 3600 },
+    // No cache and no public CORS for chatbot or sessions
+    '/api/chatbot/**': { cors: false, cache: false },
   },
 
   /**
@@ -154,8 +124,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     allowedOrigin: '',
     internalApiSecret: '',
-    chatSessionSecret: '',
-    groqApiKey: '',
+    chatSessionSecret: process.env.VITEST
+      ? 'test-secret-32-characters-long!!'
+      : '',
+    groqApiKey: process.env.VITEST ? 'test-groq-key' : '',
     public: {
       baseUrl: '',
       emailAddress: '',

@@ -1,4 +1,4 @@
-import { createHash } from 'crypto';
+import { createHmac } from 'node:crypto';
 
 export default defineEventHandler((event) => {
   const config = useRuntimeConfig(event);
@@ -12,10 +12,9 @@ export default defineEventHandler((event) => {
   }
 
   const timestamp = Date.now().toString();
-  const signature = createHash('sha256')
-    .update(`${timestamp}:${secret}`)
-    .digest('hex')
-    .slice(0, 16);
+  const signature = createHmac('sha256', secret)
+    .update(timestamp)
+    .digest('hex');
 
   return {
     token: `${timestamp}.${signature}`,

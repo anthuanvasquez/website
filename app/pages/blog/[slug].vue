@@ -1,9 +1,8 @@
 <script setup lang="ts">
 const route = useRoute();
+const slug = route.params.slug as string;
 
-const { data: page } = await useAsyncData('page-' + route.path, () => {
-  return queryCollection('blog').path(route.path).first();
-});
+const { data: page } = await useFetch(`/api/blog/${slug}`);
 
 useSeoMeta({
   title: () => page.value?.title || 'Blog Post',
@@ -32,7 +31,8 @@ useSeoMeta({
       </div>
 
       <article v-if="page" class="prose prose-invert prose-blue max-w-none">
-        <ContentRenderer v-if="page" :value="page" />
+        <!-- eslint-disable-next-line vue/no-v-html -->
+        <div v-html="page.html" />
       </article>
 
       <div v-else class="py-20 text-center">

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { data: notes } = await useAsyncData('brain-notes', () => {
-  return queryCollection('brain').all();
-});
+const { data: notes } = await useFetch('/api/brain');
 
 useHead({
   title: 'Second Brain | Anthuan Vásquez',

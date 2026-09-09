@@ -36,8 +36,8 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="container mx-auto max-w-7xl px-4 md:px-0"
     ref="experienceContainer"
+    class="container mx-auto max-w-7xl px-4 md:px-0"
   >
     <p
       class="experience-animate text-text-secondary mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal"

@@ -36,6 +36,12 @@ export const navigationData = {
   resumeLink:
     'https://docs.google.com/document/d/e/2PACX-1vQVSF3BtZPxneS-ceNizZ1ai4s9sRpMT39al5b-GA4OjiVWR6OOHP1qFPsq83WsJn34-mArGZC9FFYy/pub',
   mainNavigation: [
+    {
+      name: 'Substack',
+      href: 'https://anthuanvasquez.substack.com/',
+      icon: 'i-simple-icons-substack',
+      external: true,
+    },
     { name: 'Blog', href: '/blog', icon: 'i-lucide-book-open' },
     { name: 'Brain', href: '/brain', icon: 'i-lucide-brain' },
     {

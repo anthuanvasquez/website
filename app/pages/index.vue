@@ -9,6 +9,15 @@ const copied = ref(false);
  */
 const copyEmailAddress = () => {
   const email = useRuntimeConfig().public.emailAddress as string;
+  if (!email) {
+    useToast().add({
+      title: 'Error',
+      description: 'No email address configured',
+      color: 'error',
+    });
+    return;
+  }
+
   navigator.clipboard.writeText(email);
   copied.value = true;
   useToast().add({

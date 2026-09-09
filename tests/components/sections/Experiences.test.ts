@@ -3,11 +3,11 @@ import { describe, it, expect } from 'vitest';
 import { ref } from 'vue';
 import Experiences from '../../../app/components/sections/Experiences.vue';
 
-// Mock useGetFetch directly
+// Mock useGetFetch directly (it returns a synchronous useFetch-like object)
 mockNuxtImport('useGetFetch', () => {
   return (path: string) => {
     if (path === '/api/experiences') {
-      return Promise.resolve({
+      return {
         data: ref([
           {
             name: 'Company A',
@@ -24,13 +24,13 @@ mockNuxtImport('useGetFetch', () => {
         ]),
         pending: ref(false),
         error: ref(null),
-      });
+      };
     }
-    return Promise.resolve({
+    return {
       data: ref(null),
       pending: ref(false),
       error: ref(null),
-    });
+    };
   };
 });
 

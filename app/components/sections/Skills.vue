@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { gsap } from 'gsap';
 import type { Skill } from '~/types';
 
 const { data: skills } = await useGetFetch<Skill[]>('/api/skills');
@@ -17,8 +18,6 @@ const groupedSkills = computed(() => {
     {} as Record<string, Skill[]>
   );
 });
-
-import { gsap } from 'gsap';
 
 const skillsContainer = ref<HTMLElement | null>(null);
 let ctx: gsap.Context;
@@ -49,7 +48,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto max-w-7xl px-4 md:px-0" ref="skillsContainer">
+  <div ref="skillsContainer" class="container mx-auto max-w-7xl px-4 md:px-0">
     <div
       v-if="skills"
       class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4"
