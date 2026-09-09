@@ -1,137 +1,187 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="We're renovating our website to bring you a better experience. Back soon!">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="We're renovating our website to bring you a better experience. Back soon!"
+    />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <title>In Transition | Updating Site</title>
     <style>
-        :root {
-            --bg-color: #050505;
-            --text-main: #ffffff;
-            --text-muted: #a1a1aa;
-            --nuxt-accent: #00dc82;
-        }
+      :root {
+        --bg-color: #050505;
+        --text-main: #ffffff;
+        --text-muted: #a1a1aa;
+        --nuxt-accent: #00dc82;
+      }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            height: 100vh;
-            height: 100dvh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+          Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
 
-        /* Ambient background glow */
-        .background-blur {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, rgba(0, 220, 130, 0.12) 0%, rgba(5, 5, 5, 0) 60%);
-            filter: blur(60px);
-            animation: pulse-bg 6s infinite alternate ease-in-out;
-            z-index: 0;
-            pointer-events: none;
-        }
+      /* Ambient background glow */
+      .background-blur {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50vw;
+        height: 50vw;
+        background: radial-gradient(
+          circle,
+          rgba(0, 220, 130, 0.12) 0%,
+          rgba(5, 5, 5, 0) 60%
+        );
+        filter: blur(60px);
+        animation: pulse-bg 6s infinite alternate ease-in-out;
+        z-index: 0;
+        pointer-events: none;
+      }
 
-        @keyframes pulse-bg {
-            0%   { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
-            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+      @keyframes pulse-bg {
+        0% {
+          transform: translate(-50%, -50%) scale(0.9);
+          opacity: 0.6;
         }
+        100% {
+          transform: translate(-50%, -50%) scale(1.1);
+          opacity: 1;
+        }
+      }
 
-        main {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 2rem;
-        }
+      main {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 2rem;
+      }
 
-        /* Main heading */
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 5.5rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #ffffff, #a1a1aa);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
-            opacity: 0;
-            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+      /* Main heading */
+      h1 {
+        font-size: clamp(2.5rem, 6vw, 5.5rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(to right, #ffffff, #a1a1aa);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        opacity: 0;
+        animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
 
-        /* Subtext */
-        p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-muted);
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            opacity: 0;
-            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-        }
+      /* Subtext */
+      p {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: var(--text-muted);
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        opacity: 0;
+        animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      }
 
-        /* Animated divider */
-        .divider {
-            height: 1px;
-            width: 0;
-            background: linear-gradient(90deg, transparent, var(--nuxt-accent), transparent);
-            margin: 1.5rem auto;
-            opacity: 0;
-            animation: expandLine 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-        }
+      /* Animated divider */
+      .divider {
+        height: 1px;
+        width: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--nuxt-accent),
+          transparent
+        );
+        margin: 1.5rem auto;
+        opacity: 0;
+        animation: expandLine 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+      }
 
-        /* Loading dots */
-        .loading-dots span {
-            animation: dotFade 1.4s infinite both;
-        }
-        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
-        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+      /* Loading dots */
+      .loading-dots span {
+        animation: dotFade 1.4s infinite both;
+      }
+      .loading-dots span:nth-child(1) {
+        animation-delay: -0.32s;
+      }
+      .loading-dots span:nth-child(2) {
+        animation-delay: -0.16s;
+      }
 
-        @keyframes fadeUp {
-            0%   { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+      @keyframes fadeUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
         }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-        @keyframes expandLine {
-            0%   { width: 0; opacity: 0; }
-            100% { width: 80px; opacity: 0.7; }
+      @keyframes expandLine {
+        0% {
+          width: 0;
+          opacity: 0;
         }
+        100% {
+          width: 80px;
+          opacity: 0.7;
+        }
+      }
 
-        @keyframes dotFade {
-            0%, 80%, 100% { opacity: 0; }
-            40%            { opacity: 1; }
+      @keyframes dotFade {
+        0%,
+        80%,
+        100% {
+          opacity: 0;
         }
+        40% {
+          opacity: 1;
+        }
+      }
 
-        /* Respect user's motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
+      /* Respect user's motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
         }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="background-blur" aria-hidden="true"></div>
     <main>
-        <h1>We are in transition</h1>
-        <div class="divider"></div>
-        <p>Preparing the new experience<span class="loading-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></p>
+      <h1>We are in transition</h1>
+      <div class="divider"></div>
+      <p>
+        Preparing the new experience<span
+          class="loading-dots"
+          aria-hidden="true"
+          ><span>.</span><span>.</span><span>.</span></span
+        >
+      </p>
     </main>
-</body>
+  </body>
 </html>

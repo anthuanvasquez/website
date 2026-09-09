@@ -43,7 +43,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto max-w-7xl px-4 md:px-0" ref="servicesContainer">
+  <div ref="servicesContainer" class="container mx-auto max-w-7xl px-4 md:px-0">
     <UAccordion
       v-if="accordionItems.length"
       data-testid="service-accordion"

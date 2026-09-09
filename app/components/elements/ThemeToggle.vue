@@ -2,8 +2,8 @@
 const colorMode = useColorMode();
 const isDark = computed({
   get: () => colorMode.value === 'dark',
-  set: () => {
-    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
+  set: (value: boolean) => {
+    colorMode.preference = value ? 'dark' : 'light';
   },
 });
 </script>
@@ -13,8 +13,8 @@ const isDark = computed({
     <button
       data-testid="theme-toggle"
       class="group border-border-subtle bg-surface-elevated/50 text-text-secondary hover:bg-surface-elevated hover:text-text-primary relative flex h-9 w-9 items-center justify-center rounded-lg border transition-all hover:shadow-lg focus:outline-none"
-      @click="isDark = !isDark"
       aria-label="Toggle theme"
+      @click="isDark = !isDark"
     >
       <div class="relative h-5 w-5">
         <UIcon

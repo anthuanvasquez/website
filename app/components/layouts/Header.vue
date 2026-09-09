@@ -186,8 +186,8 @@ onMounted(() => {
                   v-for="item in navigationData.subNavigation"
                   :key="item.name"
                   :href="item.href"
-                  @click="mobileMenuOpen = false"
                   class="text-text-secondary hover:bg-surface-elevated hover:text-primary -mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-medium transition-colors"
+                  @click="mobileMenuOpen = false"
                 >
                   {{ item.name }}
                 </a>
