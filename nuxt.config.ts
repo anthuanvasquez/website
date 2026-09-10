@@ -37,7 +37,7 @@ export default defineNuxtConfig({
    * TypeScript
    */
   typescript: {
-    typeCheck: false,
+    typeCheck: true,
     tsConfig: {
       compilerOptions: {
         types: ['node'],

@@ -2,24 +2,24 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import apiGuardHandler from '../../server/middleware/api-guard';
 
 vi.hoisted(() => {
-  // @ts-expect-error - mock global
   globalThis.defineEventHandler = (handler) => handler;
-  // @ts-expect-error - mock global
   globalThis.createError = (err) => {
-    const error = new Error(err.statusMessage || 'Error');
-    // @ts-expect-error - dynamic property
-    error.statusCode = err.statusCode;
-    // @ts-expect-error - dynamic property
-    error.statusMessage = err.statusMessage;
-    return error;
+    return Object.assign(new Error(err?.statusMessage || 'Error'), {
+      statusCode: err?.statusCode,
+      statusMessage: err?.statusMessage,
+    });
   };
-  // @ts-expect-error - mock global
+
   globalThis.getHeader = (
-    event: { headers?: Record<string, string> },
+    event: Parameters<typeof globalThis.getHeader>[0],
     name: string
   ) => {
     const key = name.toLowerCase();
-    const headers = event.headers || {};
+    const rawHeaders = (event as { headers?: Record<string, string> }).headers;
+    const headers =
+      rawHeaders instanceof Headers
+        ? Object.fromEntries(rawHeaders.entries())
+        : rawHeaders || {};
     return (
       headers[key] ??
       headers[name] ??
@@ -47,8 +47,9 @@ describe('server/middleware/api-guard', () => {
 
   beforeEach(() => {
     runtimeConfig = useRuntimeConfig();
-    // @ts-expect-error - mock global for Nitro server handlers/middlewares
-    globalThis.useRuntimeConfig = (_event?: unknown) => runtimeConfig;
+    (globalThis as unknown as Record<string, unknown>).useRuntimeConfig = (
+      _event?: unknown
+    ) => runtimeConfig;
 
     runtimeConfig.allowedOrigin = 'https://anthuanvasquez.net';
     runtimeConfig.internalApiSecret = 'test-internal-secret';

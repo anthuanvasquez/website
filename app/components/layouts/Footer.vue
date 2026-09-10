@@ -8,7 +8,7 @@ const copied = ref(false);
  * Copy email address to clipboard. Notify after copy.
  */
 const copyEmailAddress = () => {
-  const email = useRuntimeConfig().public.emailAddress as string;
+  const email = useEnv().emailAddress;
   navigator.clipboard.writeText(email);
   copied.value = true;
   useToast().add({

@@ -2,8 +2,7 @@
 import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const runtimeConfig = useRuntimeConfig();
-const accessToken = runtimeConfig.public.mapboxAccessToken;
+const { mapboxAccessToken: accessToken } = useEnv();
 
 const mapContainer = ref<HTMLDivElement | null>(null);
 let map: Map | null = null;
