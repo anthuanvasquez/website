@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   /**
    * Nuxt Modules
    */
-  modules: ['@nuxt/ui', '@nuxt/image', 'nuxt-mapbox', 'motion-v/nuxt'],
+  modules: ['@nuxt/ui', '@nuxt/image', 'motion-v/nuxt'],
 
   /**
    * CSS
@@ -43,13 +43,6 @@ export default defineNuxtConfig({
         types: ['node'],
       },
     },
-  },
-
-  /**
-   * Mapbox Config
-   */
-  mapbox: {
-    accessToken: process.env.NUXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
   },
 
   /**
