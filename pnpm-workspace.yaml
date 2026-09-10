@@ -14,8 +14,3 @@ minimumReleaseAgeExclude:
 
 onlyBuiltDependencies:
   - vue-demi
-
-# ponytail: Vitest 4.1.10 bundles Vite 7 which hits a Rolldown
-# "Missing field moduleType" bug in this repo. Force Vite 8.
-overrides:
-  vite: ^8.2.2
