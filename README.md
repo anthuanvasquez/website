@@ -9,7 +9,7 @@ Personal website and professional portfolio built with bleeding-edge web technol
 - **Animations:** [GSAP](https://gsap.com/) & [Motion-V](https://motion-v.com/)
 - **AI Integration:** [LangChain](https://js.langchain.com/) + [Groq](https://groq.com/) (Server-side Chatbot)
 - **Content:** [Nuxt Content v3](https://content.nuxt.com/) with experimental SQLite support
-- **Maps:** [Mapbox GL](https://www.mapbox.com/) via `nuxt-mapbox`
+- **Maps:** [Mapbox GL](https://www.mapbox.com/) via `mapbox-gl`
 - **Testing:** [Vitest](https://vitest.dev/) + `@nuxt/test-utils`
 - **Runtime:** [Nitro](https://nitro.unjs.io/) Engine
 

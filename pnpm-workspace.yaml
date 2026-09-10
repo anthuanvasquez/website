@@ -6,10 +6,11 @@ allowBuilds:
   unrs-resolver: true
   vue-demi: true
 
+minimumReleaseAgeExclude:
+  - '@langchain/core@1.2.10'
+  - '@types/node@26.5.1'
+  - happy-dom@20.14.3
+  - langchain@1.5.11
+
 onlyBuiltDependencies:
   - vue-demi
-
-# ponytail: Vitest 4.1.10 bundles Vite 7 which hits a Rolldown
-# "Missing field moduleType" bug in this repo. Force Vite 8.
-overrides:
-  vite: ^8.2.2
