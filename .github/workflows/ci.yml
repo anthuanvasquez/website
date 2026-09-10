@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Run TypeScript type check
+        run: pnpm typecheck
+
       - name: Run ESLint
         run: pnpm lint:ts
 
