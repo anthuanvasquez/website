@@ -28,6 +28,12 @@ vi.hoisted(() => {
   };
 });
 
+let runtimeConfig: {
+  allowedOrigin?: string;
+  internalApiSecret?: string;
+  [key: string]: unknown;
+};
+
 const createMockEvent = (
   path: string,
   headers: Record<string, string> = {}
@@ -40,16 +46,20 @@ describe('server/middleware/api-guard', () => {
   const originalNodeEnv = process.env.NODE_ENV;
 
   beforeEach(() => {
-    const config = useRuntimeConfig();
-    config.allowedOrigin = 'https://anthuanvasquez.net';
-    config.internalApiSecret = 'test-internal-secret';
+    runtimeConfig = useRuntimeConfig();
+    // @ts-expect-error - mock global for Nitro server handlers/middlewares
+    globalThis.useRuntimeConfig = (_event?: unknown) => runtimeConfig;
+
+    runtimeConfig.allowedOrigin = 'https://anthuanvasquez.net';
+    runtimeConfig.internalApiSecret = 'test-internal-secret';
   });
 
   afterEach(() => {
     process.env.NODE_ENV = originalNodeEnv;
-    const config = useRuntimeConfig();
-    config.allowedOrigin = '';
-    config.internalApiSecret = '';
+    if (runtimeConfig) {
+      runtimeConfig.allowedOrigin = '';
+      runtimeConfig.internalApiSecret = '';
+    }
   });
 
   it('should ignore non-API routes', () => {
@@ -98,7 +108,7 @@ describe('server/middleware/api-guard', () => {
 
   it('should not bypass guard when internalApiSecret is empty even if header matches', () => {
     process.env.NODE_ENV = 'production';
-    useRuntimeConfig().internalApiSecret = '';
+    runtimeConfig.internalApiSecret = '';
     const event = createMockEvent('/api/chatbot/chat', {
       'x-internal-secret': '',
     });
@@ -125,7 +135,7 @@ describe('server/middleware/api-guard', () => {
 
   it('should reject with 500 when allowedOrigin is not configured in production', () => {
     process.env.NODE_ENV = 'production';
-    useRuntimeConfig().allowedOrigin = '';
+    runtimeConfig.allowedOrigin = '';
     const event = createMockEvent('/api/experiences', {
       origin: 'https://anthuanvasquez.net',
     });
@@ -140,7 +150,7 @@ describe('server/middleware/api-guard', () => {
 
   it('should reject with 500 when allowedOrigin configuration is an invalid URL', () => {
     process.env.NODE_ENV = 'production';
-    useRuntimeConfig().allowedOrigin = 'not-a-valid-url';
+    runtimeConfig.allowedOrigin = 'not-a-valid-url';
     const event = createMockEvent('/api/experiences', {
       origin: 'https://anthuanvasquez.net',
     });
@@ -201,7 +211,7 @@ describe('server/middleware/api-guard', () => {
 
   it('should allow request when allowedOrigin and origin include matching ports', () => {
     process.env.NODE_ENV = 'production';
-    useRuntimeConfig().allowedOrigin = 'http://localhost:3000';
+    runtimeConfig.allowedOrigin = 'http://localhost:3000';
     const event = createMockEvent('/api/experiences', {
       origin: 'http://localhost:3000',
     });
