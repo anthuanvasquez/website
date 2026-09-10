@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import mapboxgl from 'mapbox-gl';
+import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const runtimeConfig = useRuntimeConfig();
 const accessToken = runtimeConfig.public.mapboxAccessToken;
 
 const mapContainer = ref<HTMLDivElement | null>(null);
-let map: mapboxgl.Map | null = null;
+let map: Map | null = null;
 
-onMounted(() => {
+onMounted(async () => {
   if (!accessToken || !mapContainer.value) return;
+
+  const { default: mapboxgl } = await import('mapbox-gl');
+  if (!mapContainer.value) return;
 
   mapboxgl.accessToken = accessToken;
   map = new mapboxgl.Map({
