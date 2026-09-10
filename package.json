@@ -11,6 +11,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
     "lint": "pnpm lint:ts && pnpm lint:prettier",
     "lint:ts": "eslint . --ignore-pattern .output --ignore-pattern .nuxt",
     "lint:prettier": "prettier --check .",

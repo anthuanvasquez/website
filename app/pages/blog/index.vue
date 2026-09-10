@@ -50,7 +50,7 @@ useHead({
               class="font-firacode text-text-secondary"
             >
               {{
-                new Date(post.date).toLocaleDateString('en-US', {
+                new Date(post.date || '').toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',

@@ -195,7 +195,7 @@ const formatDate = (dateString?: string) => {
             :key="note.path"
             :title="note.title || ''"
             :path="note.path || ''"
-            :date="formatDate(note.meta?.date as string)"
+            :date="formatDate(note.date)"
           />
 
           <div v-if="!notes?.length" class="py-10 text-center">

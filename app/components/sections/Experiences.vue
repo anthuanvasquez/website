@@ -87,7 +87,7 @@ onUnmounted(() => {
             <ul v-if="experiences[activeIndex]?.activities" class="space-y-4">
               <li
                 v-for="(activity, aIndex) in experiences[activeIndex]
-                  .activities"
+                  ?.activities"
                 :key="aIndex"
                 class="flex items-start"
               >
