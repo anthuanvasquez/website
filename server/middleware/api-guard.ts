@@ -29,8 +29,8 @@ export default defineEventHandler((event) => {
   if (!reqPath.startsWith('/api/')) return;
 
   const config = useRuntimeConfig(event);
-  const allowedOrigin = config.allowedOrigin as string;
-  const internalSecret = config.internalApiSecret as string;
+  const allowedOrigin = config.allowedOrigin;
+  const internalSecret = config.internalApiSecret;
 
   if (shouldBypassGuard(event, internalSecret)) return;
 
