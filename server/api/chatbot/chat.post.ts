@@ -33,7 +33,7 @@ setInterval(() => {
 function getClientId(event: H3Event): string {
   const forwarded = getRequestHeader(event, 'x-forwarded-for');
   const ip =
-    forwarded?.split(',')[0].trim() ||
+    forwarded?.split(',')[0]?.trim() ||
     getRequestHeader(event, 'x-real-ip') ||
     'unknown';
   return createHmac('sha256', 'client-id')

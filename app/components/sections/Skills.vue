@@ -9,10 +9,7 @@ const groupedSkills = computed(() => {
 
   return skills.value.reduce(
     (acc, skill) => {
-      if (!acc[skill.category]) {
-        acc[skill.category] = [];
-      }
-      acc[skill.category].push(skill);
+      (acc[skill.category] ??= []).push(skill);
       return acc;
     },
     {} as Record<string, Skill[]>
