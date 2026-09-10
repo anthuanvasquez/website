@@ -53,7 +53,7 @@ export const ABUSE_PATTERNS = [
  * @param text The user message to check.
  * @returns boolean
  */
-export function containsAbusePattern(text: string): boolean {
+export function containsAbusePattern(text?: string | null): boolean {
   if (!text) return false;
 
   // Clean text for more accurate detection (removes extra spaces, normalize)

@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["**/*", "../.nuxt/nuxt.d.ts", "../.nuxt/types/nitro.d.ts"]
+}

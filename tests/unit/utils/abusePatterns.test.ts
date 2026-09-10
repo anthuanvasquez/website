@@ -4,7 +4,6 @@ import { containsAbusePattern } from '../../../app/utils/abusePatterns';
 describe('containsAbusePattern', () => {
   it('should return false for empty or null strings', () => {
     expect(containsAbusePattern('')).toBe(false);
-    // @ts-expect-error - testing invalid input
     expect(containsAbusePattern(null)).toBe(false);
   });
 

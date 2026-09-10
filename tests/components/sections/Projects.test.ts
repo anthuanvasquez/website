@@ -46,14 +46,14 @@ describe('Projects Section', () => {
 
     // Verify first project content
     const firstProject = projectCards[0];
-    expect(firstProject.text()).toContain('Project 1');
-    expect(firstProject.text()).toContain('Description 1');
-    expect(firstProject.text()).toContain('Vue');
-    expect(firstProject.text()).toContain('Nuxt');
+    expect(firstProject?.text()).toContain('Project 1');
+    expect(firstProject?.text()).toContain('Description 1');
+    expect(firstProject?.text()).toContain('Vue');
+    expect(firstProject?.text()).toContain('Nuxt');
 
     // Check titles
     const titles = component.findAll('[data-testid="project-title"]');
-    expect(titles[0].text()).toBe('Project 1');
-    expect(titles[1].text()).toBe('Project 2');
+    expect(titles[0]?.text()).toBe('Project 1');
+    expect(titles[1]?.text()).toBe('Project 2');
   });
 });

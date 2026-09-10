@@ -60,7 +60,9 @@ describe('Chatbot', () => {
     await nextTick();
 
     // Find textarea and type message correctly
-    const textarea = document.querySelector('[data-testid="chatbot-input"]');
+    const textarea = document.querySelector<HTMLTextAreaElement>(
+      '[data-testid="chatbot-input"]'
+    );
     if (!textarea) throw new Error('Textarea not found');
 
     textarea.value = 'Tell me about your projects';
@@ -102,7 +104,9 @@ describe('Chatbot', () => {
     await component.find('[data-testid="chatbot-trigger"]').trigger('click');
     await nextTick();
 
-    const textarea = document.querySelector('[data-testid="chatbot-input"]');
+    const textarea = document.querySelector<HTMLTextAreaElement>(
+      '[data-testid="chatbot-input"]'
+    );
     if (textarea) {
       textarea.value = 'Test error';
       textarea.dispatchEvent(new Event('input'));
