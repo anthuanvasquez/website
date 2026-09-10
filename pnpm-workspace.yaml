@@ -6,6 +6,12 @@ allowBuilds:
   unrs-resolver: true
   vue-demi: true
 
+minimumReleaseAgeExclude:
+  - '@langchain/core@1.2.10'
+  - '@types/node@26.5.1'
+  - happy-dom@20.14.3
+  - langchain@1.5.11
+
 onlyBuiltDependencies:
   - vue-demi
 
