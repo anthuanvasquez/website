@@ -4,7 +4,7 @@ export default defineEventHandler(async (): Promise<Experience[]> => {
   return [
     {
       name: 'CEVALDOM',
-      position: 'Software Development Engineer',
+      position: 'Software Engineer',
       description: 'JavaScript & Angular',
       date: '2024 - NOW',
       coding: '3000hrs+',

@@ -1,5 +1,5 @@
 export const seoData = {
-  title: `Anthuan Vasquez | Anthuan Vasquez`,
+  title: `Anthuan Vasquez`,
   ogTitle: `Full Stack Engineer, Problem Solver, and Web Enthusiast | Anthuan Vasquez`,
   description: `Hi I'm Anthuan. A Full Stack Engineer with over 10+ years experience in software development.`,
   twitterDescription: `Anthuan Vasquez, where I play around with Nuxt, Vue, and more and showcase my blog, resources, etc.`,
@@ -33,21 +33,19 @@ export const siteMetaData = [
 ];
 
 export const navigationData = {
-  resumeLink:
-    'https://docs.google.com/document/d/e/2PACX-1vQVSF3BtZPxneS-ceNizZ1ai4s9sRpMT39al5b-GA4OjiVWR6OOHP1qFPsq83WsJn34-mArGZC9FFYy/pub',
+  resumeLink: '/resume',
   mainNavigation: [
-    {
-      name: 'Substack',
-      href: 'https://anthuanvasquez.substack.com/',
-      icon: 'i-simple-icons-substack',
-      external: true,
-    },
     { name: 'Blog', href: '/blog', icon: 'i-lucide-book-open' },
     { name: 'Brain', href: '/brain', icon: 'i-lucide-brain' },
     {
       name: 'Resume',
-      href: 'https://docs.google.com/document/d/e/2PACX-1vQVSF3BtZPxneS-ceNizZ1ai4s9sRpMT39al5b-GA4OjiVWR6OOHP1qFPsq83WsJn34-mArGZC9FFYy/pub',
+      href: '/resume',
       icon: 'i-lucide-file-text',
+    },
+    {
+      name: 'Newsletter',
+      href: 'https://anthuanvasquez.substack.com/',
+      icon: 'i-simple-icons-substack',
       external: true,
     },
     {
@@ -67,7 +65,6 @@ export const navigationData = {
     { name: 'Knowledge', href: '#knowledge' },
     { name: 'Experiences', href: '#experiences' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Services', href: '#services' },
     { name: 'Location', href: '#location' },
   ],
 };
@@ -83,13 +80,12 @@ export const globalData = {
 
 export const homePageData = {
   hero: {
-    greeting: "Hey, I'm Anthuan",
+    greeting: 'Hey',
     emoji: '👋',
-    roleLine1: 'Full-Stack',
-    roleLine2: 'Engineer',
-    description:
-      'A Full-Stack Engineer living in DR, and I focus on making digital experiences that are easy to use, enjoyable, and get the job done.',
-    secondaryButton: 'Browse Projects',
+    roleLine1: 'Anthuan',
+    roleLine2: 'Vásquez',
+    description: 'I build things. No drama. Just craft.',
+    secondaryButton: "See what I've Built",
   },
   sections: {
     knowledge: { title: 'Knowledge', subtitle: 'A Vast Of' },
