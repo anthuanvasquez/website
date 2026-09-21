@@ -30,6 +30,10 @@ const copyEmailAddress = () => {
     copied.value = false;
   }, 3000);
 };
+
+definePageMeta({
+  layout: 'home',
+});
 </script>
 
 <template>
