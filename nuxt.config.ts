@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   /**
    * Nuxt Modules
    */
-  modules: ['@nuxt/ui', '@nuxt/image', 'motion-v/nuxt'],
+  modules: ['@nuxt/ui', '@nuxt/image'],
 
   /**
    * CSS

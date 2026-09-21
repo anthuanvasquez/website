@@ -1,41 +1,18 @@
 <script setup lang="ts">
 import type { Project } from '~/types';
-import { gsap } from 'gsap';
 
 const { data: projects } = await useGetFetch<Project[]>('/api/projects');
-
-const projectsContainer = ref<HTMLElement | null>(null);
-let ctx: gsap.Context;
-
-onMounted(() => {
-  nextTick(() => {
-    if (projectsContainer.value) {
-      ctx = gsap.context(() => {
-        gsap.from('.project-card', {
-          scrollTrigger: {
-            trigger: projectsContainer.value,
-            start: 'top 85%',
-          },
-          y: 50,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power3.out',
-        });
-      }, projectsContainer.value);
-    }
-  });
-});
-
-onUnmounted(() => {
-  ctx?.revert();
-});
+const { container: projectsContainer, isRevealed } = useReveal();
 </script>
 
 <template>
-  <div ref="projectsContainer" class="container mx-auto max-w-7xl px-4 md:px-0">
+  <div
+    ref="projectsContainer"
+    class="reveal-group container mx-auto max-w-7xl px-4 md:px-0"
+    :class="{ 'is-revealed': isRevealed }"
+  >
     <p
-      class="experience-animate text-text-secondary mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal"
+      class="reveal-item text-text-secondary mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal"
     >
       These are personal projects I've developed independently. Due to
       confidentiality agreements, enterprise projects from my professional
@@ -44,13 +21,14 @@ onUnmounted(() => {
 
     <div
       v-if="projects"
-      class="mb-16 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2"
+      class="mb-16 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-3"
     >
       <div
         v-for="(project, index) in projects"
         :key="index"
         data-testid="project-card"
-        class="project-card group flex flex-col gap-4"
+        class="reveal-item group flex flex-col gap-4"
+        :style="{ '--reveal-delay': `${index * 200}ms` }"
       >
         <!-- Image Container -->
         <a

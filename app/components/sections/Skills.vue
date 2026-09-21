@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { gsap } from 'gsap';
 import type { Skill } from '~/types';
 
 const { data: skills } = await useGetFetch<Skill[]>('/api/skills');
@@ -16,44 +15,24 @@ const groupedSkills = computed(() => {
   );
 });
 
-const skillsContainer = ref<HTMLElement | null>(null);
-let ctx: gsap.Context;
-
-onMounted(() => {
-  nextTick(() => {
-    if (skillsContainer.value) {
-      ctx = gsap.context(() => {
-        gsap.from('.skill-group', {
-          scrollTrigger: {
-            trigger: skillsContainer.value,
-            start: 'top 85%',
-          },
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: 'power2.out',
-        });
-      }, skillsContainer.value);
-    }
-  });
-});
-
-onUnmounted(() => {
-  ctx?.revert();
-});
+const { container: skillsContainer, isRevealed } = useReveal();
 </script>
 
 <template>
-  <div ref="skillsContainer" class="container mx-auto max-w-7xl px-4 md:px-0">
+  <div
+    ref="skillsContainer"
+    class="reveal-group container mx-auto max-w-7xl px-4 md:px-0"
+    :class="{ 'is-revealed': isRevealed }"
+  >
     <div
       v-if="skills"
       class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4"
     >
       <div
-        v-for="(group, categoryName) in groupedSkills"
+        v-for="(group, categoryName, categoryIndex) in groupedSkills"
         :key="categoryName"
-        class="skill-group"
+        class="reveal-item"
+        :style="{ '--reveal-delay': `${categoryIndex * 150}ms` }"
       >
         <h3 class="text-text-primary mb-6 text-xl font-bold">
           {{ categoryName }}
