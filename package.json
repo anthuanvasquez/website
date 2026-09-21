@@ -19,7 +19,8 @@
     "test": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "clean": "pnpm dlx rimraf .nuxt .output"
+    "clean": "pnpm dlx rimraf .nuxt .output",
+    "docker:up": "docker-compose up -d app"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
