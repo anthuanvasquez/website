@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Nuxt: Client (Firefox)",
+      "type": "firefox",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "pathMappings": [
+        {
+          "url": "http://localhost:3000/_nuxt/composables",
+          "path": "${workspaceFolder}/app/composables"
+        },
+        {
+          "url": "webpack:///",
+          "path": "${workspaceFolder}/"
+        },
+        {
+          "url": "vite:///",
+          "path": "${workspaceFolder}/"
+        }
+      ]
+    },
+    {
+      "name": "Nuxt: Server (Nitro)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["dev"],
+      "console": "integratedTerminal"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Nuxt: Full Stack (Firefox + Server)",
+      "configurations": ["Nuxt: Server (Nitro)", "Nuxt: Client (Firefox)"]
+    }
+  ]
+}
