@@ -6,13 +6,7 @@ import {
   PaperAirplaneIcon,
 } from '@heroicons/vue/24/outline';
 import { generateSessionToken } from '~/utils/chatSession';
-
-interface Message {
-  id: string;
-  content: string;
-  isUser: boolean;
-  timestamp: Date;
-}
+import type { ChatMessage as Message, ChatResponse } from '~/types';
 
 const isOpen = ref(false);
 const showNotification = ref(false);
@@ -75,11 +69,6 @@ const sendMessage = async () => {
   const messageToSend = currentMessage.value;
   currentMessage.value = '';
   isLoading.value = true;
-
-  interface ChatResponse {
-    success: boolean;
-    response: string;
-  }
 
   try {
     let sessionToken = await getSessionToken();
