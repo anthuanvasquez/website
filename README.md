@@ -6,9 +6,9 @@ Personal website and professional portfolio built with bleeding-edge web technol
 
 - **Framework:** [Nuxt 4](https://nuxt.com/) (Vue 3 Composition API)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) + [Nuxt UI v4](https://ui.nuxt.com/)
-- **Animations:** [GSAP](https://gsap.com/) & [Motion-V](https://motion-v.com/)
+- **Animations:** CSS Keyframes & native [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) via `useReveal`
 - **AI Integration:** [LangChain](https://js.langchain.com/) + [Groq](https://groq.com/) (Server-side Chatbot)
-- **Content:** [Nuxt Content v3](https://content.nuxt.com/) with experimental SQLite support
+- **Content:** Markdown with [gray-matter](https://github.com/jonschlinkert/gray-matter) & [marked](https://marked.js.org/)
 - **Maps:** [Mapbox GL](https://www.mapbox.com/) via `mapbox-gl`
 - **Testing:** [Vitest](https://vitest.dev/) + `@nuxt/test-utils`
 - **Runtime:** [Nitro](https://nitro.unjs.io/) Engine
@@ -17,8 +17,8 @@ Personal website and professional portfolio built with bleeding-edge web technol
 
 - **Nuxt 4 Architecture:** Leveraging the new `app/` directory for a cleaner separation of concerns.
 - **Intelligent Chatbot:** Integrated with LLMs via Groq to answer queries about my professional profile.
-- **Fluid UI/UX:** Interactive experience powered by GSAP and Motion-V.
-- **Dynamic Content:** Blog and sections managed through Markdown files with Nuxt Content.
+- **Fluid UI/UX:** Interactive experience powered by lightweight CSS keyframes and native scroll reveals.
+- **Dynamic Content:** Blog and second brain notes managed through Markdown files with gray-matter and marked.
 - **Interactive Maps:** Location and geographic data visualization using Mapbox.
 - **Type-Safe:** 100% TypeScript development with strict checking.
 
@@ -32,7 +32,7 @@ Personal website and professional portfolio built with bleeding-edge web technol
 │   ├── data/           # Prompt configuration and base knowledge
 │   ├── layouts/        # Page wrappers
 │   ├── pages/          # File-based routing
-│   ├── plugins/        # GSAP initialization and other client plugins
+│   ├── plugins/        # Client plugins
 │   └── utils/          # Helpers and session utilities
 ├── content/            # Markdown files for Blog and Data
 ├── server/             # Nitro Engine (Backend)
@@ -58,8 +58,11 @@ pnpm install
 
 Copy `.env.example` to `.env` and configure the required keys:
 
-- `GROQ_API_KEY`: For Chatbot integration.
-- `MAPBOX_ACCESS_TOKEN`: For the interactive map.
+- `NUXT_GROQ_API_KEY`: For Chatbot integration via Groq.
+- `NUXT_PUBLIC_MAPBOX_ACCESS_TOKEN`: For the interactive map.
+- `NUXT_INTERNAL_API_SECRET`: Secret for internal API calls.
+- `NUXT_CHAT_SESSION_SECRET`: Secret to sign client chat sessions.
+- `NUXT_ALLOWED_ORIGIN`: Allowed origin for production API guard.
 
 ### Development
 
