@@ -66,6 +66,25 @@ describe('utils/env', () => {
     ).toThrow(/Env Validation Error/);
   });
 
+  it('throws when the internal API secret is missing in production mode', () => {
+    expect(() =>
+      validateEnv(
+        {
+          allowedOrigin: 'https://anthuanvasquez.net',
+          internalApiSecret: '',
+          chatSessionSecret: 'super-secure-chat-session-secret-1234',
+          groqApiKey: 'groq-key',
+          public: {
+            baseUrl: 'https://anthuanvasquez.net',
+            emailAddress: 'test@example.com',
+            mapboxAccessToken: 'token',
+          },
+        },
+        { isProduction: true }
+      )
+    ).toThrow(/NUXT_INTERNAL_API_SECRET/);
+  });
+
   it('succeeds in production mode when required variables are present', () => {
     const validProdConfig = {
       allowedOrigin: 'https://anthuanvasquez.net',
