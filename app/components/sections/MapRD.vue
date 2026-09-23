@@ -30,6 +30,10 @@ onMounted(async () => {
   new mapboxgl.Marker({ color: '#27bcfd' })
     .setLngLat([-70.692, 19.442])
     .addTo(map);
+
+  map.on('load', () => {
+    map?.resize();
+  });
 });
 
 onUnmounted(() => {
