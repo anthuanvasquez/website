@@ -18,7 +18,7 @@ export default defineEventHandler(async (): Promise<Skill[]> => {
       icon: 'i-skill-icons-nuxtjs-dark',
     },
     {
-      name: 'React / NextJS',
+      name: 'React',
       category: 'Frontend',
       icon: 'i-skill-icons-react-dark',
     },
@@ -33,6 +33,11 @@ export default defineEventHandler(async (): Promise<Skill[]> => {
       icon: 'i-skill-icons-tailwindcss-dark',
     },
     {
+      name: 'Accessibility (WCAG)',
+      category: 'Frontend',
+      icon: 'i-lucide-accessibility',
+    },
+    {
       name: 'Node.js',
       category: 'Backend',
       icon: 'i-skill-icons-nodejs-dark',
@@ -43,22 +48,17 @@ export default defineEventHandler(async (): Promise<Skill[]> => {
       icon: 'i-skill-icons-expressjs-dark',
     },
     {
-      name: 'GraphQL',
+      name: 'REST APIs',
       category: 'Backend',
-      icon: 'i-skill-icons-graphql-dark',
+      icon: 'i-skill-icons:nestjs-dark',
     },
     {
-      name: 'MongoDB',
-      category: 'Backend',
-      icon: 'i-skill-icons-mongodb',
-    },
-    {
-      name: 'PostgreSQL / SQL',
+      name: 'PostgreSQL',
       category: 'Backend',
       icon: 'i-skill-icons-postgresql-dark',
     },
     {
-      name: 'Prisma / Drizzle',
+      name: 'Prisma ORM',
       category: 'Backend',
       icon: 'i-skill-icons-prisma',
     },
@@ -68,14 +68,19 @@ export default defineEventHandler(async (): Promise<Skill[]> => {
       icon: 'i-skill-icons-git',
     },
     {
+      name: 'CI/CD (GitHub Actions)',
+      category: 'Tools & DevOps',
+      icon: 'i-skill-icons:githubactions-dark',
+    },
+    {
+      name: 'Observability & Monitoring',
+      category: 'Tools & DevOps',
+      icon: 'i-skill-icons:grafana-dark',
+    },
+    {
       name: 'Docker',
       category: 'Tools & DevOps',
       icon: 'i-skill-icons-docker',
-    },
-    {
-      name: 'AWS',
-      category: 'Tools & DevOps',
-      icon: 'i-skill-icons-aws-dark',
     },
     {
       name: 'Linux',
@@ -83,29 +88,29 @@ export default defineEventHandler(async (): Promise<Skill[]> => {
       icon: 'i-skill-icons-linux-dark',
     },
     {
-      name: 'Vercel / Netlify',
-      category: 'Tools & DevOps',
-      icon: 'i-skill-icons-vercel-dark',
-    },
-    {
       name: 'UX / UI Design',
       category: 'Design & Soft Skills',
+      icon: 'i-lucide-panels-top-left',
     },
     {
       name: 'Effective Communication',
       category: 'Design & Soft Skills',
+      icon: 'i-lucide-headset',
     },
     {
       name: 'Team Collaboration',
       category: 'Design & Soft Skills',
+      icon: 'i-lucide-user-group',
     },
     {
       name: 'Leadership',
       category: 'Design & Soft Skills',
+      icon: 'i-lucide-crown',
     },
     {
       name: 'Problem Solving',
       category: 'Design & Soft Skills',
+      icon: 'i-lucide-bug',
     },
   ];
 });

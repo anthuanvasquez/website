@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Service } from '~/types';
-import { gsap } from 'gsap';
 
 const { data: services } = await useGetFetch<Service[]>('/api/services');
 
@@ -14,36 +13,15 @@ const accordionItems = computed(() => {
   }));
 });
 
-const servicesContainer = ref<HTMLElement | null>(null);
-let ctx: gsap.Context;
-
-onMounted(() => {
-  nextTick(() => {
-    if (servicesContainer.value) {
-      ctx = gsap.context(() => {
-        gsap.from('.service-row', {
-          scrollTrigger: {
-            trigger: servicesContainer.value,
-            start: 'top 85%',
-          },
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power3.out',
-        });
-      }, servicesContainer.value);
-    }
-  });
-});
-
-onUnmounted(() => {
-  ctx?.revert();
-});
+const { container: servicesContainer, isRevealed } = useReveal();
 </script>
 
 <template>
-  <div ref="servicesContainer" class="container mx-auto max-w-7xl px-4 md:px-0">
+  <div
+    ref="servicesContainer"
+    class="reveal-group container mx-auto max-w-7xl px-4 md:px-0"
+    :class="{ 'is-revealed': isRevealed }"
+  >
     <UAccordion
       v-if="accordionItems.length"
       data-testid="service-accordion"
@@ -51,7 +29,7 @@ onUnmounted(() => {
       multiple
       :ui="{
         root: 'w-full flex flex-col gap-0 border-t border-surface-elevated',
-        item: 'service-row border-b my-2 border-surface-elevated transition-colors hover:border-transparent',
+        item: 'reveal-item border-b my-2 border-surface-elevated transition-colors hover:border-transparent',
         trigger:
           'group flex w-full items-center justify-between py-8 focus-visible:ring-0 text-left hover:bg-transparent p-0 transition-all',
         label: 'flex-1 text-left',

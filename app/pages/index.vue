@@ -30,6 +30,10 @@ const copyEmailAddress = () => {
     copied.value = false;
   }, 3000);
 };
+
+definePageMeta({
+  layout: 'home',
+});
 </script>
 
 <template>
@@ -39,26 +43,9 @@ const copyEmailAddress = () => {
     <div class="container mx-auto max-w-7xl px-4 md:px-0">
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-8">
         <div class="max-w-2xl text-left lg:pr-8">
-          <Motion
-            as="div"
-            :initial="{ opacity: 0, x: -20 }"
-            :animate="{ opacity: 1, x: 0 }"
-            :transition="{ duration: 0.5, delay: 0.1 }"
-          >
-            <p
-              class="wave-container text-text-secondary mb-4 inline-flex items-center text-lg font-medium"
-            >
-              {{ homePageData.hero.greeting }}
-              <span class="wave-hand ml-2 text-2xl">{{
-                homePageData.hero.emoji
-              }}</span>
-            </p>
-          </Motion>
-          <Motion
-            as="div"
-            :initial="{ opacity: 0, x: -20 }"
-            :animate="{ opacity: 1, x: 0 }"
-            :transition="{ duration: 0.5, delay: 0.2 }"
+          <div
+            class="motion-safe:animate-enter-left"
+            style="animation-delay: 200ms"
           >
             <h1
               class="mb-6 text-6xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
@@ -70,26 +57,21 @@ const copyEmailAddress = () => {
                 homePageData.hero.roleLine2
               }}</span>
             </h1>
-          </Motion>
-          <Motion
-            as="div"
-            :initial="{ opacity: 0, x: -20 }"
-            :animate="{ opacity: 1, x: 0 }"
-            :transition="{ duration: 0.5, delay: 0.3 }"
+          </div>
+          <div
+            class="motion-safe:animate-enter-left"
+            style="animation-delay: 300ms"
           >
             <p
               class="text-text-secondary mb-10 max-w-xl text-lg leading-relaxed font-normal sm:text-xl"
             >
               {{ homePageData.hero.description }}
             </p>
-          </Motion>
+          </div>
 
-          <Motion
-            as="div"
-            :initial="{ opacity: 0, y: 20 }"
-            :animate="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.5, delay: 0.4 }"
-            class="flex flex-col gap-4 sm:flex-row"
+          <div
+            class="motion-safe:animate-enter-up flex flex-col gap-4 sm:flex-row"
+            style="animation-delay: 400ms"
           >
             <UButton
               size="lg"
@@ -113,15 +95,11 @@ const copyEmailAddress = () => {
             >
               {{ homePageData.hero.secondaryButton }}
             </UButton>
-          </Motion>
+          </div>
         </div>
 
-        <Motion
-          as="div"
-          :initial="{ opacity: 0, scale: 0.8 }"
-          :animate="{ opacity: 1, scale: 1 }"
-          :transition="{ duration: 0.7, ease: 'easeOut' }"
-          class="relative mt-12 flex justify-center lg:mt-0 lg:justify-end"
+        <div
+          class="motion-safe:animate-enter-scale relative mt-12 flex justify-center lg:mt-0 lg:justify-end"
         >
           <div
             class="group relative h-72 w-72 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px]"
@@ -136,28 +114,25 @@ const copyEmailAddress = () => {
             >
               <NuxtImg
                 src="/yo.jpeg"
-                alt="Anthuan Vasquez"
+                alt="Anthuan Vásquez"
                 class="h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
                 sizes="sm:100vw md:50vw lg:400px"
               />
             </div>
           </div>
-        </Motion>
+        </div>
       </div>
     </div>
 
     <!-- Scroll down indicator -->
-    <Motion
-      as="a"
+    <a
       href="#knowledge"
-      :initial="{ opacity: 0, y: -20 }"
-      :animate="{ opacity: 1, y: 0 }"
-      :transition="{ duration: 0.5, delay: 0.6, ease: 'easeOut' }"
-      class="text-text-tertiary hover:text-primary absolute bottom-8 left-1/2 flex -translate-x-1/2 cursor-pointer flex-col items-center justify-center transition-colors"
+      class="motion-safe:animate-enter-up text-text-tertiary hover:text-primary absolute bottom-8 left-1/2 flex -translate-x-1/2 cursor-pointer flex-col items-center justify-center transition-colors"
+      style="animation-delay: 600ms"
       aria-label="Scroll down to next section"
     >
       <UIcon name="i-lucide-arrow-down" class="size-8 animate-bounce" />
-    </Motion>
+    </a>
   </div>
 
   <Section
@@ -191,14 +166,6 @@ const copyEmailAddress = () => {
   </Section>
 
   <Section
-    id="services"
-    :title="homePageData.sections.services.title"
-    :subtitle="homePageData.sections.services.subtitle"
-  >
-    <Services />
-  </Section>
-
-  <Section
     id="location"
     :title="homePageData.sections.location.title"
     :subtitle="homePageData.sections.location.subtitle"
@@ -210,7 +177,7 @@ const copyEmailAddress = () => {
         {{ homePageData.sections.location.description }}
       </p>
       <div
-        class="hover:ring-primary/50 bg-surface-base relative h-[500px] w-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-white/10 transition-all"
+        class="hover:ring-primary/50 bg-surface-base relative h-125 w-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-white/10 transition-all"
       >
         <MapRD />
       </div>

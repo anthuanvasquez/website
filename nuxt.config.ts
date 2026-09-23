@@ -1,15 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from '@tailwindcss/vite';
 
+const isProduction = process.env.NODE_ENV === 'production';
+const isDev = process.env.NODE_ENV === 'development';
+
 export default defineNuxtConfig({
   devtools: {
-    enabled: false,
+    enabled: isDev,
   },
 
   /**
    * Nuxt Modules
    */
-  modules: ['@nuxt/ui', '@nuxt/image', 'motion-v/nuxt'],
+  modules: ['@nuxt/ui', '@nuxt/image'],
 
   /**
    * CSS
@@ -100,13 +103,13 @@ export default defineNuxtConfig({
         'Referrer-Policy': 'strict-origin-when-cross-origin',
       },
     },
-    // Cache static data for 1 hour with SWR
-    '/api/experiences': { swr: 3600 },
-    '/api/projects': { swr: 3600 },
-    '/api/services': { swr: 3600 },
-    '/api/skills': { swr: 3600 },
-    '/api/blog/**': { swr: 3600 },
-    '/api/brain/**': { swr: 3600 },
+    // Cache static data for 1 hour with SWR in production only.
+    '/api/experiences': { swr: isProduction ? 3600 : false },
+    '/api/projects': { swr: isProduction ? 3600 : false },
+    '/api/services': { swr: isProduction ? 3600 : false },
+    '/api/skills': { swr: isProduction ? 3600 : false },
+    '/api/blog/**': { swr: isProduction ? 3600 : false },
+    '/api/brain/**': { swr: isProduction ? 3600 : false },
     // No cache and no public CORS for chatbot or sessions
     '/api/chatbot/**': { cors: false, cache: false },
   },

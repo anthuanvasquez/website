@@ -1,46 +1,20 @@
 <script setup lang="ts">
 import type { Experience } from '~/types';
-import { gsap } from 'gsap';
 
 const activeIndex = ref(0);
 const { data: experiences } =
   await useGetFetch<Experience[]>('/api/experiences');
-
-const experienceContainer = ref<HTMLElement | null>(null);
-let ctx: gsap.Context;
-
-onMounted(() => {
-  nextTick(() => {
-    if (experienceContainer.value) {
-      ctx = gsap.context(() => {
-        gsap.from('.experience-animate', {
-          scrollTrigger: {
-            trigger: experienceContainer.value,
-            start: 'top 85%',
-          },
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.2,
-          ease: 'power2.out',
-        });
-      }, experienceContainer.value);
-    }
-  });
-});
-
-onUnmounted(() => {
-  ctx?.revert();
-});
+const { container: experienceContainer, isRevealed } = useReveal();
 </script>
 
 <template>
   <div
     ref="experienceContainer"
-    class="container mx-auto max-w-7xl px-4 md:px-0"
+    class="reveal-group container mx-auto max-w-7xl px-4 md:px-0"
+    :class="{ 'is-revealed': isRevealed }"
   >
     <p
-      class="experience-animate text-text-secondary mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal"
+      class="reveal-item text-text-secondary mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal"
     >
       Over the past 10+ years. I've the opportunity to work with wide range of
       projects, collaborating with diverse teams and clients.
@@ -49,7 +23,8 @@ onUnmounted(() => {
     <div class="rounded-xl border border-white/10 p-6">
       <div
         v-if="experiences && experiences.length > 0"
-        class="experience-animate mx-auto flex w-full flex-col gap-8 md:flex-row md:gap-12"
+        class="reveal-item mx-auto flex w-full flex-col gap-8 md:flex-row md:gap-12"
+        style="--reveal-delay: 200ms"
       >
         <!-- Left side: Tabs -->
         <div

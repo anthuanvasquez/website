@@ -31,6 +31,67 @@
 
   /* Borders */
   --color-border-subtle: rgba(106, 113, 145, 0.2);
+
+  --animate-enter-left: enter-left 0.5s ease-out both;
+  --animate-enter-down: enter-down 0.5s ease-out both;
+  --animate-enter-up: enter-up 0.5s ease-out both;
+  --animate-enter-scale: enter-scale 0.7s ease-out both;
+  --animate-reveal: reveal 0.6s ease-out both;
+
+  @keyframes enter-left {
+    from {
+      opacity: 0;
+      transform: translateX(-1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes enter-down {
+    from {
+      opacity: 0;
+      transform: translateY(-6.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes enter-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes enter-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(1.875rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @custom-variant light (&:where(.light, .light *));
@@ -77,6 +138,15 @@
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-firacode text-text-primary font-bold tracking-tighter;
+  }
 }
 
 html {
@@ -96,15 +166,120 @@ body {
   color: var(--color-text-primary);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-firacode text-text-primary font-bold tracking-tighter;
-}
-
 .text-primary-gradient {
   @apply from-primary to-secondary inline-block bg-linear-to-r bg-clip-text text-transparent;
+}
+
+.markdown-content {
+  @apply text-text-secondary text-lg leading-8 font-normal;
+}
+
+.markdown-content > * + * {
+  @apply mt-6;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  @apply text-text-primary scroll-mt-28;
+}
+
+.markdown-content h1 {
+  @apply mt-0 mb-8 text-4xl leading-tight sm:text-5xl;
+}
+
+.markdown-content h2 {
+  @apply border-border-subtle mt-14 border-b pb-3 text-3xl leading-tight sm:text-4xl;
+}
+
+.markdown-content h3 {
+  @apply mt-10 text-2xl leading-tight;
+}
+
+.markdown-content h4 {
+  @apply mt-8 text-xl leading-tight;
+}
+
+.markdown-content p {
+  @apply text-text-secondary;
+}
+
+.markdown-content a {
+  @apply text-primary decoration-primary/40 hover:text-secondary hover:decoration-secondary underline decoration-1 underline-offset-4 transition-colors;
+}
+
+.markdown-content strong {
+  @apply text-text-primary font-bold;
+}
+
+.markdown-content em {
+  @apply text-text-primary italic;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  @apply space-y-3 pl-6;
+}
+
+.markdown-content ul {
+  @apply marker:text-primary list-disc;
+}
+
+.markdown-content ol {
+  @apply marker:text-primary list-decimal;
+}
+
+.markdown-content li > ul,
+.markdown-content li > ol {
+  @apply mt-3;
+}
+
+.markdown-content blockquote {
+  @apply border-primary bg-surface-elevated text-text-primary my-8 border-l-4 px-6 py-4 italic;
+}
+
+.markdown-content code {
+  @apply font-firacode bg-surface-elevated text-accent rounded px-1.5 py-0.5 text-[0.85em] font-medium;
+}
+
+.markdown-content pre {
+  @apply bg-surface-elevated border-border-subtle my-8 overflow-x-auto rounded-lg border p-5;
+}
+
+.markdown-content pre code {
+  @apply text-text-primary bg-transparent p-0 text-sm leading-7;
+}
+
+.markdown-content hr {
+  @apply border-border-subtle my-12;
+}
+
+.markdown-content img {
+  @apply border-border-subtle my-8 h-auto w-full rounded-lg border;
+}
+
+.markdown-content table {
+  @apply my-8 block w-full border-collapse overflow-x-auto text-left text-base;
+}
+
+.markdown-content th {
+  @apply bg-surface-elevated text-text-primary border-border-subtle border px-4 py-3 font-bold;
+}
+
+.markdown-content td {
+  @apply border-border-subtle border px-4 py-3 align-top;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-group .reveal-item {
+    opacity: 0;
+  }
+
+  .reveal-group.is-revealed .reveal-item {
+    animation: var(--animate-reveal);
+    animation-delay: var(--reveal-delay, 0ms);
+  }
 }
