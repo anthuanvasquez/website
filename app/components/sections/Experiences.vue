@@ -2,8 +2,7 @@
 import type { Experience } from '~/types';
 
 const activeIndex = ref(0);
-const { data: experiences } =
-  await useGetFetch<Experience[]>('/api/experiences');
+const { data: experiences } = await useAPI<Experience[]>('/api/experiences');
 const { container: experienceContainer, isRevealed } = useReveal();
 </script>
 

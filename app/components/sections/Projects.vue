@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Project } from '~/types';
 
-const { data: projects } = await useGetFetch<Project[]>('/api/projects');
+const { data: projects } = await useAPI<Project[]>('/api/projects');
 const { container: projectsContainer, isRevealed } = useReveal();
 </script>
 

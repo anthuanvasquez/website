@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Service } from '~/types';
 
-const { data: services } = await useGetFetch<Service[]>('/api/services');
+const { data: services } = await useAPI<Service[]>('/api/services');
 
 const accordionItems = computed(() => {
   return (services.value || []).map((service) => ({
