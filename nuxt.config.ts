@@ -60,18 +60,9 @@ export default defineNuxtConfig({
    */
   app: {
     head: {
-      title: 'Anthuan Vásquez | Full-Stack Engineer',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'keywords',
-          content: 'Software Engineer, JavaScript Engineer, Software Architect',
-        },
-        {
-          name: 'description',
-          content: 'Full-Stack Engineer',
-        },
       ],
       link: [{ rel: 'icon', type: 'image/*', href: '/favicon.ico' }],
     },
