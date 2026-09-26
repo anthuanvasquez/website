@@ -19,7 +19,11 @@ useSeoMeta({
       to="/brain"
       class="inline-flex items-center font-medium text-blue-400 transition-colors hover:text-blue-300"
     >
-      <UIcon name="i-heroicons-arrow-left" class="mr-2 h-4 w-4" />
+      <UIcon
+        name="i-lucide-arrow-left"
+        class="mr-2 h-4 w-4"
+        aria-hidden="true"
+      />
       Back to Second Brain
     </NuxtLink>
   </div>

@@ -95,9 +95,9 @@ const formatDate = (dateString?: string) => {
           >Brain</span
         >
       </h1>
-      <h2 class="text-xl font-extralight text-rose-400 sm:text-2xl">
+      <p class="text-xl font-extralight text-rose-400 sm:text-2xl">
         Crafted, Curated, Connected, Compounded
-      </h2>
+      </p>
 
       <div
         class="mx-auto rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-md sm:p-8"
@@ -109,16 +109,12 @@ const formatDate = (dateString?: string) => {
           and
           <span class="text-text-primary font-bold">compounded</span> over time.
           This vault is modeled as a digital
-          <a
-            href="#"
-            class="border-border-subtle hover:text-text-primary border-b transition-colors"
-            >Zettelkasten</a
+          <span class="border-border-subtle text-text-primary border-b"
+            >Zettelkasten</span
           >
           and
-          <a
-            href="#"
-            class="border-border-subtle hover:text-text-primary border-b transition-colors"
-            >Garden</a
+          <span class="border-border-subtle text-text-primary border-b"
+            >Garden</span
           >.
         </p>
       </div>
@@ -129,10 +125,8 @@ const formatDate = (dateString?: string) => {
       <h2 class="text-2xl font-bold text-rose-400">Map of Content</h2>
       <p class="text-text-secondary max-w-3xl leading-relaxed">
         My Second Brain is continuously growing, and while I have some essential
-        <a
-          href="#"
-          class="border-border-subtle hover:text-text-primary border-b transition-colors"
-          >Map of Content (MOC)</a
+        <span class="border-border-subtle text-text-primary border-b"
+          >Map of Content (MOC)</span
         >
         starting points listed below, there are many more topics to discover as
         you explore. Feel free to dive into any of the following areas:
@@ -154,13 +148,8 @@ const formatDate = (dateString?: string) => {
     <section class="space-y-8">
       <h2 class="text-2xl font-bold text-rose-400">About This Second Brain</h2>
       <p class="text-text-secondary max-w-3xl leading-relaxed">
-        For the quality of these notes and what to expect, check out the
-        <a
-          href="#"
-          class="border-border-subtle hover:text-text-primary border-b transition-colors"
-          >Disclaimer</a
-        >. Otherwise, learn more about the principles behind this knowledge
-        vault and how it's organized to provide lasting value.
+        Learn more about the principles behind this knowledge vault and how it's
+        organized to provide lasting value.
       </p>
 
       <div class="grid gap-6 sm:grid-cols-3">
