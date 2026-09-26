@@ -24,9 +24,9 @@
 
   /* Texts */
   --color-text-primary: #d5d6e1; /* Foreground */
-  --color-text-secondary: #6a7191; /* Comments */
-  --color-text-tertiary: #525875; /* Darker comments */
-  --color-text-muted: #414660;
+  --color-text-secondary: #9aa2c8; /* Comments with WCAG AAA contrast */
+  --color-text-tertiary: #7b83a6; /* Darker comments with WCAG AA contrast */
+  --color-text-muted: #5d6484;
   --color-text-accent: var(--color-primary);
 
   /* Borders */
@@ -105,8 +105,8 @@
   /* Texts */
   --color-text-primary: #151520; /* Vision Night dark background as text */
   --color-text-secondary: #525875; /* Vision Night dark comments */
-  --color-text-tertiary: #6a7191; /* Vision Night comments */
-  --color-text-muted: #94a3b8;
+  --color-text-tertiary: #596082; /* Vision Night comments with safe AA contrast */
+  --color-text-muted: #64748b;
   --color-text-accent: #4a7fe8; /* Slightly darker version of Primary for contrast */
 
   /* Borders */

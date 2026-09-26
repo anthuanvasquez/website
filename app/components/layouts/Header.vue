@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Dialog, DialogPanel } from '@headlessui/vue';
 import { navigationData } from '~/data';
 
 const route = useRoute();
@@ -37,6 +36,7 @@ onMounted(() => {
               <NuxtLink
                 to="/"
                 class="-m-1.5 p-1.5 transition-opacity hover:opacity-80"
+                aria-label="Anthuan Vásquez - Home"
               >
                 <span class="text-primary font-firacode text-xl font-bold"
                   >{{ '<av />' }}</span
@@ -47,7 +47,8 @@ onMounted(() => {
             <div class="flex lg:hidden">
               <button
                 type="button"
-                class="text-text-secondary hover:text-text-primary -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors"
+                class="text-text-secondary hover:text-text-primary focus-visible:ring-primary -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors focus-visible:ring-2 focus-visible:outline-none"
+                aria-label="Open main menu"
                 @click="mobileMenuOpen = true"
               >
                 <span class="sr-only">Open main menu</span>
@@ -63,7 +64,7 @@ onMounted(() => {
                 <NuxtLink
                   v-if="!item.external"
                   :to="item.href"
-                  class="text-text-secondary hover:text-text-primary flex items-center gap-x-2 text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                  class="text-text-secondary hover:text-text-primary focus-visible:ring-primary flex items-center gap-x-2 rounded-md px-1 text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] focus-visible:ring-2 focus-visible:outline-none"
                 >
                   <UIcon v-if="item.icon" :name="item.icon" class="size-4" />
                   {{ item.name }}
@@ -73,10 +74,12 @@ onMounted(() => {
                   v-else
                   :href="item.href"
                   target="_blank"
-                  class="text-text-secondary hover:text-text-primary flex items-center gap-x-2 text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                  rel="noopener noreferrer"
+                  class="text-text-secondary hover:text-text-primary focus-visible:ring-primary flex items-center gap-x-2 rounded-md px-1 text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] focus-visible:ring-2 focus-visible:outline-none"
                 >
                   <UIcon v-if="item.icon" :name="item.icon" class="size-4" />
                   {{ item.name }}
+                  <span class="sr-only">(opens in new tab)</span>
                 </a>
               </template>
 
@@ -104,36 +107,42 @@ onMounted(() => {
             v-for="item in navigationData.subNavigation"
             :key="item.name"
             :href="item.href"
-            class="font-firacode text-text-tertiary hover:text-text-primary text-xs font-medium tracking-widest whitespace-nowrap uppercase transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+            class="font-firacode text-text-tertiary hover:text-text-primary focus-visible:ring-primary rounded-md px-1 text-xs font-medium tracking-widest whitespace-nowrap uppercase transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] focus-visible:ring-1 focus-visible:outline-none"
           >
             {{ item.name }}
           </a>
         </div>
       </nav>
 
-      <Dialog
-        :open="mobileMenuOpen"
-        as="div"
+      <USlideover
+        v-model:open="mobileMenuOpen"
+        side="right"
+        :close="false"
         class="lg:hidden"
-        @close="mobileMenuOpen = false"
+        :ui="{
+          content:
+            'bg-surface-base fixed inset-y-0 right-0 z-50 w-full overflow-y-auto p-6 sm:max-w-sm sm:ring-1 sm:ring-white/10',
+        }"
       >
-        <div class="bg-surface-base/60 fixed inset-0 z-50 backdrop-blur-sm" />
-
-        <DialogPanel
-          class="bg-surface-base fixed inset-y-0 right-0 z-50 w-full overflow-y-auto p-6 sm:max-w-sm sm:ring-1 sm:ring-white/10"
-        >
+        <template #content>
           <div class="flex items-center justify-between">
-            <a href="/" class="-m-1.5 p-1.5">
+            <NuxtLink
+              to="/"
+              class="-m-1.5 p-1.5"
+              aria-label="Anthuan Vásquez - Home"
+              @click="mobileMenuOpen = false"
+            >
               <span class="text-primary font-firacode text-xl font-bold"
                 >{{ '<av />' }}</span
               >
-            </a>
+            </NuxtLink>
 
             <div class="flex items-center gap-x-3">
               <ThemeToggle />
               <button
                 type="button"
-                class="text-text-secondary hover:text-text-primary -m-2.5 rounded-md p-2.5 transition-colors"
+                class="text-text-secondary hover:text-text-primary focus-visible:ring-primary -m-2.5 rounded-md p-2.5 transition-colors focus-visible:ring-2 focus-visible:outline-none"
+                aria-label="Close menu"
                 @click="mobileMenuOpen = false"
               >
                 <span class="sr-only">Close menu</span>
@@ -150,6 +159,7 @@ onMounted(() => {
                   :key="item.name"
                   :href="item.href"
                   class="text-text-secondary hover:bg-surface-elevated hover:text-text-primary -mx-3 flex items-center gap-x-3 rounded-lg px-3 py-2 text-base leading-7 font-medium transition-colors"
+                  @click="mobileMenuOpen = false"
                 >
                   <UIcon v-if="item.icon" :name="item.icon" class="size-5" />
                   {{ item.name }}
@@ -174,8 +184,8 @@ onMounted(() => {
               </div>
             </div>
           </div>
-        </DialogPanel>
-      </Dialog>
+        </template>
+      </USlideover>
     </div>
   </header>
 </template>

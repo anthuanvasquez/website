@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Project } from '~/types';
 
-const { data: projects } = await useGetFetch<Project[]>('/api/projects');
+const { data: projects } = await useAPI<Project[]>('/api/projects');
 const { container: projectsContainer, isRevealed } = useReveal();
 </script>
 
@@ -31,10 +31,17 @@ const { container: projectsContainer, isRevealed } = useReveal();
         :style="{ '--reveal-delay': `${index * 200}ms` }"
       >
         <!-- Image Container -->
-        <a
-          :href="project.link || '#'"
-          target="_blank"
-          class="bg-surface-elevated aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-sm ring-1 ring-white/5 transition-transform duration-300 group-hover:-translate-y-1"
+        <component
+          :is="project.link ? 'a' : 'div'"
+          :href="project.link || undefined"
+          :target="project.link ? '_blank' : undefined"
+          :rel="project.link ? 'noopener noreferrer' : undefined"
+          :aria-label="
+            project.link
+              ? `View ${project.name} project (opens in new tab)`
+              : undefined
+          "
+          class="bg-surface-elevated focus-visible:ring-primary aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-sm ring-1 ring-white/5 transition-transform duration-300 group-hover:-translate-y-1 focus-visible:ring-2 focus-visible:outline-none"
         >
           <NuxtImg
             v-if="project.image"
@@ -54,7 +61,7 @@ const { container: projectsContainer, isRevealed } = useReveal();
               No Image
             </span>
           </div>
-        </a>
+        </component>
 
         <!-- Text Area -->
         <div class="flex flex-col px-2">
@@ -66,13 +73,17 @@ const { container: projectsContainer, isRevealed } = useReveal();
               {{ project.name }}
             </h3>
             <a
-              :href="project.link || '#'"
+              v-if="project.link"
+              :href="project.link"
               target="_blank"
-              class="bg-surface-base text-primary ring-primary hover:bg-primary hover:text-text-primary inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 transition-all"
+              rel="noopener noreferrer"
+              :aria-label="`Open ${project.name} in a new tab`"
+              class="bg-surface-base text-primary ring-primary hover:bg-primary hover:text-text-primary focus-visible:ring-primary inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 transition-all focus-visible:ring-2 focus-visible:outline-none"
             >
               <UIcon
-                name="i-heroicons-arrow-up-right-20-solid"
+                name="i-lucide-arrow-up-right"
                 class="h-4 w-4"
+                aria-hidden="true"
               />
             </a>
           </div>

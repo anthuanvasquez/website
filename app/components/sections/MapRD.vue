@@ -30,6 +30,10 @@ onMounted(async () => {
   new mapboxgl.Marker({ color: '#27bcfd' })
     .setLngLat([-70.692, 19.442])
     .addTo(map);
+
+  map.on('load', () => {
+    map?.resize();
+  });
 });
 
 onUnmounted(() => {
@@ -38,7 +42,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="absolute inset-0">
+  <div
+    class="absolute inset-0"
+    role="region"
+    aria-label="Interactive map showing Anthuan's location in Dominican Republic"
+  >
     <div v-if="accessToken" ref="mapContainer" class="h-full w-full" />
     <div
       v-else

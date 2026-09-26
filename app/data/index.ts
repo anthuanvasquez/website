@@ -3,10 +3,9 @@ export const seoData = {
   ogTitle: `Full Stack Engineer, Problem Solver, and Web Enthusiast | Anthuan Vasquez`,
   description: `Hi I'm Anthuan. A Full Stack Engineer with over 10+ years experience in software development.`,
   twitterDescription: `Anthuan Vasquez, where I play around with Nuxt, Vue, and more and showcase my blog, resources, etc.`,
-  image:
-    'https://res.cloudinary.com/dmecmyphj/image/upload/v1673548905/nuxt-blog/cover_ntgs6u.webp',
+  image: 'https://anthuanvasquez.net/yo.jpeg',
   mySite: 'https://anthuanvasquez.net',
-  twitterHandle: '@qdnvubp',
+  twitterHandle: '@anthuanvasquezm',
   mailAddress: 'me@anthuanvasquez.net',
 };
 

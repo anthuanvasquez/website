@@ -21,6 +21,12 @@ export const productionEnvSchema = envSchema.extend({
   allowedOrigin: z
     .string()
     .min(1, 'allowedOrigin (NUXT_ALLOWED_ORIGIN) is required in production'),
+  internalApiSecret: z
+    .string()
+    .min(
+      1,
+      'internalApiSecret (NUXT_INTERNAL_API_SECRET) is required in production'
+    ),
   chatSessionSecret: z
     .string()
     .min(

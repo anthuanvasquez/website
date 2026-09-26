@@ -18,6 +18,7 @@ function shouldBypassGuard(
   secret: string
 ): boolean {
   if (process.env.NODE_ENV === 'development') return true;
+  if (import.meta.prerender || process.env.PRERENDER === 'true') return true;
   const internalHeader = getHeader(event, 'x-internal-secret');
   return Boolean(secret && internalHeader === secret);
 }

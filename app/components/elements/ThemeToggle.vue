@@ -12,11 +12,12 @@ const isDark = computed({
   <ClientOnly>
     <button
       data-testid="theme-toggle"
-      class="group border-border-subtle bg-surface-elevated/50 text-text-secondary hover:bg-surface-elevated hover:text-text-primary relative flex h-9 w-9 items-center justify-center rounded-lg border transition-all hover:shadow-lg focus:outline-none"
+      class="group border-border-subtle bg-surface-elevated/50 text-text-secondary hover:bg-surface-elevated hover:text-text-primary focus-visible:ring-primary focus-visible:ring-offset-surface-base relative flex h-9 w-9 items-center justify-center rounded-lg border transition-all hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
       aria-label="Toggle theme"
+      :aria-pressed="isDark"
       @click="isDark = !isDark"
     >
-      <div class="relative h-5 w-5">
+      <span class="relative block h-5 w-5">
         <UIcon
           v-if="!isDark"
           name="i-lucide-sun"
@@ -27,7 +28,7 @@ const isDark = computed({
           name="i-lucide-moon"
           class="absolute inset-0 size-5 scale-100 rotate-0 transition-all group-hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.3)]"
         />
-      </div>
+      </span>
 
       <!-- Subtle highlight effect -->
       <span
