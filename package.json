@@ -23,8 +23,6 @@
     "docker:up": "docker-compose up -d app"
   },
   "dependencies": {
-    "@headlessui/vue": "^1.7.23",
-    "@heroicons/vue": "^2.2.0",
     "@iconify-json/lucide": "^1.2.130",
     "@iconify-json/simple-icons": "^1.2.95",
     "@iconify-json/skill-icons": "^1.2.4",

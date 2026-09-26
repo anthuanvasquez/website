@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import { Dialog, DialogPanel } from '@headlessui/vue';
-import {
-  ChatBubbleLeftRightIcon,
-  XMarkIcon,
-  PaperAirplaneIcon,
-} from '@heroicons/vue/24/outline';
 import { generateSessionToken } from '~/utils/chatSession';
 import type { ChatMessage as Message, ChatResponse } from '~/types';
 
@@ -245,30 +239,47 @@ onUnmounted(() => {
       </span>
       <button
         data-testid="chatbot-trigger"
-        class="bg-primary hover:bg-secondary rounded-full p-4 text-white shadow-lg transition-all duration-300 hover:scale-110"
+        class="bg-primary hover:bg-secondary focus-visible:ring-primary inline-flex rounded-full p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+        aria-label="Open AI assistant"
+        :aria-expanded="isOpen"
+        aria-haspopup="dialog"
         @click="
           isOpen = true;
           showNotification = false;
         "
       >
-        <ChatBubbleLeftRightIcon class="h-6 w-6" />
+        <UIcon
+          name="i-lucide-messages-square"
+          class="size-6"
+          aria-hidden="true"
+        />
       </button>
     </div>
   </div>
 
-  <!-- Chat Dialog -->
-  <Dialog :open="isOpen" class="relative z-50" @close="isOpen = false">
-    <div class="fixed inset-0 flex items-end justify-end p-4 sm:p-6">
-      <DialogPanel
-        class="bg-surface-base flex h-[32rem] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-white/10 shadow-2xl ring-1 ring-white/5"
-      >
+  <!-- Chat Dialog using Nuxt UI Modal -->
+  <UModal
+    v-model:open="isOpen"
+    :overlay="false"
+    :close="false"
+    :ui="{
+      content:
+        'fixed bottom-4 right-4 sm:bottom-6 sm:right-6 !top-auto !left-auto !translate-x-0 !translate-y-0 h-[32rem] w-[calc(100vw-2rem)] sm:w-full max-w-md flex flex-col overflow-hidden rounded-2xl border border-white/10 shadow-2xl ring-1 ring-white/5 bg-surface-base p-0',
+    }"
+  >
+    <template #content>
+      <div class="flex h-full w-full flex-col overflow-hidden">
         <!-- Header -->
         <div
           class="from-surface-elevated to-surface-float text-text-primary flex items-center justify-between border-b border-white/5 bg-linear-to-r p-4"
         >
           <div class="flex items-center space-x-3">
             <div class="bg-primary/10 ring-primary/20 rounded-lg p-2 ring-1">
-              <UIcon name="i-lucide-bot" class="text-primary h-5 w-5" />
+              <UIcon
+                name="i-lucide-bot"
+                class="text-primary h-5 w-5"
+                aria-hidden="true"
+              />
             </div>
             <div>
               <h3 class="font-firacode text-sm font-bold tracking-tight">
@@ -282,16 +293,20 @@ onUnmounted(() => {
             </div>
           </div>
           <button
-            class="hover:text-text-primary rounded-lg p-1 text-slate-400 transition-colors hover:bg-white/5"
+            class="hover:text-text-primary focus-visible:ring-primary rounded-lg p-1 text-slate-400 transition-colors hover:bg-white/5 focus-visible:ring-2 focus-visible:outline-none"
+            aria-label="Close chat"
             @click="isOpen = false"
           >
-            <XMarkIcon class="h-5 w-5" />
+            <UIcon name="i-lucide-x" class="size-5" aria-hidden="true" />
           </button>
         </div>
 
         <!-- Messages -->
         <div
           ref="messagesContainer"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
           class="bg-surface-base flex-1 space-y-4 overflow-y-auto p-4"
         >
           <div
@@ -305,7 +320,11 @@ onUnmounted(() => {
                 v-if="!message.isUser"
                 class="border-primary/20 bg-primary/10 mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border shadow-sm"
               >
-                <UIcon name="i-lucide-bot" class="text-primary h-3.5 w-3.5" />
+                <UIcon
+                  name="i-lucide-bot"
+                  class="text-primary h-3.5 w-3.5"
+                  aria-hidden="true"
+                />
               </div>
 
               <div
@@ -327,7 +346,11 @@ onUnmounted(() => {
               <div
                 class="border-primary/20 bg-primary/10 mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border"
               >
-                <UIcon name="i-lucide-bot" class="text-primary h-3.5 w-3.5" />
+                <UIcon
+                  name="i-lucide-bot"
+                  class="text-primary h-3.5 w-3.5"
+                  aria-hidden="true"
+                />
               </div>
               <div
                 class="bg-surface-elevated rounded-2xl rounded-bl-sm border border-white/5 px-4 py-3"
@@ -356,25 +379,27 @@ onUnmounted(() => {
             <textarea
               v-model="currentMessage"
               data-testid="chatbot-input"
+              aria-label="Chat message"
               :placeholder="placeholderText"
-              class="focus:border-primary/50 focus:ring-primary/20 bg-surface-base text-text-primary max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 px-4 py-2.5 text-sm placeholder-slate-500 transition-all focus:ring-1 focus:outline-none disabled:opacity-50"
+              class="focus:border-primary/50 focus:ring-primary/20 bg-surface-base text-text-primary focus-visible:ring-primary max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 px-4 py-2.5 text-sm placeholder-slate-500 transition-all focus:ring-1 focus:outline-none focus-visible:ring-2 disabled:opacity-50"
               rows="1"
               :disabled="isLoading"
               @keypress="handleKeyPress"
             ></textarea>
             <button
               data-testid="chatbot-send"
+              aria-label="Send message"
               :disabled="!currentMessage.trim() || isLoading"
-              class="hover:bg-secondary bg-primary text-surface-base disabled:bg-surface-float disabled:text-text-tertiary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+              class="hover:bg-secondary bg-primary text-surface-base disabled:bg-surface-float disabled:text-text-tertiary focus-visible:ring-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all hover:scale-105 focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
               @click="sendMessage"
             >
-              <PaperAirplaneIcon class="h-5 w-5" />
+              <UIcon name="i-lucide-send" class="size-5" aria-hidden="true" />
             </button>
           </div>
         </div>
-      </DialogPanel>
-    </div>
-  </Dialog>
+      </div>
+    </template>
+  </UModal>
 </template>
 
 <style scoped>
