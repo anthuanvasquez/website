@@ -263,7 +263,9 @@ onUnmounted(() => {
           class="from-surface-elevated to-surface-float text-text-primary flex items-center justify-between border-b border-white/5 bg-linear-to-r p-4"
         >
           <div class="flex items-center space-x-3">
-            <div class="bg-primary/10 ring-primary/20 rounded-lg p-2 ring-1">
+            <div
+              class="bg-primary/10 ring-primary/20 inline-flex rounded-lg p-2 ring-1"
+            >
               <UIcon
                 name="i-lucide-bot"
                 class="text-primary h-5 w-5"
