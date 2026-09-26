@@ -118,27 +118,16 @@ const sendMessage = async () => {
   }
 };
 
-const handleKeyPress = (event: KeyboardEvent) => {
-  if (event.key === 'Enter' && !event.shiftKey) {
-    event.preventDefault();
-    sendMessage();
-  }
-};
-
-const messagesContainer = ref<HTMLElement>();
-
-watch(
-  messages,
-  () => {
-    nextTick(() => {
-      if (messagesContainer.value) {
-        messagesContainer.value.scrollTop =
-          messagesContainer.value.scrollHeight;
-      }
-    });
-  },
-  { deep: true }
+const uiMessages = computed(() =>
+  messages.value.map((msg) => ({
+    id: msg.id,
+    role: (msg.isUser ? 'user' : 'assistant') as 'user' | 'assistant',
+    parts: [{ type: 'text' as const, text: msg.content }],
+    content: msg.content,
+  }))
 );
+
+const chatStatus = computed(() => (isLoading.value ? 'submitted' : 'ready'));
 
 const notificationMessages = [
   '👋 Psst... what does my AI know about me?',
@@ -301,120 +290,46 @@ onUnmounted(() => {
           </button>
         </div>
 
-        <!-- Messages -->
-        <div
-          ref="messagesContainer"
-          role="log"
-          aria-live="polite"
-          aria-relevant="additions"
-          class="bg-surface-base flex-1 space-y-4 overflow-y-auto p-4"
-        >
-          <div
-            v-for="message in messages"
-            :key="message.id"
-            class="flex"
-            :class="message.isUser ? 'justify-end' : 'justify-start'"
-          >
-            <div class="flex max-w-[85%] items-end space-x-2">
-              <div
-                v-if="!message.isUser"
-                class="border-primary/20 bg-primary/10 mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border shadow-sm"
-              >
-                <UIcon
-                  name="i-lucide-bot"
-                  class="text-primary h-3.5 w-3.5"
-                  aria-hidden="true"
-                />
-              </div>
+        <!-- Messages using Nuxt UI ChatMessages -->
+        <UChatMessages
+          :messages="uiMessages"
+          :status="chatStatus"
+          class="bg-surface-base flex-1 overflow-y-auto p-4"
+          :user="{ side: 'right', variant: 'soft', color: 'primary' }"
+          :assistant="{ side: 'left', variant: 'subtle', icon: 'i-lucide-bot' }"
+        />
 
-              <div
-                class="px-4 py-2.5 text-sm leading-relaxed"
-                :class="
-                  message.isUser
-                    ? 'bg-primary text-surface-base rounded-2xl rounded-br-sm font-semibold'
-                    : 'bg-surface-elevated text-text-primary rounded-2xl rounded-bl-sm border border-white/5'
-                "
-              >
-                {{ message.content }}
-              </div>
-            </div>
-          </div>
-
-          <!-- Loading indicator -->
-          <div v-if="isLoading" class="flex justify-start">
-            <div class="flex items-end space-x-2">
-              <div
-                class="border-primary/20 bg-primary/10 mb-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border"
-              >
-                <UIcon
-                  name="i-lucide-bot"
-                  class="text-primary h-3.5 w-3.5"
-                  aria-hidden="true"
-                />
-              </div>
-              <div
-                class="bg-surface-elevated rounded-2xl rounded-bl-sm border border-white/5 px-4 py-3"
-              >
-                <div class="flex space-x-1.5">
-                  <div
-                    class="bg-primary/40 h-1.5 w-1.5 animate-bounce rounded-full"
-                  ></div>
-                  <div
-                    class="bg-primary/40 h-1.5 w-1.5 animate-bounce rounded-full"
-                    style="animation-delay: 0.2s"
-                  ></div>
-                  <div
-                    class="bg-primary/40 h-1.5 w-1.5 animate-bounce rounded-full"
-                    style="animation-delay: 0.4s"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Input -->
+        <!-- Input using Nuxt UI ChatPrompt -->
         <div class="bg-surface-elevated border-t border-white/5 p-4">
-          <div class="relative flex items-center gap-2">
-            <textarea
-              v-model="currentMessage"
-              data-testid="chatbot-input"
-              aria-label="Chat message"
-              :placeholder="placeholderText"
-              class="focus:border-primary/50 focus:ring-primary/20 bg-surface-base text-text-primary focus-visible:ring-primary max-h-32 min-h-[44px] w-full flex-1 resize-none rounded-xl border border-white/10 px-4 py-2.5 text-sm placeholder-slate-500 transition-all focus:ring-1 focus:outline-none focus-visible:ring-2 disabled:opacity-50"
-              rows="1"
-              :disabled="isLoading"
-              @keypress="handleKeyPress"
-            ></textarea>
-            <button
-              data-testid="chatbot-send"
-              aria-label="Send message"
-              :disabled="!currentMessage.trim() || isLoading"
-              class="hover:bg-secondary bg-primary text-surface-base disabled:bg-surface-float disabled:text-text-tertiary focus-visible:ring-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all hover:scale-105 focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
-              @click="sendMessage"
-            >
-              <UIcon name="i-lucide-send" class="size-5" aria-hidden="true" />
-            </button>
-          </div>
+          <UChatPrompt
+            v-model="currentMessage"
+            data-testid="chatbot-input"
+            aria-label="Chat message"
+            :placeholder="placeholderText"
+            :disabled="isLoading"
+            :rows="1"
+            :autoresize="true"
+            variant="naked"
+            class="bg-surface-base rounded-xl border border-white/10"
+            @submit="sendMessage"
+          >
+            <template #footer>
+              <div class="flex w-full justify-end">
+                <UChatPromptSubmit
+                  data-testid="chatbot-send"
+                  aria-label="Send message"
+                  :status="chatStatus"
+                  :disabled="!currentMessage.trim() || isLoading"
+                  color="primary"
+                  variant="solid"
+                  class="rounded-xl"
+                  @click="sendMessage"
+                />
+              </div>
+            </template>
+          </UChatPrompt>
         </div>
       </div>
     </template>
   </UModal>
 </template>
-
-<style scoped>
-.animate-bounce {
-  animation: bounce 1.4s infinite;
-}
-
-@keyframes bounce {
-  0%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-6px);
-  }
-}
-</style>
