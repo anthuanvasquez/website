@@ -12,8 +12,9 @@ const isDark = computed({
   <ClientOnly>
     <button
       data-testid="theme-toggle"
-      class="group border-border-subtle bg-surface-elevated/50 text-text-secondary hover:bg-surface-elevated hover:text-text-primary relative flex h-9 w-9 items-center justify-center rounded-lg border transition-all hover:shadow-lg focus:outline-none"
+      class="group border-border-subtle bg-surface-elevated/50 text-text-secondary hover:bg-surface-elevated hover:text-text-primary focus-visible:ring-primary focus-visible:ring-offset-surface-base relative flex h-9 w-9 items-center justify-center rounded-lg border transition-all hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
       aria-label="Toggle theme"
+      :aria-pressed="isDark"
       @click="isDark = !isDark"
     >
       <div class="relative h-5 w-5">

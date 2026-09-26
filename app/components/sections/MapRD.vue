@@ -42,7 +42,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="absolute inset-0">
+  <div
+    class="absolute inset-0"
+    role="region"
+    aria-label="Interactive map showing Anthuan's location in Dominican Republic"
+  >
     <div v-if="accessToken" ref="mapContainer" class="h-full w-full" />
     <div
       v-else
