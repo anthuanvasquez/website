@@ -204,15 +204,15 @@ onUnmounted(() => {
         showNotification = false;
       "
     >
-      <p
+      <span
         class="text-tertiary group-hover:text-primary text-sm font-medium whitespace-nowrap transition-colors"
       >
         {{ currentNotificationText }}<span class="animate-pulse">|</span>
-      </p>
+      </span>
 
-      <div
-        class="absolute -right-1.5 bottom-4 h-3 w-3 rotate-45 rounded-sm bg-white ring-1 ring-black/5"
-      ></div>
+      <span
+        class="absolute -right-1.5 bottom-4 block h-3 w-3 rotate-45 rounded-sm bg-white ring-1 ring-black/5"
+      ></span>
     </button>
 
     <!-- Chat Trigger -->

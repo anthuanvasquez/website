@@ -17,7 +17,7 @@ const isDark = computed({
       :aria-pressed="isDark"
       @click="isDark = !isDark"
     >
-      <div class="relative h-5 w-5">
+      <span class="relative block h-5 w-5">
         <UIcon
           v-if="!isDark"
           name="i-lucide-sun"
@@ -28,7 +28,7 @@ const isDark = computed({
           name="i-lucide-moon"
           class="absolute inset-0 size-5 scale-100 rotate-0 transition-all group-hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.3)]"
         />
-      </div>
+      </span>
 
       <!-- Subtle highlight effect -->
       <span
