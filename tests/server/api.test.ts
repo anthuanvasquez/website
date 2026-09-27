@@ -2,6 +2,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createEvent } from 'h3';
 import { createHmac } from 'node:crypto';
 import experiencesHandler from '../../server/api/experiences.get';
+import changelogHandler, {
+  parseChangelogContent,
+} from '../../server/api/changelog.get';
 import chatbotHandler from '../../server/api/chatbot/chat.post';
 
 let currentBody: Record<string, unknown> = {};
@@ -31,6 +34,39 @@ describe('Nitro API Handlers', () => {
       const response = await experiencesHandler(event);
       expect(Array.isArray(response)).toBe(true);
       expect(response.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('changelog.get', () => {
+    it('should parse markdown content into structured eras', () => {
+      const sample = `
+## [2026] - 2026-09-26
+
+Major update with Nuxt 4.
+
+### Added
+- **Feature:** Added new interactive page.
+`;
+      const eras = parseChangelogContent(sample);
+      expect(eras).toHaveLength(1);
+      expect(eras[0].version).toBe('2026');
+      expect(eras[0].date).toBe('2026-09-26');
+      expect(eras[0].summary).toBe('Major update with Nuxt 4.');
+      expect(eras[0].sections).toHaveLength(1);
+      expect(eras[0].sections[0].title).toBe('Added');
+      expect(eras[0].sections[0].items[0]).toContain(
+        '<strong>Feature:</strong>'
+      );
+    });
+
+    it('should return current version and eras from real changelog', async () => {
+      const event = createEvent({} as never, {} as never);
+      const response = await changelogHandler(event);
+      expect(response).toHaveProperty('currentVersion');
+      expect(response).toHaveProperty('eras');
+      expect(Array.isArray(response.eras)).toBe(true);
+      expect(response.eras.length).toBeGreaterThan(0);
+      expect(response.eras[0].version).toBe('2026');
     });
   });
 

@@ -58,3 +58,20 @@ export interface PersonalInfo {
     github?: string;
   };
 }
+
+export interface ChangelogSection {
+  title: string;
+  items: string[];
+}
+
+export interface ChangelogEra {
+  version: string;
+  date: string;
+  summary: string;
+  sections: ChangelogSection[];
+}
+
+export interface ChangelogResponse {
+  currentVersion: string;
+  eras: ChangelogEra[];
+}
