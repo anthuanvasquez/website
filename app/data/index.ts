@@ -42,6 +42,11 @@ export const navigationData = {
       icon: 'i-lucide-file-text',
     },
     {
+      name: 'About',
+      href: '/about',
+      icon: 'i-lucide-info',
+    },
+    {
       name: 'Newsletter',
       href: 'https://anthuanvasquez.substack.com/',
       icon: 'i-simple-icons-substack',
