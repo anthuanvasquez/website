@@ -1,14 +1,35 @@
-<template>
-  <section id="experience" class="mx-auto space-y-6">
-    <h1
-      class="text-text-secondary text-4xl font-extrabold tracking-tight md:text-5xl"
-    >
-      Experience
-    </h1>
+<script setup lang="ts">
+useSeoMeta({
+  title: 'Experience | Anthuan Vásquez',
+  description:
+    'A timeline of my professional journey, leadership roles, and software engineering milestones.',
+  ogTitle: 'Experience | Anthuan Vásquez',
+  ogDescription:
+    'A timeline of my professional journey, leadership roles, and software engineering milestones.',
+});
+</script>
 
-    <div
-      class="relative space-y-12 border-l border-gray-300 pl-8 dark:border-gray-700"
-    >
+<template>
+  <section id="experience" class="mx-auto space-y-12">
+    <header class="space-y-3">
+      <p
+        class="text-primary font-firacode text-xs font-semibold tracking-widest uppercase"
+      >
+        Career & Milestones
+      </p>
+      <h1
+        class="text-text-primary text-4xl font-extrabold tracking-tight sm:text-5xl"
+      >
+        Experience
+      </h1>
+      <p class="text-text-secondary max-w-2xl text-lg leading-relaxed">
+        A timeline of my professional journey, leadership roles, and software
+        engineering milestones over 10+ years building scalable web platforms
+        and mission-critical systems.
+      </p>
+    </header>
+
+    <div class="border-border-subtle relative space-y-12 border-l pl-8">
       <!-- CEVALDOM -->
       <article class="relative">
         <div
