@@ -2,9 +2,20 @@
 import type { Experience } from '~/types';
 
 const activeIndex = ref(0);
-const { data: experiences } =
-  await useGetFetch<Experience[]>('/api/experiences');
+const { data: experiences } = await useAPI<Experience[]>('/api/experiences');
 const { container: experienceContainer, isRevealed } = useReveal();
+
+const selectNextTab = () => {
+  if (!experiences.value?.length) return;
+  activeIndex.value = (activeIndex.value + 1) % experiences.value.length;
+};
+
+const selectPrevTab = () => {
+  if (!experiences.value?.length) return;
+  activeIndex.value =
+    (activeIndex.value - 1 + experiences.value.length) %
+    experiences.value.length;
+};
 </script>
 
 <template>
@@ -28,26 +39,43 @@ const { container: experienceContainer, isRevealed } = useReveal();
       >
         <!-- Left side: Tabs -->
         <div
+          role="tablist"
+          aria-label="Work experience"
           class="flex w-full flex-row overflow-x-auto border-b border-white/10 md:w-1/4 md:flex-col md:overflow-x-visible md:border-b-0 md:pl-0"
         >
           <button
             v-for="(experience, index) in experiences"
+            :id="`experience-tab-${index}`"
             :key="index"
+            role="tab"
+            :aria-selected="activeIndex === index"
+            :aria-controls="`experience-panel-${index}`"
+            :tabindex="activeIndex === index ? 0 : -1"
             data-testid="experience-tab"
-            class="shrink-0 px-5 py-3 text-left text-sm font-medium whitespace-nowrap transition-all md:border-l-2 md:text-base md:whitespace-normal"
+            class="focus-visible:ring-primary shrink-0 px-5 py-3 text-left text-sm font-medium whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:outline-none md:border-l-2 md:text-base md:whitespace-normal"
             :class="
               activeIndex === index
                 ? 'border-primary bg-surface-elevated text-primary md:border-b-0'
                 : 'text-text-secondary hover:bg-surface-float hover:text-text-primary border-transparent md:border-b-0'
             "
             @click="activeIndex = index"
+            @keydown.arrow-down.prevent="selectNextTab"
+            @keydown.arrow-up.prevent="selectPrevTab"
+            @keydown.arrow-right.prevent="selectNextTab"
+            @keydown.arrow-left.prevent="selectPrevTab"
           >
             {{ experience.name }}
           </button>
         </div>
 
         <!-- Right side: Content -->
-        <div class="pt-2 md:w-3/4 md:pt-0">
+        <div
+          :id="`experience-panel-${activeIndex}`"
+          role="tabpanel"
+          :aria-labelledby="`experience-tab-${activeIndex}`"
+          tabindex="0"
+          class="focus-visible:ring-primary pt-2 focus:outline-none focus-visible:ring-1 md:w-3/4 md:pt-0"
+        >
           <div v-if="experiences[activeIndex]">
             <h3 class="text-text-primary mb-1 text-2xl font-bold">
               {{ experiences[activeIndex]?.position }}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Skill } from '~/types';
 
-const { data: skills } = await useGetFetch<Skill[]>('/api/skills');
+const { data: skills } = await useAPI<Skill[]>('/api/skills');
 
 const groupedSkills = computed(() => {
   if (!skills.value) return {};

@@ -1,24 +1,47 @@
-<template>
-  <section id="experience" class="mx-auto space-y-6">
-    <h1
-      class="text-text-secondary text-4xl font-extrabold tracking-tight md:text-5xl"
-    >
-      Experience
-    </h1>
+<script setup lang="ts">
+useSeoMeta({
+  title: 'Experience | Anthuan Vásquez',
+  description:
+    'A timeline of my professional journey, leadership roles, and software engineering milestones.',
+  ogTitle: 'Experience | Anthuan Vásquez',
+  ogDescription:
+    'A timeline of my professional journey, leadership roles, and software engineering milestones.',
+});
+</script>
 
-    <div
-      class="relative space-y-12 border-l border-gray-300 pl-8 dark:border-gray-700"
-    >
+<template>
+  <section id="experience" class="mx-auto space-y-12">
+    <header class="space-y-3">
+      <p
+        class="text-primary font-firacode text-xs font-semibold tracking-widest uppercase"
+      >
+        Career & Milestones
+      </p>
+      <h1
+        class="text-text-primary text-4xl font-extrabold tracking-tight sm:text-5xl"
+      >
+        Experience
+      </h1>
+      <p class="text-text-secondary max-w-2xl text-lg leading-relaxed">
+        A timeline of my professional journey, leadership roles, and software
+        engineering milestones over 10+ years building scalable web platforms
+        and mission-critical systems.
+      </p>
+    </header>
+
+    <div class="border-border-subtle relative space-y-12 border-l pl-8">
       <!-- CEVALDOM -->
       <article class="relative">
         <div
           class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
         ></div>
 
-        <span class="text-sm text-gray-500">2024 — Present</span>
-        <h3 class="mt-1 text-xl font-semibold">
+        <span class="text-sm text-gray-500 dark:text-gray-400"
+          >2024 — Present</span
+        >
+        <h2 class="mt-1 text-xl font-semibold">
           Senior Software Engineer · CEVALDOM
-        </h3>
+        </h2>
         <p class="mb-3 text-gray-600 dark:text-gray-400">
           Dominican Republic · Remote
         </p>
@@ -70,10 +93,12 @@
           class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
         ></div>
 
-        <span class="text-sm text-gray-500">2022 — 2024</span>
-        <h3 class="mt-1 text-xl font-semibold">
+        <span class="text-sm text-gray-500 dark:text-gray-400"
+          >2022 — 2024</span
+        >
+        <h2 class="mt-1 text-xl font-semibold">
           Technical Lead · Minnek Digital Studio
-        </h3>
+        </h2>
 
         <ul
           class="mt-3 list-disc space-y-2 pl-5 text-gray-700 dark:text-gray-300"
@@ -115,10 +140,12 @@
           class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
         ></div>
 
-        <span class="text-sm text-gray-500">2020 — 2022</span>
-        <h3 class="mt-1 text-xl font-semibold">
+        <span class="text-sm text-gray-500 dark:text-gray-400"
+          >2020 — 2022</span
+        >
+        <h2 class="mt-1 text-xl font-semibold">
           Full-Stack Developer · Minnek Digital Studio
-        </h3>
+        </h2>
 
         <ul
           class="mt-3 list-disc space-y-2 pl-5 text-gray-700 dark:text-gray-300"
@@ -136,10 +163,12 @@
           class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
         ></div>
 
-        <span class="text-sm text-gray-500">2019 — 2020</span>
-        <h3 class="mt-1 text-xl font-semibold">
+        <span class="text-sm text-gray-500 dark:text-gray-400"
+          >2019 — 2020</span
+        >
+        <h2 class="mt-1 text-xl font-semibold">
           Senior Frontend Developer · Flash Cookie
-        </h3>
+        </h2>
 
         <ul
           class="mt-3 list-disc space-y-2 pl-5 text-gray-700 dark:text-gray-300"
@@ -156,10 +185,12 @@
           class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
         ></div>
 
-        <span class="text-sm text-gray-500">2016 — 2019</span>
-        <h3 class="mt-1 text-xl font-semibold">
+        <span class="text-sm text-gray-500 dark:text-gray-400"
+          >2016 — 2019</span
+        >
+        <h2 class="mt-1 text-xl font-semibold">
           Senior Frontend Developer · Snowdog
-        </h3>
+        </h2>
 
         <ul
           class="mt-3 list-disc space-y-2 pl-5 text-gray-700 dark:text-gray-300"
@@ -176,10 +207,12 @@
           class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
         ></div>
 
-        <span class="text-sm text-gray-500">2014 — 2016</span>
-        <h3 class="mt-1 text-xl font-semibold">
+        <span class="text-sm text-gray-500 dark:text-gray-400"
+          >2014 — 2016</span
+        >
+        <h2 class="mt-1 text-xl font-semibold">
           Frontend Developer · Code Grease
-        </h3>
+        </h2>
 
         <ul
           class="mt-3 list-disc space-y-2 pl-5 text-gray-700 dark:text-gray-300"
@@ -195,8 +228,8 @@
           class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
         ></div>
 
-        <span class="text-sm text-gray-500">2014</span>
-        <h3 class="mt-1 text-xl font-semibold">Lead CMS Developer · 3Mentes</h3>
+        <span class="text-sm text-gray-500 dark:text-gray-400">2014</span>
+        <h2 class="mt-1 text-xl font-semibold">Lead CMS Developer · 3Mentes</h2>
 
         <ul
           class="mt-3 list-disc space-y-2 pl-5 text-gray-700 dark:text-gray-300"

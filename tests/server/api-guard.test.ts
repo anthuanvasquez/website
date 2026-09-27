@@ -84,6 +84,18 @@ describe('server/middleware/api-guard', () => {
     expect(() => apiGuardHandler(event as never)).not.toThrow();
   });
 
+  it('should allow bypass when prerendering in production', () => {
+    process.env.NODE_ENV = 'production';
+    process.env.PRERENDER = 'true';
+    const event = createMockEvent('/api/experiences');
+
+    try {
+      expect(() => apiGuardHandler(event as never)).not.toThrow();
+    } finally {
+      delete process.env.PRERENDER;
+    }
+  });
+
   it('should bypass guard with valid x-internal-secret in production', () => {
     process.env.NODE_ENV = 'production';
     const event = createMockEvent('/api/chatbot/chat', {

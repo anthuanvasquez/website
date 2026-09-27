@@ -28,24 +28,21 @@ export type Service = {
   icon: string;
   categories: string[];
 };
-// types/chat.ts
 export interface ChatMessage {
   id: string;
-  role: 'user' | 'assistant' | 'system';
   content: string;
+  isUser: boolean;
   timestamp: Date;
 }
 
 export interface ChatResponse {
-  message: string;
-  sessionId?: string;
-  error?: string;
+  success: boolean;
+  response: string;
 }
 
 export interface ChatRequest {
   message: string;
-  history: ChatMessage[];
-  sessionId?: string;
+  sessionToken?: string;
 }
 
 export interface PersonalInfo {
@@ -60,4 +57,21 @@ export interface PersonalInfo {
     linkedin?: string;
     github?: string;
   };
+}
+
+export interface ChangelogSection {
+  title: string;
+  items: string[];
+}
+
+export interface ChangelogEra {
+  version: string;
+  date: string;
+  summary: string;
+  sections: ChangelogSection[];
+}
+
+export interface ChangelogResponse {
+  currentVersion: string;
+  eras: ChangelogEra[];
 }

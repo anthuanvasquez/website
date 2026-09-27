@@ -12,7 +12,8 @@ const handleError = () => clearError({ redirect: '/' });
       <header class="w-full p-6">
         <NuxtLink
           to="/"
-          class="text-text-primary hover:text-text-accent inline-block text-xl font-bold transition-colors"
+          class="text-text-primary hover:text-text-accent focus-visible:ring-primary inline-block rounded-md px-1 text-xl font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          aria-label="Anthuan Vásquez - Home"
         >
           <span class="font-firacode">&lt;av /&gt;</span>
         </NuxtLink>
@@ -54,8 +55,9 @@ const handleError = () => clearError({ redirect: '/' });
             >
               <span>Return Home</span>
               <UIcon
-                name="i-heroicons-arrow-right-20-solid"
+                name="i-lucide-arrow-right"
                 class="h-4 w-4 transition-transform group-hover:translate-x-1"
+                aria-hidden="true"
               />
             </button>
           </div>

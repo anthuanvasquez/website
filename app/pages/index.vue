@@ -131,7 +131,11 @@ definePageMeta({
       style="animation-delay: 600ms"
       aria-label="Scroll down to next section"
     >
-      <UIcon name="i-lucide-arrow-down" class="size-8 animate-bounce" />
+      <UIcon
+        name="i-lucide-arrow-down"
+        class="size-8 motion-safe:animate-bounce"
+        aria-hidden="true"
+      />
     </a>
   </div>
 

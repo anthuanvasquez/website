@@ -4,13 +4,9 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 import { knowledgeBase } from '~/data/knowledge';
 import { SYSTEM_PROMPT } from '~/data/prompts';
 import { containsAbusePattern } from '~/utils/abusePatterns';
+import type { ChatRequest } from '~/types';
 
 import type { H3Event } from 'h3';
-
-interface ChatRequest {
-  message: string;
-  sessionToken?: string;
-}
 
 const MAX_MESSAGE_LENGTH = 400; // Reduced slightly for better control
 const RATE_LIMIT_WINDOW_MS = 60_000;

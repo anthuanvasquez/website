@@ -35,13 +35,23 @@ const links = [
 ];
 
 const socials = [
-  { icon: 'i-simple-icons-github', url: 'https://github.com/anthuanvasquez' },
   {
+    name: 'GitHub',
+    icon: 'i-simple-icons-github',
+    url: 'https://github.com/anthuanvasquez',
+  },
+  {
+    name: 'LinkedIn',
     icon: 'i-simple-icons-linkedin',
     url: 'https://linkedin.com/in/anthuanvasquez',
   },
-  { icon: 'i-simple-icons-x', url: 'https://x.com/anthuanvasquezm' },
   {
+    name: 'X (Twitter)',
+    icon: 'i-simple-icons-x',
+    url: 'https://x.com/anthuanvasquezm',
+  },
+  {
+    name: 'Instagram',
     icon: 'i-simple-icons-instagram',
     url: 'https://instagram.com/anthuanvasquezm',
   },
@@ -144,12 +154,13 @@ useHead({
           :href="social.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="group inline-flex items-center rounded-full border border-white/10 bg-white/5 p-3 transition-all duration-300 hover:scale-110 hover:border-white/20 hover:bg-white/15"
-          :aria-label="social.icon"
+          class="group focus-visible:ring-primary inline-flex items-center rounded-full border border-white/10 bg-white/5 p-3 transition-all duration-300 hover:scale-110 hover:border-white/20 hover:bg-white/15 focus-visible:ring-2 focus-visible:outline-none"
+          :aria-label="`${social.name} profile (opens in new tab)`"
         >
           <UIcon
             :name="social.icon"
             class="text-text-secondary group-hover:text-text-primary h-6 w-6 transition-colors"
+            aria-hidden="true"
           />
         </a>
       </div>

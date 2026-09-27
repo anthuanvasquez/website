@@ -48,15 +48,15 @@ useHead({
           </time>
         </div>
         <div class="group relative">
-          <h3
+          <h2
             class="text-text-primary mt-3 text-2xl leading-6 font-semibold transition-colors group-hover:text-blue-400"
           >
             <NuxtLink :to="post.path">
               <span class="absolute inset-0" />
               {{ post.title }}
             </NuxtLink>
-          </h3>
-          <p class="text-text-tertiary mt-5 line-clamp-3 text-sm leading-6">
+          </h2>
+          <p class="text-text-secondary mt-5 line-clamp-3 text-sm leading-6">
             {{ post.description }}
           </p>
         </div>
