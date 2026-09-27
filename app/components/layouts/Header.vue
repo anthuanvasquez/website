@@ -76,9 +76,10 @@ onMounted(() => {
                   target="_blank"
                   rel="noopener noreferrer"
                   class="text-text-secondary hover:text-text-primary focus-visible:ring-primary flex items-center gap-x-2 rounded-md px-1 text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] focus-visible:ring-2 focus-visible:outline-none"
+                  :aria-label="item.name"
+                  :title="item.name"
                 >
                   <UIcon v-if="item.icon" :name="item.icon" class="size-4" />
-                  {{ item.name }}
                   <span class="sr-only">(opens in new tab)</span>
                 </a>
               </template>

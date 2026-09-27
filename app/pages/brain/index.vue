@@ -87,7 +87,7 @@ const formatDate = (dateString?: string) => {
     <!-- HERO SECTION -->
     <section class="space-y-6 text-center">
       <h1
-        class="text-text-secondary text-4xl font-extrabold tracking-tight md:text-5xl"
+        class="text-text-primary text-4xl font-extrabold tracking-tight md:text-5xl"
       >
         Second
         <span
