@@ -44,7 +44,6 @@ const techStack = [
   { name: 'Nitro Engine', icon: 'i-lucide-zap' },
   { name: 'Mapbox GL', icon: 'i-simple-icons-mapbox' },
   { name: 'Vitest', icon: 'i-simple-icons-vitest' },
-  { name: 'Docker', icon: 'i-simple-icons-docker' },
 ];
 </script>
 
