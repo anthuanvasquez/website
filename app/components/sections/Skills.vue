@@ -21,7 +21,7 @@ const { container: skillsContainer, isRevealed } = useReveal();
 <template>
   <div
     ref="skillsContainer"
-    class="reveal-group container mx-auto max-w-7xl px-4 md:px-0"
+    class="reveal-group w-full"
     :class="{ 'is-revealed': isRevealed }"
   >
     <div
