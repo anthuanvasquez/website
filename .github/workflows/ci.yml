@@ -84,4 +84,5 @@ jobs:
           name: build-output-node-22-linux-x64
           path: .output
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 1
