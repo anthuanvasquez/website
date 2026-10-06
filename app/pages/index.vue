@@ -126,7 +126,7 @@ definePageMeta({
 
     <!-- Scroll down indicator -->
     <a
-      href="#knowledge"
+      href="#projects"
       class="motion-safe:animate-enter-up text-text-tertiary hover:text-primary absolute bottom-8 left-1/2 flex -translate-x-1/2 cursor-pointer flex-col items-center justify-center transition-colors"
       style="animation-delay: 600ms"
       aria-label="Scroll down to next section"
@@ -138,28 +138,6 @@ definePageMeta({
       />
     </a>
   </div>
-
-  <Section
-    id="knowledge"
-    :title="homePageData.sections.knowledge.title"
-    :subtitle="homePageData.sections.knowledge.subtitle"
-  >
-    <Skills />
-  </Section>
-
-  <Section
-    id="experiences"
-    :title="homePageData.sections.experiences.title"
-    :subtitle="homePageData.sections.experiences.subtitle"
-  >
-    <Experiences />
-
-    <p
-      class="experience-animate text-text-secondary mx-auto mt-12 max-w-lg text-center text-sm leading-relaxed font-normal italic"
-    >
-      {{ homePageData.sections.experiences.footerNote }}
-    </p>
-  </Section>
 
   <Section
     id="projects"

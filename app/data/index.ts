@@ -65,12 +65,6 @@ export const navigationData = {
       external: true,
     },
   ],
-  subNavigation: [
-    { name: 'Knowledge', href: '#knowledge' },
-    { name: 'Experiences', href: '#experiences' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Location', href: '#location' },
-  ],
 };
 
 export const globalData = {
@@ -92,13 +86,6 @@ export const homePageData = {
     secondaryButton: "See what I've Built",
   },
   sections: {
-    knowledge: { title: 'Knowledge', subtitle: 'A Vast Of' },
-    experiences: {
-      title: 'Experiences',
-      subtitle: 'Latest',
-      footerNote:
-        'This is a curated selection – view my full resume for additional experience.',
-    },
     projects: { title: 'Projects', subtitle: 'Built' },
     services: { title: 'I Can Do', subtitle: 'What' },
     location: {

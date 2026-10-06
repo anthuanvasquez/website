@@ -3,21 +3,7 @@ import { navigationData } from '~/data';
 
 const route = useRoute();
 const isLinksPage = computed(() => route.path === '/links');
-const isHomePage = computed(() => route.path === '/');
 const mobileMenuOpen = ref(false);
-const isScrolled = ref(false);
-
-onMounted(() => {
-  const handleScroll = () => {
-    isScrolled.value = window.scrollY > 50;
-  };
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
-
-  onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll);
-  });
-});
 </script>
 
 <template>
@@ -92,29 +78,6 @@ onMounted(() => {
         </div>
       </div>
 
-      <!-- Bottom Sub Navigation (Sections) -->
-      <nav
-        v-if="isHomePage"
-        :class="[
-          'no-scrollbar bg-surface-elevated/80 mx-auto flex w-full max-w-xl origin-top items-center justify-start overflow-x-auto rounded-full px-6 py-2.5 shadow-lg ring-1 ring-white/5 backdrop-blur-md transition-all duration-300 ease-in-out md:w-auto md:justify-center lg:gap-x-8',
-          isScrolled
-            ? 'pointer-events-auto translate-y-0 opacity-100'
-            : 'pointer-events-none -translate-y-4 opacity-0',
-        ]"
-        aria-label="Section Navigation"
-      >
-        <div class="flex items-center gap-x-6">
-          <a
-            v-for="item in navigationData.subNavigation"
-            :key="item.name"
-            :href="item.href"
-            class="font-firacode text-text-tertiary hover:text-text-primary focus-visible:ring-primary rounded-md px-1 text-xs font-medium tracking-widest whitespace-nowrap uppercase transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] focus-visible:ring-1 focus-visible:outline-none"
-          >
-            {{ item.name }}
-          </a>
-        </div>
-      </nav>
-
       <USlideover
         v-model:open="mobileMenuOpen"
         side="right"
@@ -163,23 +126,6 @@ onMounted(() => {
                   @click="mobileMenuOpen = false"
                 >
                   <UIcon v-if="item.icon" :name="item.icon" class="size-5" />
-                  {{ item.name }}
-                </a>
-              </div>
-
-              <!-- Sections Navigation -->
-              <div v-if="isHomePage" class="space-y-2 py-6">
-                <span
-                  class="font-firacode text-text-tertiary mb-4 block px-3 text-xs tracking-widest uppercase"
-                  >Sections</span
-                >
-                <a
-                  v-for="item in navigationData.subNavigation"
-                  :key="item.name"
-                  :href="item.href"
-                  class="text-text-secondary hover:bg-surface-elevated hover:text-primary -mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-medium transition-colors"
-                  @click="mobileMenuOpen = false"
-                >
                   {{ item.name }}
                 </a>
               </div>
