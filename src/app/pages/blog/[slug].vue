@@ -1,0 +1,41 @@
+<script setup lang="ts">
+const route = useRoute();
+const slug = route.params.slug as string;
+
+const { data: page } = await useFetch(`/api/blog/${slug}`);
+
+useSeoMeta({
+  title: () => page.value?.title || 'Blog Post',
+  description: () => page.value?.description || 'Read more about this topic',
+});
+</script>
+
+<template>
+  <div class="relative mx-auto max-w-3xl px-6 sm:px-12 lg:px-8">
+    <div class="mb-10">
+      <NuxtLink
+        to="/blog"
+        class="inline-flex items-center font-medium text-blue-400 transition-colors hover:text-blue-300"
+      >
+        <UIcon
+          name="i-lucide-arrow-left"
+          class="mr-2 h-4 w-4"
+          aria-hidden="true"
+        />
+        Back to articles
+      </NuxtLink>
+    </div>
+
+    <article v-if="page" class="prose prose-invert prose-blue max-w-none">
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <div class="markdown-content" v-html="page.html" />
+    </article>
+
+    <div v-else class="py-20 text-center">
+      <h1 class="text-text-primary mb-4 text-3xl font-bold">Post not found</h1>
+      <p class="text-text-secondary">
+        The article you are looking for does not exist.
+      </p>
+    </div>
+  </div>
+</template>

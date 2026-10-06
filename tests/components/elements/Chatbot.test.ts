@@ -5,7 +5,7 @@ import {
 } from '@nuxt/test-utils/runtime';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { nextTick } from 'vue';
-import Chatbot from '../../../app/components/elements/Chatbot.vue';
+import Chatbot from '~/components/elements/Chatbot.vue';
 
 // Mock session token utility
 mockNuxtImport('generateSessionToken', () => {

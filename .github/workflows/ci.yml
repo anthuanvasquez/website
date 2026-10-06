@@ -53,3 +53,35 @@ jobs:
 
       - name: Run tests
         run: pnpm test
+
+  build:
+    name: Build
+    runs-on: ubuntu-22.04
+    needs: [lint, test]
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.20.2
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build production artifact
+        run: pnpm build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output-node-20-linux-x64
+          path: .output
+          if-no-files-found: error
+          retention-days: 1

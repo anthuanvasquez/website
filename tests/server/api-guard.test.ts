@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import apiGuardHandler from '../../server/middleware/api-guard';
+import apiGuardHandler from '../../src/server/middleware/api-guard';
 
 vi.hoisted(() => {
   globalThis.defineEventHandler = (handler) => handler;
@@ -82,6 +82,18 @@ describe('server/middleware/api-guard', () => {
     const event = createMockEvent('/api/experiences');
 
     expect(() => apiGuardHandler(event as never)).not.toThrow();
+  });
+
+  it('should allow bypass when prerendering in production', () => {
+    process.env.NODE_ENV = 'production';
+    process.env.PRERENDER = 'true';
+    const event = createMockEvent('/api/experiences');
+
+    try {
+      expect(() => apiGuardHandler(event as never)).not.toThrow();
+    } finally {
+      delete process.env.PRERENDER;
+    }
   });
 
   it('should bypass guard with valid x-internal-secret in production', () => {

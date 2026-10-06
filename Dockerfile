@@ -12,8 +12,8 @@ FROM base AS deps
 
 WORKDIR /app
 
-# Copy lockfile and package.json to install dependencies
-COPY package.json pnpm-lock.yaml ./
+# Copy manifests and pnpm build-script policy to install dependencies
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
 # -------------------

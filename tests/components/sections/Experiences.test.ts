@@ -1,10 +1,10 @@
 import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime';
 import { describe, it, expect } from 'vitest';
 import { ref } from 'vue';
-import Experiences from '../../../app/components/sections/Experiences.vue';
+import Experiences from '~/components/sections/Experiences.vue';
 
-// Mock useGetFetch directly (it returns a synchronous useFetch-like object)
-mockNuxtImport('useGetFetch', () => {
+// Mock useAPI directly (it returns a synchronous useFetch-like object)
+mockNuxtImport('useAPI', () => {
   return (path: string) => {
     if (path === '/api/experiences') {
       return {

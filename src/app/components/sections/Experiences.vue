@@ -1,0 +1,113 @@
+<script setup lang="ts">
+import type { Experience } from '~/types';
+
+const activeIndex = ref(0);
+const { data: experiences } = await useAPI<Experience[]>('/api/experiences');
+const { container: experienceContainer, isRevealed } = useReveal();
+
+const selectNextTab = () => {
+  if (!experiences.value?.length) return;
+  activeIndex.value = (activeIndex.value + 1) % experiences.value.length;
+};
+
+const selectPrevTab = () => {
+  if (!experiences.value?.length) return;
+  activeIndex.value =
+    (activeIndex.value - 1 + experiences.value.length) %
+    experiences.value.length;
+};
+</script>
+
+<template>
+  <div
+    ref="experienceContainer"
+    class="reveal-group container mx-auto max-w-7xl px-4 md:px-0"
+    :class="{ 'is-revealed': isRevealed }"
+  >
+    <p
+      class="reveal-item text-text-secondary mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal"
+    >
+      Over the past 10+ years. I've the opportunity to work with wide range of
+      projects, collaborating with diverse teams and clients.
+    </p>
+
+    <div class="rounded-xl border border-white/10 p-6">
+      <div
+        v-if="experiences && experiences.length > 0"
+        class="reveal-item mx-auto flex w-full flex-col gap-8 md:flex-row md:gap-12"
+        style="--reveal-delay: 200ms"
+      >
+        <!-- Left side: Tabs -->
+        <div
+          role="tablist"
+          aria-label="Work experience"
+          class="flex w-full flex-row overflow-x-auto border-b border-white/10 md:w-1/4 md:flex-col md:overflow-x-visible md:border-b-0 md:pl-0"
+        >
+          <button
+            v-for="(experience, index) in experiences"
+            :id="`experience-tab-${index}`"
+            :key="index"
+            role="tab"
+            :aria-selected="activeIndex === index"
+            :aria-controls="`experience-panel-${index}`"
+            :tabindex="activeIndex === index ? 0 : -1"
+            data-testid="experience-tab"
+            class="focus-visible:ring-primary shrink-0 px-5 py-3 text-left text-sm font-medium whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:outline-none md:border-l-2 md:text-base md:whitespace-normal"
+            :class="
+              activeIndex === index
+                ? 'border-primary bg-surface-elevated text-primary md:border-b-0'
+                : 'text-text-secondary hover:bg-surface-float hover:text-text-primary border-transparent md:border-b-0'
+            "
+            @click="activeIndex = index"
+            @keydown.arrow-down.prevent="selectNextTab"
+            @keydown.arrow-up.prevent="selectPrevTab"
+            @keydown.arrow-right.prevent="selectNextTab"
+            @keydown.arrow-left.prevent="selectPrevTab"
+          >
+            {{ experience.name }}
+          </button>
+        </div>
+
+        <!-- Right side: Content -->
+        <div
+          :id="`experience-panel-${activeIndex}`"
+          role="tabpanel"
+          :aria-labelledby="`experience-tab-${activeIndex}`"
+          tabindex="0"
+          class="focus-visible:ring-primary pt-2 focus:outline-none focus-visible:ring-1 md:w-3/4 md:pt-0"
+        >
+          <div v-if="experiences[activeIndex]">
+            <h3 class="text-text-primary mb-1 text-2xl font-bold">
+              {{ experiences[activeIndex]?.position }}
+              <span class="text-primary">
+                @ {{ experiences[activeIndex]?.name }}
+              </span>
+            </h3>
+            <p class="font-firacode text-text-tertiary mb-8 text-sm">
+              {{ experiences[activeIndex]?.date }}
+            </p>
+
+            <ul v-if="experiences[activeIndex]?.activities" class="space-y-4">
+              <li
+                v-for="(activity, aIndex) in experiences[activeIndex]
+                  ?.activities"
+                :key="aIndex"
+                class="flex items-start"
+              >
+                <UIcon
+                  name="i-lucide-check"
+                  class="text-primary mt-1 mr-4 h-5 w-5 shrink-0"
+                />
+                <span
+                  class="text-text-secondary block text-base leading-relaxed"
+                >
+                  {{ activity }}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

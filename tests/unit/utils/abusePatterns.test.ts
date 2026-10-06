@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { containsAbusePattern } from '../../../app/utils/abusePatterns';
+import { containsAbusePattern } from '~/utils/abusePatterns';
 
 describe('containsAbusePattern', () => {
   it('should return false for empty or null strings', () => {

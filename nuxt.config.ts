@@ -1,15 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from '@tailwindcss/vite';
 
+const isProduction = process.env.NODE_ENV === 'production';
+const isDev = process.env.NODE_ENV === 'development';
+
 export default defineNuxtConfig({
   devtools: {
-    enabled: false,
+    enabled: isDev,
   },
+
+  srcDir: 'src/app/',
+  serverDir: 'src/server/',
 
   /**
    * Nuxt Modules
    */
-  modules: ['@nuxt/ui', '@nuxt/image', 'motion-v/nuxt'],
+  modules: ['@nuxt/ui', '@nuxt/image'],
 
   /**
    * CSS
@@ -57,18 +63,9 @@ export default defineNuxtConfig({
    */
   app: {
     head: {
-      title: 'Anthuan Vásquez | Full-Stack Engineer',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'keywords',
-          content: 'Software Engineer, JavaScript Engineer, Software Architect',
-        },
-        {
-          name: 'description',
-          content: 'Full-Stack Engineer',
-        },
       ],
       link: [{ rel: 'icon', type: 'image/*', href: '/favicon.ico' }],
     },
@@ -90,7 +87,6 @@ export default defineNuxtConfig({
    * Route Rules
    */
   routeRules: {
-    '/': { prerender: true },
     '/api/**': {
       cors: true,
       headers: {
@@ -100,13 +96,13 @@ export default defineNuxtConfig({
         'Referrer-Policy': 'strict-origin-when-cross-origin',
       },
     },
-    // Cache static data for 1 hour with SWR
-    '/api/experiences': { swr: 3600 },
-    '/api/projects': { swr: 3600 },
-    '/api/services': { swr: 3600 },
-    '/api/skills': { swr: 3600 },
-    '/api/blog/**': { swr: 3600 },
-    '/api/brain/**': { swr: 3600 },
+    // Cache static data for 1 hour with SWR in production only.
+    '/api/experiences': { swr: isProduction ? 3600 : false },
+    '/api/projects': { swr: isProduction ? 3600 : false },
+    '/api/services': { swr: isProduction ? 3600 : false },
+    '/api/skills': { swr: isProduction ? 3600 : false },
+    '/api/blog/**': { swr: isProduction ? 3600 : false },
+    '/api/brain/**': { swr: isProduction ? 3600 : false },
     // No cache and no public CORS for chatbot or sessions
     '/api/chatbot/**': { cors: false, cache: false },
   },
