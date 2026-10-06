@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createEvent } from 'h3';
 import { createHmac } from 'node:crypto';
-import experiencesHandler from '../../server/api/experiences.get';
+import experiencesHandler from '../../src/server/api/experiences.get';
 import changelogHandler, {
   parseChangelogContent,
-} from '../../server/api/changelog.get';
-import chatbotHandler from '../../server/api/chatbot/chat.post';
+} from '../../src/server/api/changelog.get';
+import chatbotHandler from '../../src/server/api/chatbot/chat.post';
 
 let currentBody: Record<string, unknown> = {};
 

@@ -1,6 +1,6 @@
 import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime';
 import { describe, it, expect } from 'vitest';
-import ThemeToggle from '../../../app/components/elements/ThemeToggle.vue';
+import ThemeToggle from '~/components/elements/ThemeToggle.vue';
 
 // Mock state for colorMode
 const colorModeMock = {

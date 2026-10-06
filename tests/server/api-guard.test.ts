@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import apiGuardHandler from '../../server/middleware/api-guard';
+import apiGuardHandler from '../../src/server/middleware/api-guard';
 
 vi.hoisted(() => {
   globalThis.defineEventHandler = (handler) => handler;

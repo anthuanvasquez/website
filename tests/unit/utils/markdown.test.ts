@@ -3,7 +3,7 @@ import {
   normalizeSlug,
   getAllMarkdown,
   getMarkdownBySlug,
-} from '../../../server/utils/markdown';
+} from '../../../src/server/utils/markdown';
 
 describe('Markdown Utilities (Unit)', () => {
   describe('normalizeSlug', () => {

@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     enabled: isDev,
   },
 
+  srcDir: 'src/app/',
+  serverDir: 'src/server/',
+
   /**
    * Nuxt Modules
    */

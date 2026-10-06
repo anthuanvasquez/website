@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { validatePublicEnv, validateEnv } from '../../../app/utils/env';
+import { validatePublicEnv, validateEnv } from '~/utils/env';
 
 describe('utils/env', () => {
   it('provides default empty strings when empty object is passed to validatePublicEnv', () => {
