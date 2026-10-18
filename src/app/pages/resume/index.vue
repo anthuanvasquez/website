@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { navigationData } from '~/data';
+
 useSeoMeta({
   title: 'Experience | Anthuan Vásquez',
   description:
@@ -13,6 +15,20 @@ useSeoMeta({
   <div class="mx-auto space-y-20">
     <section id="experience" class="space-y-12">
       <header class="space-y-3">
+        <div class="flex items-center justify-between">
+          <NuxtLink
+            to="/"
+            class="text-text-secondary hover:text-text-primary inline-flex items-center text-sm font-medium transition-colors"
+          >
+            <UIcon
+              name="i-lucide-arrow-left"
+              class="mr-2 h-4 w-4"
+              aria-hidden="true"
+            />
+            Back to Home
+          </NuxtLink>
+        </div>
+
         <p
           class="text-primary font-firacode text-xs font-semibold tracking-widest uppercase"
         >
@@ -34,7 +50,7 @@ useSeoMeta({
         <!-- CEVALDOM -->
         <article class="relative">
           <div
-            class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
+            class="bg-primary border-surface-base absolute top-1 -left-8 size-4 -translate-x-1/2 rounded-full border-4"
           ></div>
 
           <span class="text-sm text-gray-500 dark:text-gray-400"
@@ -91,7 +107,7 @@ useSeoMeta({
         <!-- Minnek Tech Lead -->
         <article class="relative">
           <div
-            class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
+            class="bg-primary border-surface-base absolute top-1 -left-8 size-4 -translate-x-1/2 rounded-full border-4"
           ></div>
 
           <span class="text-sm text-gray-500 dark:text-gray-400"
@@ -140,7 +156,7 @@ useSeoMeta({
         <!-- Minnek Developer -->
         <article class="relative">
           <div
-            class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
+            class="bg-primary border-surface-base absolute top-1 -left-8 size-4 -translate-x-1/2 rounded-full border-4"
           ></div>
 
           <span class="text-sm text-gray-500 dark:text-gray-400"
@@ -165,7 +181,7 @@ useSeoMeta({
         <!-- Flash Cookie -->
         <article class="relative">
           <div
-            class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
+            class="bg-primary border-surface-base absolute top-1 -left-8 size-4 -translate-x-1/2 rounded-full border-4"
           ></div>
 
           <span class="text-sm text-gray-500 dark:text-gray-400"
@@ -187,7 +203,7 @@ useSeoMeta({
         <!-- Snowdog -->
         <article class="relative">
           <div
-            class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
+            class="bg-primary border-surface-base absolute top-1 -left-8 size-4 -translate-x-1/2 rounded-full border-4"
           ></div>
 
           <span class="text-sm text-gray-500 dark:text-gray-400"
@@ -209,7 +225,7 @@ useSeoMeta({
         <!-- Code Grease -->
         <article class="relative">
           <div
-            class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
+            class="bg-primary border-surface-base absolute top-1 -left-8 size-4 -translate-x-1/2 rounded-full border-4"
           ></div>
 
           <span class="text-sm text-gray-500 dark:text-gray-400"
@@ -230,7 +246,7 @@ useSeoMeta({
         <!-- 3Mentes -->
         <article class="relative">
           <div
-            class="bg-primary absolute top-1 -left-[41px] h-4 w-4 rounded-full border-4 border-white dark:border-gray-900"
+            class="bg-primary border-surface-base absolute top-1 -left-8 size-4 -translate-x-1/2 rounded-full border-4"
           ></div>
 
           <span class="text-sm text-gray-500 dark:text-gray-400">2014</span>
@@ -268,6 +284,37 @@ useSeoMeta({
       </header>
 
       <Skills />
+    </section>
+
+    <section
+      aria-label="Download Resume PDF"
+      class="border-border-subtle flex flex-col items-start justify-between gap-6 border-t pt-12 sm:flex-row sm:items-center"
+    >
+      <div class="space-y-1">
+        <h2 class="text-text-primary text-xl font-bold tracking-tight">
+          Need a printable version?
+        </h2>
+        <p class="text-text-secondary text-sm">
+          Download or view the full PDF version of my resume for offline
+          reference.
+        </p>
+      </div>
+
+      <UButton
+        :to="navigationData.resumePdfUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        color="primary"
+        variant="solid"
+        class="btn-primary group shrink-0"
+      >
+        <UIcon
+          name="i-lucide-file-down"
+          class="size-5 transition-transform duration-300 group-hover:-translate-y-0.5"
+          aria-hidden="true"
+        />
+        <span>Download Resume (PDF)</span>
+      </UButton>
     </section>
   </div>
 </template>

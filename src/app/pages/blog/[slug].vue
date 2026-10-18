@@ -11,7 +11,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="relative mx-auto max-w-3xl px-6 sm:px-12 lg:px-8">
+  <div class="relative mx-auto max-w-7xl">
     <div class="mb-10">
       <NuxtLink
         to="/blog"
