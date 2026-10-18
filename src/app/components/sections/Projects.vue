@@ -8,7 +8,7 @@ const { container: projectsContainer, isRevealed } = useReveal();
 <template>
   <div
     ref="projectsContainer"
-    class="reveal-group container mx-auto max-w-7xl px-4 md:px-0"
+    class="reveal-group mx-auto w-full max-w-7xl px-6 sm:px-8 xl:px-0"
     :class="{ 'is-revealed': isRevealed }"
   >
     <p
@@ -41,7 +41,7 @@ const { container: projectsContainer, isRevealed } = useReveal();
               ? `View ${project.name} project (opens in new tab)`
               : undefined
           "
-          class="bg-surface-elevated focus-visible:ring-primary aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-sm ring-1 ring-white/5 transition-transform duration-300 group-hover:-translate-y-1 focus-visible:ring-2 focus-visible:outline-none"
+          class="bg-surface-elevated focus-visible:ring-primary aspect-4/3 w-full overflow-hidden rounded-3xl shadow-sm ring-1 ring-white/5 transition-transform duration-300 group-hover:-translate-y-1 focus-visible:ring-2 focus-visible:outline-none"
         >
           <NuxtImg
             v-if="project.image"

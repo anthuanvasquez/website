@@ -10,7 +10,7 @@ const { container, isRevealed } = useReveal();
 <template>
   <div
     ref="container"
-    class="reveal-group"
+    class="reveal-group mx-auto max-w-7xl px-6 sm:px-8 xl:px-0"
     :class="{ 'is-revealed': isRevealed }"
   >
     <div class="reveal-item mb-16 text-center">

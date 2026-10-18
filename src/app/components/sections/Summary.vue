@@ -20,7 +20,7 @@ const replacePlaceholders = (text: string) => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4">
+  <div class="mx-auto w-full max-w-7xl px-6 sm:px-8 xl:px-0">
     <div class="columns-3 gap-8">
       <p
         v-for="(paragraph, index) in summaryData.paragraphs"

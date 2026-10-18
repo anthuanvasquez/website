@@ -24,40 +24,62 @@ const copyEmailAddress = () => {
 </script>
 
 <template>
-  <footer id="footer" class="border-surface-elevated mt-20 border-t py-12">
-    <div class="container mx-auto max-w-7xl px-4 md:px-0">
+  <footer
+    id="footer"
+    class="border-border-subtle bg-surface-float/60 mt-20 border-t py-16 transition-colors duration-300"
+  >
+    <div class="mx-auto w-full max-w-7xl px-6 sm:px-8 xl:px-0">
       <div
         class="flex flex-col items-center justify-between gap-8 md:flex-row md:items-end"
       >
         <div class="flex flex-col text-center md:text-left">
-          <h2 class="text-text-primary mb-6 text-3xl font-bold tracking-tight">
+          <h2 class="text-text-primary mb-3 text-3xl font-bold tracking-tight">
             {{ homePageData.footer.heading
             }}<span class="text-primary">{{
               homePageData.footer.headingHighlight
             }}</span>
           </h2>
 
-          <div class="flex items-center justify-center gap-4 md:justify-start">
+          <p
+            class="text-text-secondary mx-auto mb-8 max-w-xl text-base leading-relaxed md:mx-0"
+          >
+            {{ homePageData.footer.description }}
+          </p>
+
+          <div
+            class="flex flex-col items-center justify-center gap-4 sm:flex-row md:justify-start"
+          >
             <UButton
               color="primary"
               variant="solid"
-              class="justify-center rounded-lg px-6 py-2.5 font-medium transition-transform hover:scale-105"
+              class="btn-primary"
               @click="copyEmailAddress"
             >
-              {{
-                copied
-                  ? globalData.copyEmail.buttonCopied
-                  : globalData.copyEmail.buttonDefault
-              }}
+              <UIcon
+                :name="copied ? 'i-lucide-check' : 'i-lucide-copy'"
+                class="size-5 transition-transform duration-300 group-hover:scale-110"
+                aria-hidden="true"
+              />
+              <span>
+                {{
+                  copied
+                    ? globalData.copyEmail.buttonCopied
+                    : globalData.copyEmail.buttonDefault
+                }}
+              </span>
             </UButton>
             <UButton
               to="#projects"
-              size="lg"
               color="neutral"
               variant="outline"
-              class="ring-text-tertiary hover:bg-surface-elevated justify-center rounded-xl px-8 py-3 text-base font-semibold ring-1"
+              class="btn-secondary group"
             >
-              {{ homePageData.hero.secondaryButton }}
+              <span>{{ homePageData.hero.secondaryButton }}</span>
+              <UIcon
+                name="i-lucide-arrow-down"
+                class="text-text-tertiary group-hover:text-primary size-4.5 transition-transform duration-300 group-hover:translate-y-0.5"
+                aria-hidden="true"
+              />
             </UButton>
           </div>
         </div>
@@ -70,12 +92,12 @@ const copyEmailAddress = () => {
           </p>
           <p>
             {{ homePageData.footer.developedBy }}
-            <a
-              href="/"
+            <NuxtLink
+              to="/about"
               class="hover:text-primary text-text-primary transition-colors"
             >
               {{ homePageData.footer.authorName }}
-            </a>
+            </NuxtLink>
           </p>
         </div>
       </div>

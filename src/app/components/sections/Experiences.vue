@@ -21,17 +21,17 @@ const selectPrevTab = () => {
 <template>
   <div
     ref="experienceContainer"
-    class="reveal-group container mx-auto max-w-7xl px-4 md:px-0"
+    class="reveal-group mx-auto w-full max-w-7xl px-6 sm:px-8 xl:px-0"
     :class="{ 'is-revealed': isRevealed }"
   >
     <p
       class="reveal-item text-text-secondary mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal"
     >
-      Over the past 10+ years. I've the opportunity to work with wide range of
-      projects, collaborating with diverse teams and clients.
+      Over the past 10+ years, I've had the opportunity to work on a wide range
+      of projects, collaborating with diverse teams and clients.
     </p>
 
-    <div class="rounded-xl border border-white/10 p-6">
+    <div class="border-border-subtle rounded-xl border p-6">
       <div
         v-if="experiences && experiences.length > 0"
         class="reveal-item mx-auto flex w-full flex-col gap-8 md:flex-row md:gap-12"
@@ -41,7 +41,7 @@ const selectPrevTab = () => {
         <div
           role="tablist"
           aria-label="Work experience"
-          class="flex w-full flex-row overflow-x-auto border-b border-white/10 md:w-1/4 md:flex-col md:overflow-x-visible md:border-b-0 md:pl-0"
+          class="border-border-subtle flex w-full flex-row overflow-x-auto border-b md:w-1/4 md:flex-col md:overflow-x-visible md:border-b-0 md:pl-0"
         >
           <button
             v-for="(experience, index) in experiences"

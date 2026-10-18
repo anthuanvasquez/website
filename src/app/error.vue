@@ -49,17 +49,19 @@ const handleError = () => clearError({ redirect: '/' });
           <div
             class="flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
-            <button
-              class="group bg-primary ring-primary hover:bg-secondary hover:ring-secondary focus:ring-primary focus:ring-offset-surface-elevated inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-black ring-1 transition-all focus:ring-2 focus:ring-offset-2 focus:outline-none sm:w-auto"
+            <UButton
+              color="primary"
+              variant="solid"
+              class="btn-primary"
               @click="handleError"
             >
               <span>Return Home</span>
               <UIcon
                 name="i-lucide-arrow-right"
-                class="h-4 w-4 transition-transform group-hover:translate-x-1"
+                class="size-4.5 transition-transform group-hover:translate-x-1"
                 aria-hidden="true"
               />
-            </button>
+            </UButton>
           </div>
         </div>
       </main>
