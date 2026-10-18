@@ -1,9 +1,9 @@
 ---
-title: Welcome to My Blog
+title: Bienvenido a Mi Blog
 date: 2026-02-02
-description: This is the first post on my new blog built with Nuxt Content.
+description: Este es el primer post en mi nuevo blog.
 image: /images/blog/hello-world.png
-alt: Welcome to My Blog
+alt: Bienvenido a Mi Blog
 duration: 2 min read
 tags: ['blog']
 published: true
@@ -11,17 +11,15 @@ published: true
 
 # Hello World
 
-Welcome to my blog! I'm Anthuan Vásquez, a Full Stack Engineer.
+En este blog estaré compartiendo mis pensamientos, ideas y experiencias sobre desarrollo web, arquitectura de software y otras áreas relacionadas. Cuando no estoy trabajando en proyectos de software privado (mi trabajo), me gusta experimentar con proyectos personales, aprender nuevas tecnologías, mejorar mis habilidades, explorar nuevas herramientas. Así que espero compartir mis conocimientos y descubrimientos con ustedes.
 
-I created this blog using **Nuxt 4**, **Tailwind CSS 4**, and **Nuxt Content**.
+## ¿Qué esperar?
 
-## What to expect?
+Compartiré mis pensamientos sobre:
 
-I will be sharing my thoughts on:
+- Desarrollo Web
+- Arquitectura de Software
+- Diseño de Interfaces de Usuario
+- Y mucho más...
 
-- Web Development
-- Software Architecture
-- User Interface Design
-- And much more...
-
-Stay tuned!
+¡Mantente atento!
