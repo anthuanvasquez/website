@@ -17,6 +17,7 @@ const finish = () => {
   if (animationFrameId) cancelAnimationFrame(animationFrameId);
   progress.value = 100;
   isFading.value = true;
+  document.body.style.overflow = '';
 
   try {
     sessionStorage.setItem('preload_seen', 'true');
@@ -63,6 +64,7 @@ onMounted(() => {
     return;
   }
 
+  document.body.style.overflow = 'hidden';
   window.addEventListener('keydown', onKeydown);
 
   // Safety fallback
@@ -82,6 +84,7 @@ onMounted(() => {
 onUnmounted(() => {
   if (fallbackTimer) clearTimeout(fallbackTimer);
   if (animationFrameId) cancelAnimationFrame(animationFrameId);
+  document.body.style.overflow = '';
   window.removeEventListener('keydown', onKeydown);
 });
 </script>
@@ -90,7 +93,7 @@ onUnmounted(() => {
   <div
     v-if="isVisible"
     data-testid="preloader"
-    class="bg-surface-base z-preloader fixed inset-0 flex items-center justify-center overflow-hidden transition-all duration-700 ease-out select-none z-50"
+    class="preloader-dark fixed inset-0 z-9999 flex items-center justify-center overflow-hidden transition-all duration-700 ease-out select-none"
     :class="{
       'pointer-events-none scale-102 opacity-0': isFading,
       'scale-100 opacity-100': !isFading,
@@ -140,7 +143,7 @@ onUnmounted(() => {
       <span
         class="font-firacode text-text-tertiary mb-1 text-xs font-semibold tracking-widest uppercase md:text-sm"
       >
-        Cargando...
+        Building...
       </span>
       <span
         data-testid="preload-progress"

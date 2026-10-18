@@ -33,10 +33,15 @@ export default defineNuxtConfig({
   ],
 
   /**
-   * Nuxt UI
+   * Nuxt UI & Color Mode
    */
   ui: {
     prefix: 'U',
+  },
+
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
   },
 
   /**

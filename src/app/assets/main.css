@@ -18,7 +18,7 @@
   --color-black: #151520; /* Background Core surface */
 
   /* Surfaces */
-  --color-surface-base: var(--color-black);
+  --color-surface-base: #151520;
   --color-surface-elevated: #1a1a26; /* Slightly lighter than base */
   --color-surface-float: #202030; /* Even lighter */
 
@@ -27,10 +27,20 @@
   --color-text-secondary: #9aa2c8; /* Comments with WCAG AAA contrast */
   --color-text-tertiary: #7b83a6; /* Darker comments with WCAG AA contrast */
   --color-text-muted: #5d6484;
-  --color-text-accent: var(--color-primary);
+  --color-text-accent: #6f9ef5;
 
   /* Borders */
   --color-border-subtle: rgba(106, 113, 145, 0.2);
+
+  /* Radius extensions */
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+  --radius-6xl: 3rem;
+
+  /* Effects */
+  --drop-shadow-glow: 0 0 8px rgba(255, 255, 255, 0.3);
+  --drop-shadow-glow-primary: 0 0 8px rgba(111, 158, 245, 0.3);
+  --blur-4xl: 120px;
 
   --animate-enter-left: enter-left 0.5s ease-out both;
   --animate-enter-down: enter-down 0.5s ease-out both;
@@ -282,4 +292,25 @@ body {
     animation: var(--animate-reveal);
     animation-delay: var(--reveal-delay, 0ms);
   }
+}
+
+/* Core CTA Button Styles */
+.btn-primary {
+  @apply bg-primary hover:bg-secondary ring-primary hover:ring-secondary shadow-primary/25 hover:shadow-primary/40 focus-visible:ring-primary focus-visible:ring-offset-surface-base inline-flex cursor-pointer items-center justify-center gap-2.5 !rounded-full px-7 py-3 text-base font-semibold tracking-tight text-black shadow-lg ring-1 transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0 active:scale-95;
+}
+
+.btn-secondary {
+  @apply bg-surface-elevated hover:bg-surface-float text-text-primary ring-border-subtle hover:ring-text-tertiary focus-visible:ring-primary focus-visible:ring-offset-surface-base inline-flex cursor-pointer items-center justify-center gap-2.5 !rounded-full px-7 py-3 text-base font-medium tracking-tight shadow-sm ring-1 backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0 active:scale-95;
+}
+
+/* Preloader Dark Isolation (Always Vision Night canvas regardless of active theme) */
+.preloader-dark {
+  --color-surface-base: #151520;
+  --color-surface-elevated: #1a1a26;
+  --color-surface-float: #202030;
+  --color-text-primary: #d5d6e1;
+  --color-text-secondary: #9aa2c8;
+  --color-text-tertiary: #7b83a6;
+  --color-border-subtle: rgba(106, 113, 145, 0.2);
+  background-color: #151520;
 }
