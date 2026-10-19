@@ -30,39 +30,6 @@ const { container: projectsContainer, isRevealed } = useReveal();
         class="reveal-item group flex flex-col gap-4"
         :style="{ '--reveal-delay': `${index * 200}ms` }"
       >
-        <!-- Image Container -->
-        <component
-          :is="project.link ? 'a' : 'div'"
-          :href="project.link || undefined"
-          :target="project.link ? '_blank' : undefined"
-          :rel="project.link ? 'noopener noreferrer' : undefined"
-          :aria-label="
-            project.link
-              ? `View ${project.name} project (opens in new tab)`
-              : undefined
-          "
-          class="bg-surface-elevated focus-visible:ring-primary aspect-4/3 w-full overflow-hidden rounded-3xl shadow-sm ring-1 ring-white/5 transition-transform duration-300 group-hover:-translate-y-1 focus-visible:ring-2 focus-visible:outline-none"
-        >
-          <NuxtImg
-            v-if="project.image"
-            :src="project.image"
-            :alt="project.name"
-            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="sm:100vw md:50vw"
-            loading="lazy"
-          />
-          <div
-            v-else
-            class="bg-surface-base flex h-full w-full items-center justify-center"
-          >
-            <span
-              class="font-firacode text-text-tertiary text-sm tracking-widest uppercase"
-            >
-              No Image
-            </span>
-          </div>
-        </component>
-
         <!-- Text Area -->
         <div class="flex flex-col px-2">
           <div class="mb-3 flex items-center gap-3">
