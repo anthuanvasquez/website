@@ -37,3 +37,6 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./.output/
           server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
