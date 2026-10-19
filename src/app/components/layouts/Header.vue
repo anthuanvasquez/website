@@ -24,7 +24,7 @@ const mobileMenuOpen = ref(false);
                 class="-m-1.5 p-1.5 transition-opacity hover:opacity-80"
                 aria-label="Anthuan Vásquez - Home"
               >
-                <span class="text-primary font-firacode text-xl font-bold">{{
+                <span class="text-primary font-firacode text-xl font-medium">{{
                   'Anthuan Vásquez'
                 }}</span>
               </NuxtLink>
