@@ -7,6 +7,8 @@ const { data: page } = await useFetch(`/api/blog/${slug}`);
 useSeoMeta({
   title: () => page.value?.title || 'Blog Post',
   description: () => page.value?.description || 'Read more about this topic',
+  ogImage: () => page.value?.meta?.image,
+  twitterImage: () => page.value?.meta?.image,
 });
 </script>
 
@@ -15,11 +17,11 @@ useSeoMeta({
     <div class="mb-10">
       <NuxtLink
         to="/blog"
-        class="inline-flex items-center font-medium text-blue-400 transition-colors hover:text-blue-300"
+        class="text-text-secondary hover:text-text-primary inline-flex items-center text-sm font-medium transition-colors"
       >
         <UIcon
           name="i-lucide-arrow-left"
-          class="mr-2 h-4 w-4"
+          class="mr-2 size-4"
           aria-hidden="true"
         />
         Back to articles
@@ -27,6 +29,19 @@ useSeoMeta({
     </div>
 
     <article v-if="page" class="prose prose-invert prose-blue max-w-none">
+      <div
+        v-if="page.meta?.image"
+        class="bg-surface-elevated ring-border-subtle mb-10 overflow-hidden rounded-3xl shadow-lg ring-1"
+      >
+        <NuxtImg
+          :src="page.meta.image"
+          :alt="page.meta.alt || page.title"
+          class="aspect-video max-h-125 w-full object-cover"
+          sizes="(max-width: 1280px) 100vw, 1280px"
+          priority
+        />
+      </div>
+
       <!-- eslint-disable-next-line vue/no-v-html -->
       <div class="markdown-content" v-html="page.html" />
     </article>
