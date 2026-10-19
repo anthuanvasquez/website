@@ -18,7 +18,7 @@
   --color-black: #151520; /* Background Core surface */
 
   /* Surfaces */
-  --color-surface-base: var(--color-black);
+  --color-surface-base: #151520;
   --color-surface-elevated: #1a1a26; /* Slightly lighter than base */
   --color-surface-float: #202030; /* Even lighter */
 
@@ -27,10 +27,20 @@
   --color-text-secondary: #9aa2c8; /* Comments with WCAG AAA contrast */
   --color-text-tertiary: #7b83a6; /* Darker comments with WCAG AA contrast */
   --color-text-muted: #5d6484;
-  --color-text-accent: var(--color-primary);
+  --color-text-accent: #6f9ef5;
 
   /* Borders */
   --color-border-subtle: rgba(106, 113, 145, 0.2);
+
+  /* Radius extensions */
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+  --radius-6xl: 3rem;
+
+  /* Effects */
+  --drop-shadow-glow: 0 0 8px rgba(255, 255, 255, 0.3);
+  --drop-shadow-glow-primary: 0 0 8px rgba(111, 158, 245, 0.3);
+  --blur-4xl: 120px;
 
   --animate-enter-left: enter-left 0.5s ease-out both;
   --animate-enter-down: enter-down 0.5s ease-out both;
@@ -253,6 +263,65 @@ body {
   @apply text-text-primary bg-transparent p-0 text-sm leading-7;
 }
 
+/* Vision Night Syntax Highlighting Tokens (Highlight.js) */
+.markdown-content pre code .hljs-comment,
+.markdown-content pre code .hljs-quote {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.markdown-content pre code .hljs-keyword,
+.markdown-content pre code .hljs-selector-tag,
+.markdown-content pre code .hljs-doctag,
+.markdown-content pre code .hljs-meta .hljs-keyword {
+  color: var(--color-tertiary);
+}
+
+.markdown-content pre code .hljs-title,
+.markdown-content pre code .hljs-title.function_,
+.markdown-content pre code .hljs-title.class_,
+.markdown-content pre code .hljs-section,
+.markdown-content pre code .hljs-built_in {
+  color: var(--color-primary);
+}
+
+.markdown-content pre code .hljs-string,
+.markdown-content pre code .hljs-regexp,
+.markdown-content pre code .hljs-addition,
+.markdown-content pre code .hljs-template-variable {
+  color: var(--color-success);
+}
+
+.markdown-content pre code .hljs-number,
+.markdown-content pre code .hljs-literal,
+.markdown-content pre code .hljs-type,
+.markdown-content pre code .hljs-attr,
+.markdown-content pre code .hljs-symbol,
+.markdown-content pre code .hljs-bullet {
+  color: var(--color-accent);
+}
+
+.markdown-content pre code .hljs-variable,
+.markdown-content pre code .hljs-params,
+.markdown-content pre code .hljs-property,
+.markdown-content pre code .hljs-attribute,
+.markdown-content pre code .hljs-selector-class,
+.markdown-content pre code .hljs-selector-id {
+  color: var(--color-secondary);
+}
+
+.markdown-content pre code .hljs-deletion {
+  color: var(--color-danger);
+}
+
+.markdown-content pre code .hljs-emphasis {
+  font-style: italic;
+}
+
+.markdown-content pre code .hljs-strong {
+  font-weight: 700;
+}
+
 .markdown-content hr {
   @apply border-border-subtle my-12;
 }
@@ -273,6 +342,41 @@ body {
   @apply border-border-subtle border px-4 py-3 align-top;
 }
 
+/* Kindle-Style Highlights & Inline Notes (==highlight==^[note]) */
+.markdown-content .kindle-highlight {
+  @apply bg-accent/15 text-text-primary border-accent/60 rounded-sm border-b-2 px-1.5 py-0.5 font-normal transition-colors duration-200;
+}
+
+.markdown-content .kindle-highlight.has-note {
+  @apply hover:bg-accent/25 cursor-help;
+}
+
+.markdown-content .kindle-note-badge {
+  @apply text-accent ml-1 inline-block align-super font-mono text-xs leading-none font-bold select-none;
+}
+
+.markdown-content .kindle-note-wrapper {
+  @apply relative inline focus:outline-none;
+}
+
+.markdown-content .kindle-note-popover {
+  @apply bg-surface-float text-text-primary ring-border-subtle pointer-events-none invisible absolute bottom-full left-1/2 z-30 mb-2.5 w-72 max-w-xs -translate-x-1/2 translate-y-1 rounded-2xl p-4 text-left shadow-2xl ring-1 backdrop-blur-md transition-all duration-200;
+}
+
+.markdown-content .kindle-note-wrapper:hover .kindle-note-popover,
+.markdown-content .kindle-note-wrapper:focus .kindle-note-popover,
+.markdown-content .kindle-note-wrapper:focus-within .kindle-note-popover {
+  @apply pointer-events-auto visible translate-y-0 opacity-100;
+}
+
+.markdown-content .kindle-note-label {
+  @apply font-firacode text-accent mb-1.5 block text-xs font-semibold tracking-widest uppercase;
+}
+
+.markdown-content .kindle-note-body {
+  @apply text-text-secondary block text-xs leading-relaxed font-normal;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .reveal-group .reveal-item {
     opacity: 0;
@@ -282,4 +386,25 @@ body {
     animation: var(--animate-reveal);
     animation-delay: var(--reveal-delay, 0ms);
   }
+}
+
+/* Core CTA Button Styles */
+.btn-primary {
+  @apply bg-primary hover:bg-secondary ring-primary hover:ring-secondary shadow-primary/25 hover:shadow-primary/40 focus-visible:ring-primary focus-visible:ring-offset-surface-base inline-flex cursor-pointer items-center justify-center gap-2.5 !rounded-full px-7 py-3 text-base font-semibold tracking-tight text-black shadow-lg ring-1 transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0 active:scale-95;
+}
+
+.btn-secondary {
+  @apply bg-surface-elevated hover:bg-surface-float text-text-primary ring-border-subtle hover:ring-text-tertiary focus-visible:ring-primary focus-visible:ring-offset-surface-base inline-flex cursor-pointer items-center justify-center gap-2.5 !rounded-full px-7 py-3 text-base font-medium tracking-tight shadow-sm ring-1 backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0 active:scale-95;
+}
+
+/* Preloader Dark Isolation (Always Vision Night canvas regardless of active theme) */
+.preloader-dark {
+  --color-surface-base: #151520;
+  --color-surface-elevated: #1a1a26;
+  --color-surface-float: #202030;
+  --color-text-primary: #d5d6e1;
+  --color-text-secondary: #9aa2c8;
+  --color-text-tertiary: #7b83a6;
+  --color-border-subtle: rgba(106, 113, 145, 0.2);
+  background-color: #151520;
 }

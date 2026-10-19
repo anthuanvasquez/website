@@ -1,5 +1,22 @@
 <script setup lang="ts">
-const { data: posts } = await useFetch('/api/blog');
+import type { ContentItem } from '~/types';
+
+const { data: posts } = await useAPI<ContentItem[]>('/api/blog');
+
+const publishedPosts = computed(() =>
+  (posts.value || []).filter((post) => post.published !== false)
+);
+
+const formatDate = (dateStr?: string) => {
+  if (!dateStr) return '—';
+  const parsed = new Date(dateStr);
+  if (Number.isNaN(parsed.getTime())) return '—';
+  return parsed.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+};
 
 useHead({
   title: 'Blog | Anthuan Vásquez',
@@ -13,14 +30,14 @@ useHead({
 </script>
 
 <template>
-  <div class="">
+  <div>
     <div class="mb-16 text-center">
       <h1
         class="text-text-primary mb-4 text-4xl font-extrabold tracking-tight md:text-5xl"
       >
         Latest
         <span
-          class="from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent"
+          class="from-primary to-secondary bg-linear-to-r bg-clip-text text-transparent"
           >Articles</span
         >
       </h1>
@@ -30,41 +47,39 @@ useHead({
       </p>
     </div>
 
-    <div class="space-y-8">
-      <article
-        v-for="post in posts"
+    <div
+      v-if="publishedPosts.length"
+      class="divide-border-subtle border-border-subtle w-full divide-y border-y"
+    >
+      <NuxtLink
+        v-for="post in publishedPosts"
         :key="post.path"
-        class="group relative flex flex-col items-start justify-between rounded-2xl bg-white/5 p-8 ring-1 ring-white/10 backdrop-blur-md transition-all hover:bg-white/10 hover:ring-white/20"
+        :to="post.path"
+        class="group hover:bg-surface-elevated/50 -mx-4 flex flex-col gap-1 rounded-xl px-4 py-4 transition-colors sm:flex-row sm:items-baseline sm:gap-8"
       >
-        <div class="mb-4 flex items-center gap-x-4 text-xs">
-          <time :datetime="post.date" class="font-firacode text-text-secondary">
-            {{
-              new Date(post.date || '').toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })
-            }}
-          </time>
-        </div>
-        <div class="group relative">
-          <h2
-            class="text-text-primary mt-3 text-2xl leading-6 font-semibold transition-colors group-hover:text-blue-400"
-          >
-            <NuxtLink :to="post.path">
-              <span class="absolute inset-0" />
-              {{ post.title }}
-            </NuxtLink>
-          </h2>
-          <p class="text-text-secondary mt-5 line-clamp-3 text-sm leading-6">
-            {{ post.description }}
-          </p>
-        </div>
-      </article>
+        <time
+          :datetime="post.date"
+          class="font-firacode text-text-tertiary w-32 shrink-0 text-sm"
+        >
+          {{ formatDate(post.date) }}
+        </time>
 
-      <div v-if="!posts?.length" class="py-20 text-center">
-        <p class="text-text-secondary text-lg">No posts available right now.</p>
-      </div>
+        <span
+          class="text-text-primary group-hover:text-primary flex-1 text-base font-medium transition-colors sm:text-lg"
+        >
+          {{ post.title || post.slug }}
+        </span>
+
+        <UIcon
+          name="i-lucide-arrow-up-right"
+          class="text-text-tertiary group-hover:text-primary hidden size-4 shrink-0 self-center transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:inline-block"
+          aria-hidden="true"
+        />
+      </NuxtLink>
+    </div>
+
+    <div v-else class="py-20 text-center">
+      <p class="text-text-secondary text-lg">No posts available right now.</p>
     </div>
   </div>
 </template>

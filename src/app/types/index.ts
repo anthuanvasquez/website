@@ -75,3 +75,22 @@ export interface ChangelogResponse {
   currentVersion: string;
   eras: ChangelogEra[];
 }
+
+export interface ContentItem {
+  slug: string;
+  path: string;
+  title?: string;
+  description?: string;
+  date?: string;
+  image?: string;
+  alt?: string;
+  duration?: string;
+  tags?: string[];
+  published?: boolean;
+}
+
+export interface TocItem {
+  id: string;
+  text: string;
+  depth: number;
+}

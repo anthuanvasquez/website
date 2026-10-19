@@ -11,3 +11,4 @@ minimumReleaseAgeExclude:
   - '@types/node@26.5.1'
   - happy-dom@20.14.3
   - langchain@1.5.11
+  - '@nuxt/test-utils@4.3.4'

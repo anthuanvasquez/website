@@ -2,7 +2,7 @@
 import { seoData } from '~/data';
 
 useSeoMeta({
-  title: 'Anthuan Vásquez | Full-Stack Engineer',
+  title: 'Anthuan Vásquez | Software Engineer',
   description: seoData.description,
   ogTitle: seoData.ogTitle,
   ogDescription: seoData.description,
@@ -18,7 +18,7 @@ useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk && !titleChunk.includes('Anthuan')
       ? `${titleChunk} · Anthuan Vásquez`
-      : titleChunk || 'Anthuan Vásquez | Full-Stack Engineer';
+      : titleChunk || 'Anthuan Vásquez | Software Engineer';
   },
   htmlAttrs: {
     lang: 'en',
@@ -28,6 +28,7 @@ useHead({
 
 <template>
   <UApp>
+    <Preloader />
     <NuxtLayout />
   </UApp>
 </template>

@@ -77,12 +77,3 @@ jobs:
 
       - name: Build production artifact
         run: pnpm build
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-output-node-22-linux-x64
-          path: .output
-          if-no-files-found: error
-          include-hidden-files: true
-          retention-days: 1

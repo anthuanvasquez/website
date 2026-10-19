@@ -19,7 +19,7 @@ const { container: servicesContainer, isRevealed } = useReveal();
 <template>
   <div
     ref="servicesContainer"
-    class="reveal-group container mx-auto max-w-7xl px-4 md:px-0"
+    class="reveal-group mx-auto w-full max-w-7xl px-6 sm:px-8 xl:px-0"
     :class="{ 'is-revealed': isRevealed }"
   >
     <UAccordion
@@ -49,7 +49,7 @@ const { container: servicesContainer, isRevealed } = useReveal();
 
           <!-- Thumbnail Box -->
           <div
-            class="bg-surface-elevated relative flex h-[90px] w-[180px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/5 transition-transform duration-500 group-hover:scale-[1.02]"
+            class="bg-surface-elevated border-border-subtle relative flex h-22 w-44 shrink-0 items-center justify-center overflow-hidden rounded-2xl border transition-transform duration-500 group-hover:scale-102"
           >
             <div
               class="from-primary/10 absolute inset-0 bg-gradient-to-br to-transparent"
@@ -73,7 +73,7 @@ const { container: servicesContainer, isRevealed } = useReveal();
 
       <template #trailing="{ open }">
         <div
-          class="border-surface-elevated bg-surface-base group-hover:bg-surface-elevated flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 group-hover:border-white/10"
+          class="border-border-subtle bg-surface-base group-hover:bg-surface-elevated group-hover:border-primary/30 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-colors duration-300"
           :class="open ? 'bg-surface-elevated' : ''"
         >
           <UIcon
@@ -96,7 +96,7 @@ const { container: servicesContainer, isRevealed } = useReveal();
           </div>
 
           <!-- Categories -->
-          <div class="w-full shrink-0 lg:w-[320px]">
+          <div class="w-full shrink-0 lg:w-80">
             <div class="text-text-tertiary mb-4 text-xs tracking-wider">
               Categories
             </div>
@@ -104,7 +104,7 @@ const { container: servicesContainer, isRevealed } = useReveal();
               <span
                 v-for="cat in item.categories"
                 :key="cat"
-                class="bg-surface-elevated text-text-primary hover:border-primary/30 hover:text-text-primary rounded-full border border-white/5 px-5 py-2 text-sm font-medium shadow-sm transition-colors"
+                class="bg-surface-elevated text-text-primary border-border-subtle hover:border-primary/30 hover:text-text-primary rounded-full border px-5 py-2 text-sm font-medium shadow-sm transition-colors"
               >
                 {{ cat }}
               </span>

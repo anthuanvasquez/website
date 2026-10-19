@@ -33,6 +33,8 @@ export const siteMetaData = [
 
 export const navigationData = {
   resumeLink: '/resume',
+  resumePdfUrl:
+    'https://drive.google.com/file/d/16fZm-nRlXgW_0c03_3_e4Pd1HshblZ4o/view?usp=sharing',
   mainNavigation: [
     { name: 'Blog', href: '/blog', icon: 'i-lucide-book-open' },
     { name: 'Brain', href: '/brain', icon: 'i-lucide-brain' },
@@ -78,26 +80,76 @@ export const globalData = {
 
 export const homePageData = {
   hero: {
-    greeting: 'Hey',
-    emoji: '👋',
+    headlineLine: 'Software Engineer',
+    headlineTail: 'building modern web applications',
     roleLine1: 'Anthuan',
     roleLine2: 'Vásquez',
-    description: 'I build things. No drama. Just craft.',
+    description:
+      'Architecting modern web applications, high-availability backends, and cloud systems with 10+ years of battle-tested production experience.',
     secondaryButton: "See what I've Built",
   },
   sections: {
     projects: { title: 'Projects', subtitle: 'Built' },
     services: { title: 'I Can Do', subtitle: 'What' },
+    blog: {
+      title: 'Latest Articles',
+      subtitle: 'Blog',
+      description:
+        'Thoughts, tutorials, and deep dives into software architecture, full-stack engineering, and the modern web ecosystem.',
+      actionLabel: 'View all articles',
+    },
+    brain: {
+      title: 'Second Brain',
+      subtitle: 'Digital Garden',
+      description:
+        'Atomic notes, mental models, and interconnected engineering concepts curated from my public Zettelkasten vault.',
+      actionLabel: 'Explore Second Brain',
+    },
     location: {
       title: "Where I'm Based",
       subtitle: 'Location',
       description:
         "I'm proudly located in the Dominican Republic, right in the heart of the Caribbean. From this tropical paradise, I collaborate with clients across time zones — bringing a global perspective and timely delivery to every project.",
+      placesHeading: 'Places to Visit',
+      placesSubtitle:
+        'Visiting the Dominican Republic? Here are three iconic spots worth exploring:',
+      places: [
+        {
+          name: 'Montecristi',
+          region: 'Northwest Coast',
+          coordinates: '',
+          description:
+            'Dramatic coastal cliffs at El Morro, natural mangroves, and serene uncrowded beaches.',
+          href: 'https://www.godominicanrepublic.com/destinations/montecristi',
+          isHomeBase: false,
+        },
+        {
+          name: 'Santiago',
+          region: 'Cibao Valley',
+          coordinates: '',
+          badge: 'Current Location',
+          description:
+            'The vibrant heart of the Cibao valley — surrounded by mountains, rich culture, and coffee trails.',
+          href: 'https://www.godominicanrepublic.com/destinations/santiago-de-los-caballeros',
+          isHomeBase: true,
+        },
+        {
+          name: 'Santo Domingo',
+          region: 'South Coast · Capital',
+          coordinates: '',
+          description:
+            'Home to the historic Zona Colonial, 16th-century architecture, and coastal city life.',
+          href: 'https://www.godominicanrepublic.com/destinations/santo-domingo',
+          isHomeBase: false,
+        },
+      ],
     },
   },
   footer: {
     heading: 'Interested in working together',
     headingHighlight: '?',
+    description:
+      "Have a project in mind, need architectural guidance, or want to collaborate on a challenging web product? Let's connect and build something impactful.",
     copyright: 'All Rights Reserved.',
     developedBy: 'Developed with ♥ by',
     authorName: 'Anthuan',
@@ -146,4 +198,67 @@ export const summaryData = {
     { text: 'Being a father.', url: null },
     { text: 'Learning new things.', url: null },
   ],
+};
+
+export const aboutPageData = {
+  eyebrow: 'Colophon & Profile',
+  title: 'About this Website',
+  paragraphs: [
+    'This website serves as my personal portfolio, technical blog, public Second Brain (digital garden), and an active engineering sandbox. It is built with a strict focus on high performance, WCAG accessibility compliance, minimal external bloat, and modern web standards.',
+    'Every article and Second Brain note is authored in plain Markdown and rendered through a lightweight Nitro engine, keeping the architecture fast, portable, and easy to evolve over time.',
+  ],
+  techStack: [
+    { name: 'Nuxt 4', icon: 'i-simple-icons-nuxtdotjs' },
+    { name: 'Vue 3', icon: 'i-simple-icons-vuedotjs' },
+    { name: 'Tailwind CSS v4', icon: 'i-simple-icons-tailwindcss' },
+    { name: 'TypeScript', icon: 'i-simple-icons-typescript' },
+    { name: 'Nitro Engine', icon: 'i-lucide-zap' },
+    { name: 'Mapbox GL', icon: 'i-simple-icons-mapbox' },
+    { name: 'Vitest', icon: 'i-simple-icons-vitest' },
+  ],
+  aboutMe: {
+    heading: 'About Me, Anthuan Vásquez',
+    name: 'Anthuan Vásquez',
+    role: 'Senior Software Engineer',
+    location: 'Santiago, Dominican Republic',
+    image: '/yo.jpeg',
+    paragraphs: [
+      "I'm a Senior Software Engineer based in Santiago, Dominican Republic, with over 10+ years of experience building scalable web applications, mission-critical financial platforms, and high-traffic e-commerce ecosystems.",
+      'Throughout my career, I have led engineering teams, defined frontend and full-stack architecture standards, and worked across modern stacks including TypeScript, Vue, React, Angular, Node.js, Go, and Java EE.',
+      'Beyond shipping production software, I enjoy building AI-powered developer tools, contributing to open-source projects, curating interconnected notes in my Second Brain, and producing music as Oído Perfecto.',
+    ],
+  },
+  history: {
+    heading: 'A Brief History about this Website',
+    description:
+      'Key milestones in the technical evolution of anthuanvasquez.net:',
+    items: [
+      {
+        year: '2014–2018',
+        event:
+          'Launched the first static HTML, CSS, and vanilla JS version of AnthuanVasquez.net',
+      },
+      {
+        year: '2019',
+        event:
+          'Initialized the Git-tracked repository and migrated the website into a universal Nuxt 2 application',
+      },
+      {
+        year: '2024',
+        event:
+          'Completed a full platform rewrite migrating from Nuxt 2 to Vue 3 Composition API and Nuxt 3',
+      },
+      {
+        year: '2025',
+        event:
+          'Decoupled data persistence into native Nitro server endpoints and introduced the first AI-powered conversational assistant',
+      },
+      {
+        year: '2026',
+        event:
+          'Upgraded to Nuxt 4 and Tailwind CSS v4, launched the public Second Brain digital garden and Markdown blog, and completed a full WCAG accessibility overhaul',
+      },
+    ],
+  },
+  repositoryUrl: 'https://github.com/anthuanvasquez/website',
 };

@@ -21,12 +21,12 @@ const isDark = computed({
         <UIcon
           v-if="!isDark"
           name="i-lucide-sun"
-          class="absolute inset-0 size-5 scale-100 rotate-0 transition-all group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+          class="group-hover:drop-shadow-glow absolute inset-0 size-5 scale-100 rotate-0 transition-all"
         />
         <UIcon
           v-else
           name="i-lucide-moon"
-          class="absolute inset-0 size-5 scale-100 rotate-0 transition-all group-hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.3)]"
+          class="group-hover:drop-shadow-glow-primary absolute inset-0 size-5 scale-100 rotate-0 transition-all"
         />
       </span>
 

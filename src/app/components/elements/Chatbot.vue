@@ -192,7 +192,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="fixed right-6 bottom-6 z-50 flex items-end gap-3 transition-all duration-300"
+    class="fixed right-6 bottom-6 z-40 flex items-end gap-3 transition-all duration-300"
     :class="{ 'pointer-events-none translate-y-4 opacity-0': isOpen }"
   >
     <button
@@ -253,7 +253,7 @@ onUnmounted(() => {
     :close="false"
     :ui="{
       content:
-        'fixed bottom-4 right-4 sm:bottom-6 sm:right-6 !top-auto !left-auto !translate-x-0 !translate-y-0 h-[32rem] w-[calc(100vw-2rem)] sm:w-full max-w-md flex flex-col overflow-hidden rounded-2xl border border-white/10 shadow-2xl ring-1 ring-white/5 bg-surface-base p-0',
+        'fixed bottom-4 right-4 sm:bottom-6 sm:right-6 !top-auto !left-auto !translate-x-0 !translate-y-0 h-128 w-[calc(100vw-2rem)] sm:w-full max-w-md flex flex-col overflow-hidden rounded-2xl border border-white/10 shadow-2xl ring-1 ring-white/5 bg-surface-base p-0',
     }"
   >
     <template #content>
@@ -276,9 +276,7 @@ onUnmounted(() => {
               <h3 class="font-firacode text-sm font-bold tracking-tight">
                 {{ chatbotTitle }}
               </h3>
-              <p
-                class="dark:text-tertiary text-[10px] tracking-widest uppercase"
-              >
+              <p class="dark:text-tertiary text-xs tracking-widest uppercase">
                 AI Assistant • Online
               </p>
             </div>

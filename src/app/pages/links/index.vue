@@ -77,7 +77,7 @@ useHead({
       class="pointer-events-none fixed top-0 left-0 z-0 h-full w-full overflow-hidden"
     >
       <div
-        class="absolute top-[-10%] left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-purple-900/20 blur-[120px]"
+        class="blur-4xl absolute -top-12 left-1/2 size-150 -translate-x-1/2 rounded-full bg-purple-900/20"
       ></div>
     </div>
 
@@ -92,7 +92,7 @@ useHead({
           <NuxtImg
             :src="profile.image"
             :alt="profile.name"
-            class="relative h-28 w-28 rounded-full border-2 border-[#0a0a0a] object-cover shadow-xl"
+            class="border-surface-base relative h-28 w-28 rounded-full border-2 object-cover shadow-xl"
             width="112"
             height="112"
           />
@@ -109,7 +109,7 @@ useHead({
         </div>
 
         <p
-          class="text-text-secondary max-w-[90%] text-center text-sm leading-relaxed"
+          class="text-text-secondary max-w-sm text-center text-sm leading-relaxed"
         >
           {{ profile.bio }} <br />
           <a
@@ -128,7 +128,7 @@ useHead({
           :href="link.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="group relative flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:shadow-lg hover:shadow-purple-500/10 active:scale-[0.98]"
+          class="group border-border-subtle bg-surface-elevated/60 hover:bg-surface-float hover:border-primary/30 relative flex items-center justify-between rounded-2xl border p-4 backdrop-blur-md transition-all duration-300 hover:scale-102 hover:shadow-lg hover:shadow-purple-500/10 active:scale-98"
         >
           <div class="flex items-center gap-4">
             <!-- Optional Icon for each link if desired, currently hidden based on ref image style but data is there -->
@@ -154,7 +154,7 @@ useHead({
           :href="social.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="group focus-visible:ring-primary inline-flex items-center rounded-full border border-white/10 bg-white/5 p-3 transition-all duration-300 hover:scale-110 hover:border-white/20 hover:bg-white/15 focus-visible:ring-2 focus-visible:outline-none"
+          class="group focus-visible:ring-primary border-border-subtle bg-surface-elevated/60 hover:border-primary/30 hover:bg-surface-float inline-flex items-center rounded-full border p-3 transition-all duration-300 hover:scale-110 focus-visible:ring-2 focus-visible:outline-none"
           :aria-label="`${social.name} profile (opens in new tab)`"
         >
           <UIcon

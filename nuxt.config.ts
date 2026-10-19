@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import fs from 'node:fs';
+import path from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -33,10 +35,15 @@ export default defineNuxtConfig({
   ],
 
   /**
-   * Nuxt UI
+   * Nuxt UI & Color Mode
    */
   ui: {
     prefix: 'U',
+  },
+
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
   },
 
   /**
@@ -67,7 +74,27 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
-      link: [{ rel: 'icon', type: 'image/*', href: '/favicon.ico' }],
+      link: [
+        { rel: 'icon', type: 'image/*', href: '/favicon.ico' },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon-32x32.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/favicon-16x16.png',
+        },
+        { rel: 'manifest', href: '/site.webmanifest' },
+      ],
     },
   },
 
@@ -80,6 +107,27 @@ export default defineNuxtConfig({
       crawlLinks: false,
       routes: [],
       failOnError: false,
+    },
+  },
+
+  hooks: {
+    'nitro:build:public-assets'(nitro) {
+      const rootDir = nitro.options.rootDir;
+      const outDir = nitro.options.output.dir;
+      const contentSrc = path.resolve(rootDir, 'content');
+
+      if (fs.existsSync(contentSrc)) {
+        fs.cpSync(contentSrc, path.join(outDir, 'content'), {
+          recursive: true,
+        });
+      }
+
+      for (const file of ['CHANGELOG.md', 'package.json']) {
+        const fileSrc = path.resolve(rootDir, file);
+        if (fs.existsSync(fileSrc)) {
+          fs.copyFileSync(fileSrc, path.join(outDir, file));
+        }
+      }
     },
   },
 
