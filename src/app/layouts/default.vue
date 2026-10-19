@@ -10,7 +10,7 @@
       <Header />
       <main id="main-content" class="min-h-screen">
         <div
-          class="bg-surface-base relative min-h-screen overflow-hidden pt-32 pb-24"
+          class="bg-surface-base relative min-h-screen overflow-x-clip pt-32 pb-24"
         >
           <div
             class="from-primary/20 via-surface-base to-surface-base absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))]"

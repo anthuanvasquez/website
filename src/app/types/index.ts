@@ -88,3 +88,9 @@ export interface ContentItem {
   tags?: string[];
   published?: boolean;
 }
+
+export interface TocItem {
+  id: string;
+  text: string;
+  depth: number;
+}

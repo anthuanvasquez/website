@@ -342,6 +342,41 @@ body {
   @apply border-border-subtle border px-4 py-3 align-top;
 }
 
+/* Kindle-Style Highlights & Inline Notes (==highlight==^[note]) */
+.markdown-content .kindle-highlight {
+  @apply bg-accent/15 text-text-primary border-accent/60 rounded-sm border-b-2 px-1.5 py-0.5 font-normal transition-colors duration-200;
+}
+
+.markdown-content .kindle-highlight.has-note {
+  @apply hover:bg-accent/25 cursor-help;
+}
+
+.markdown-content .kindle-note-badge {
+  @apply text-accent ml-1 inline-block align-super font-mono text-xs leading-none font-bold select-none;
+}
+
+.markdown-content .kindle-note-wrapper {
+  @apply relative inline focus:outline-none;
+}
+
+.markdown-content .kindle-note-popover {
+  @apply bg-surface-float text-text-primary ring-border-subtle pointer-events-none invisible absolute bottom-full left-1/2 z-30 mb-2.5 w-72 max-w-xs -translate-x-1/2 translate-y-1 rounded-2xl p-4 text-left shadow-2xl ring-1 backdrop-blur-md transition-all duration-200;
+}
+
+.markdown-content .kindle-note-wrapper:hover .kindle-note-popover,
+.markdown-content .kindle-note-wrapper:focus .kindle-note-popover,
+.markdown-content .kindle-note-wrapper:focus-within .kindle-note-popover {
+  @apply pointer-events-auto visible translate-y-0 opacity-100;
+}
+
+.markdown-content .kindle-note-label {
+  @apply font-firacode text-accent mb-1.5 block text-xs font-semibold tracking-widest uppercase;
+}
+
+.markdown-content .kindle-note-body {
+  @apply text-text-secondary block text-xs leading-relaxed font-normal;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .reveal-group .reveal-item {
     opacity: 0;
