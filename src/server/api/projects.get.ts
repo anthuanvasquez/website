@@ -4,7 +4,8 @@ export default defineEventHandler(async (): Promise<Project[]> => {
   return [
     {
       name: 'Website',
-      description: 'My personal website showcasing my projects and skills.',
+      description:
+        'My personal website showcasing my projects, skills, experience and writing content.',
       skills: 'Nuxt, Vue, Tailwind CSS, Langchain, Groq, LLM',
       link: 'https://github.com/anthuanvasquez/website',
       image: 'https://placehold.co/800x600/1e293b/e2e8f0?text=Website',
@@ -12,7 +13,7 @@ export default defineEventHandler(async (): Promise<Project[]> => {
     {
       name: 'Agents Skills',
       description:
-        'A platform for managing and tracking the skills of various agents.',
+        'GitHub copilot plugin bundled with useful rules and skills.',
       skills: 'Markdown, Copilot, AI',
       link: 'https://github.com/anthuanvasquez/agents-skills',
       image: 'https://placehold.co/800x600/1e293b/e2e8f0?text=Agents+Skills',
@@ -20,7 +21,7 @@ export default defineEventHandler(async (): Promise<Project[]> => {
     {
       name: 'Vision Night',
       description:
-        'An event management platform for organizing and attending vision night events.',
+        'A visual studio code theme focused on accessibility to reduce eye strain.',
       skills: 'TypeScript, Visual Code',
       link: 'https://github.com/anthuanvasquez/vscode-vision-night',
       image: 'https://placehold.co/800x600/1e293b/e2e8f0?text=Vision+Night',
@@ -28,7 +29,7 @@ export default defineEventHandler(async (): Promise<Project[]> => {
     {
       name: 'DevBox',
       description:
-        'A development environment setup tool for modern web projects.',
+        'A development environment setup tool for remote development experience on Linux.',
       skills: 'Linux, Bash, VM, Docker',
       link: 'https://github.com/anthuanvasquez/devbox',
       image: 'https://placehold.co/800x600/1e293b/e2e8f0?text=DevBox',
@@ -46,7 +47,7 @@ export default defineEventHandler(async (): Promise<Project[]> => {
       description:
         'A simple modern countdown to show the time until your next upcoming activity.',
       skills: 'Node.js, React, TypeScript, Tailwind CSS, Vite',
-      link: 'https://github.com/anthuanvasquez/countdown',
+      link: 'https://countdown-alpha-livid.vercel.app/',
       image: 'https://placehold.co/800x600/1e293b/e2e8f0?text=Countdown',
     },
   ];
