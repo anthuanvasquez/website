@@ -62,7 +62,7 @@ describe('getMarkdownBySlug (Unit)', () => {
     expect(post?.toc[0]).toEqual({
       id: '1-git-cherry-pick',
       text: '1. git cherry-pick',
-      depth: 3,
+      depth: 2,
     });
     expect(post?.html).toContain('id="1-git-cherry-pick"');
   });
