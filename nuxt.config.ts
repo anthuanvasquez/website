@@ -46,6 +46,10 @@ export default defineNuxtConfig({
     fallback: 'dark',
   },
 
+  image: {
+    provider: 'none',
+  },
+
   /**
    * TypeScript
    */
