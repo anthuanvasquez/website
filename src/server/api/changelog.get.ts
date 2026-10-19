@@ -1,6 +1,6 @@
 import fs from 'node:fs';
-import path from 'node:path';
 import { marked } from 'marked';
+import { resolveRuntimePath } from '../utils/markdown';
 import type {
   ChangelogEra,
   ChangelogResponse,
@@ -107,7 +107,7 @@ export function parseChangelogContent(content: string): ChangelogEra[] {
 }
 
 function getCurrentVersion(): string {
-  const packageJsonPath = path.resolve(process.cwd(), 'package.json');
+  const packageJsonPath = resolveRuntimePath('package.json');
   if (!fs.existsSync(packageJsonPath)) return '2026';
   try {
     const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
@@ -118,7 +118,7 @@ function getCurrentVersion(): string {
 }
 
 export default defineEventHandler((): ChangelogResponse => {
-  const changelogPath = path.resolve(process.cwd(), 'CHANGELOG.md');
+  const changelogPath = resolveRuntimePath('CHANGELOG.md');
   if (!fs.existsSync(changelogPath)) {
     throw createError({
       statusCode: 404,

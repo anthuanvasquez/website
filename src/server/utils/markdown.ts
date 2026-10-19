@@ -4,8 +4,18 @@ import matter from 'gray-matter';
 import hljs from 'highlight.js';
 import { Marked } from 'marked';
 
-const CONTENT_DIR = path.resolve(process.cwd(), 'content');
-const PUBLIC_DIR = path.resolve(process.cwd(), 'public');
+export function resolveRuntimePath(relativePath: string): string {
+  const candidates = [
+    path.resolve(process.cwd(), relativePath),
+    path.resolve(process.cwd(), '.output', relativePath),
+  ];
+  return (
+    candidates.find((candidate) => fs.existsSync(candidate)) ?? candidates[0]!
+  );
+}
+
+const CONTENT_DIR = resolveRuntimePath('content');
+const PUBLIC_DIR = resolveRuntimePath('public');
 
 function resolveImage(image?: unknown): string | undefined {
   if (typeof image !== 'string' || !image.trim()) return undefined;

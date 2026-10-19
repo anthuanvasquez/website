@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import fs from 'node:fs';
+import path from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -105,6 +107,27 @@ export default defineNuxtConfig({
       crawlLinks: false,
       routes: [],
       failOnError: false,
+    },
+  },
+
+  hooks: {
+    'nitro:build:public-assets'(nitro) {
+      const rootDir = nitro.options.rootDir;
+      const outDir = nitro.options.output.dir;
+      const contentSrc = path.resolve(rootDir, 'content');
+
+      if (fs.existsSync(contentSrc)) {
+        fs.cpSync(contentSrc, path.join(outDir, 'content'), {
+          recursive: true,
+        });
+      }
+
+      for (const file of ['CHANGELOG.md', 'package.json']) {
+        const fileSrc = path.resolve(rootDir, file);
+        if (fs.existsSync(fileSrc)) {
+          fs.copyFileSync(fileSrc, path.join(outDir, file));
+        }
+      }
     },
   },
 
