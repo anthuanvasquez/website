@@ -33,18 +33,21 @@ describe('Markdown Utilities (Unit)', () => {
   });
 
   describe('getMarkdownBySlug', () => {
-    it('should load and render a post by normalized slug', () => {
+    it('should load and render a post by normalized slug and omit non-existent local image', () => {
       const post = getMarkdownBySlug('blog', 'hello-world');
       expect(post).not.toBeNull();
-      expect(post?.title).toBe('Welcome to My Blog');
+      expect(post?.title).toBe('Bienvenido a Mi Blog');
+      expect(post?.meta.image).toBeUndefined();
       expect(post?.html).toContain('<h1');
       expect(post?.html).toContain('Hello World');
     });
 
-    it('should load and render a post by exact filename without extension', () => {
-      const post = getMarkdownBySlug('blog', '1-hello-world');
+    it('should load and render a post by exact filename and keep existing local image and syntax highlighting', () => {
+      const post = getMarkdownBySlug('blog', '2-git-commands');
       expect(post).not.toBeNull();
-      expect(post?.title).toBe('Welcome to My Blog');
+      expect(post?.meta.image).toBe('/images/blog/git-commands.jpg');
+      expect(post?.html).toContain('<code class="hljs language-bash">');
+      expect(post?.html).toContain('hljs-');
     });
 
     it('should load and render a second brain note', () => {
