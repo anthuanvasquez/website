@@ -33,7 +33,8 @@ export const siteMetaData = [
 
 export const navigationData = {
   resumeLink: '/resume',
-  resumePdfUrl: 'https://drive.google.com/file/d/16fZm-nRlXgW_0c03_3_e4Pd1HshblZ4o/view?usp=sharing',
+  resumePdfUrl:
+    'https://drive.google.com/file/d/16fZm-nRlXgW_0c03_3_e4Pd1HshblZ4o/view?usp=sharing',
   mainNavigation: [
     { name: 'Blog', href: '/blog', icon: 'i-lucide-book-open' },
     { name: 'Brain', href: '/brain', icon: 'i-lucide-brain' },
