@@ -263,6 +263,65 @@ body {
   @apply text-text-primary bg-transparent p-0 text-sm leading-7;
 }
 
+/* Vision Night Syntax Highlighting Tokens (Highlight.js) */
+.markdown-content pre code .hljs-comment,
+.markdown-content pre code .hljs-quote {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.markdown-content pre code .hljs-keyword,
+.markdown-content pre code .hljs-selector-tag,
+.markdown-content pre code .hljs-doctag,
+.markdown-content pre code .hljs-meta .hljs-keyword {
+  color: var(--color-tertiary);
+}
+
+.markdown-content pre code .hljs-title,
+.markdown-content pre code .hljs-title.function_,
+.markdown-content pre code .hljs-title.class_,
+.markdown-content pre code .hljs-section,
+.markdown-content pre code .hljs-built_in {
+  color: var(--color-primary);
+}
+
+.markdown-content pre code .hljs-string,
+.markdown-content pre code .hljs-regexp,
+.markdown-content pre code .hljs-addition,
+.markdown-content pre code .hljs-template-variable {
+  color: var(--color-success);
+}
+
+.markdown-content pre code .hljs-number,
+.markdown-content pre code .hljs-literal,
+.markdown-content pre code .hljs-type,
+.markdown-content pre code .hljs-attr,
+.markdown-content pre code .hljs-symbol,
+.markdown-content pre code .hljs-bullet {
+  color: var(--color-accent);
+}
+
+.markdown-content pre code .hljs-variable,
+.markdown-content pre code .hljs-params,
+.markdown-content pre code .hljs-property,
+.markdown-content pre code .hljs-attribute,
+.markdown-content pre code .hljs-selector-class,
+.markdown-content pre code .hljs-selector-id {
+  color: var(--color-secondary);
+}
+
+.markdown-content pre code .hljs-deletion {
+  color: var(--color-danger);
+}
+
+.markdown-content pre code .hljs-emphasis {
+  font-style: italic;
+}
+
+.markdown-content pre code .hljs-strong {
+  font-weight: 700;
+}
+
 .markdown-content hr {
   @apply border-border-subtle my-12;
 }
