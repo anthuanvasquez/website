@@ -6,6 +6,7 @@ image: /images/blog/hello-world.jpg
 alt: Bienvenido a Mi Blog
 duration: 2 min read
 tags: ['blog']
+language: es
 published: true
 ---
 

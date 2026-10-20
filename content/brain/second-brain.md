@@ -1,6 +1,7 @@
 ---
 title: Welcome to my Second Brain
 description: This is the entry point to my digital garden.
+language: es
 ---
 
 # My Second Brain 🧠

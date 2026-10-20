@@ -6,6 +6,7 @@ image: /images/blog/git-commands.jpg
 alt: 12 Comandos de Git que Debes Conocer
 duration: 5 min read
 tags: ['git', 'terminal']
+language: es
 published: true
 ---
 
