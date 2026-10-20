@@ -108,7 +108,7 @@ export const homePageData = {
       title: "Where I'm Based",
       subtitle: 'Location',
       description:
-        "I'm proudly located in the Dominican Republic, right in the heart of the Caribbean. From this tropical paradise, I collaborate with clients across time zones — bringing a global perspective and timely delivery to every project.",
+        "I'm proudly located in the Dominican Republic, right in the heart of the Caribbean. From this tropical paradise, I collaborate with clients across time zones, bringing a global perspective and timely delivery to every project.",
       placesHeading: 'Places to Visit',
       placesSubtitle:
         'Visiting the Dominican Republic? Here are three iconic spots worth exploring:',
@@ -128,7 +128,7 @@ export const homePageData = {
           coordinates: '',
           badge: 'Current Location',
           description:
-            'The vibrant heart of the Cibao valley — surrounded by mountains, rich culture, and coffee trails.',
+            'The vibrant heart of the Cibao valley, surrounded by mountains, rich culture, and coffee trails.',
           href: 'https://www.godominicanrepublic.com/destinations/santiago-de-los-caballeros',
           isHomeBase: true,
         },

@@ -3,7 +3,7 @@ import tsEslint from 'typescript-eslint';
 import prettierPlugin from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
 
-/** Base config — TypeScript rules shared across all workspaces */
+/** Base config TypeScript rules shared across all workspaces */
 export const baseConfig = tsEslint.config(
   {
     ignores: [

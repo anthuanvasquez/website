@@ -50,7 +50,7 @@ useSeoMeta({
             ></div>
 
             <span class="text-sm text-gray-500 dark:text-gray-400"
-              >2024 — Present</span
+              >2024 - Present</span
             >
             <h2 class="mt-1 text-xl font-semibold">
               Senior Software Engineer · CEVALDOM
@@ -110,7 +110,7 @@ useSeoMeta({
             ></div>
 
             <span class="text-sm text-gray-500 dark:text-gray-400"
-              >2022 — 2024</span
+              >2022 - 2024</span
             >
             <h2 class="mt-1 text-xl font-semibold">
               Technical Lead · Minnek Digital Studio
@@ -158,7 +158,7 @@ useSeoMeta({
             ></div>
 
             <span class="text-sm text-gray-500 dark:text-gray-400"
-              >2020 — 2022</span
+              >2020 - 2022</span
             >
             <h2 class="mt-1 text-xl font-semibold">
               Full-Stack Developer · Minnek Digital Studio
@@ -185,7 +185,7 @@ useSeoMeta({
             ></div>
 
             <span class="text-sm text-gray-500 dark:text-gray-400"
-              >2019 — 2020</span
+              >2019 - 2020</span
             >
             <h2 class="mt-1 text-xl font-semibold">
               Senior Frontend Developer · Flash Cookie
@@ -207,7 +207,7 @@ useSeoMeta({
             ></div>
 
             <span class="text-sm text-gray-500 dark:text-gray-400"
-              >2016 — 2019</span
+              >2016 - 2019</span
             >
             <h2 class="mt-1 text-xl font-semibold">
               Senior Frontend Developer · Snowdog
@@ -229,7 +229,7 @@ useSeoMeta({
             ></div>
 
             <span class="text-sm text-gray-500 dark:text-gray-400"
-              >2014 — 2016</span
+              >2014 - 2016</span
             >
             <h2 class="mt-1 text-xl font-semibold">
               Frontend Developer · Code Grease

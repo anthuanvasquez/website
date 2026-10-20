@@ -8,9 +8,9 @@ const publishedPosts = computed(() =>
 );
 
 const formatDate = (dateStr?: string) => {
-  if (!dateStr) return '—';
+  if (!dateStr) return '-';
   const parsed = new Date(dateStr);
-  if (Number.isNaN(parsed.getTime())) return '—';
+  if (Number.isNaN(parsed.getTime())) return '-';
   return parsed.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',

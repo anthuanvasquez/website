@@ -54,7 +54,7 @@ const pillars = [
     title: 'Crafted',
     icon: '🛠️',
     description:
-      'Intentionally shaped notes to educate and inspire—built on strong principles of quality, clarity, and long-term value.',
+      'Intentionally shaped notes to educate and inspire-built on strong principles of quality, clarity, and long-term value.',
   },
   {
     title: 'Connected',
@@ -66,7 +66,7 @@ const pillars = [
     title: 'Compounded',
     icon: '📈',
     description:
-      'With every note, idea, and insight, my Second Brain grows—compounding in value, just like a money investment.',
+      'With every note, idea, and insight, my Second Brain grows-compounding in value, just like a money investment.',
   },
 ];
 

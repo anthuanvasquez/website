@@ -131,7 +131,7 @@ const chatStatus = computed(() => (isLoading.value ? 'submitted' : 'ready'));
 
 const notificationMessages = [
   '👋 Psst... what does my AI know about me?',
-  '🤖 Ask my AI about my tech stack...',
+  '🤖 Ask Anton AI about my tech stack...',
   '✨ Get instant answers about my work!',
 ];
 const currentNotificationText = ref('');
