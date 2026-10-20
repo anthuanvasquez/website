@@ -68,19 +68,6 @@ const copyEmailAddress = () => {
                 }}
               </span>
             </UButton>
-            <UButton
-              to="#projects"
-              color="neutral"
-              variant="outline"
-              class="btn-secondary group"
-            >
-              <span>{{ homePageData.hero.secondaryButton }}</span>
-              <UIcon
-                name="i-lucide-arrow-down"
-                class="text-text-tertiary group-hover:text-primary size-4.5 transition-transform duration-300 group-hover:translate-y-0.5"
-                aria-hidden="true"
-              />
-            </UButton>
           </div>
         </div>
 

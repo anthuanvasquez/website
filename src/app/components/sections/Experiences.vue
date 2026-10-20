@@ -27,7 +27,7 @@ const selectPrevTab = () => {
     <p
       class="reveal-item text-text-secondary mx-auto mb-12 max-w-lg text-center leading-relaxed font-normal"
     >
-      Over the past 10+ years, I've had the opportunity to work on a wide range
+      Over the past 12+ years, I've had the opportunity to work on a wide range
       of projects, collaborating with diverse teams and clients.
     </p>
 

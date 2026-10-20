@@ -30,11 +30,6 @@ useSeoMeta({
     <div class="grid grid-cols-1 items-start gap-16 lg:grid-cols-12">
       <section id="experience" class="space-y-12 lg:col-span-7">
         <header class="space-y-3">
-          <p
-            class="text-primary font-firacode text-xs font-semibold tracking-widest uppercase"
-          >
-            Career & Milestones
-          </p>
           <h1
             class="text-text-primary text-4xl font-extrabold tracking-tight sm:text-5xl"
           >
@@ -42,7 +37,7 @@ useSeoMeta({
           </h1>
           <p class="text-text-secondary max-w-2xl text-lg leading-relaxed">
             A timeline of my professional journey, leadership roles, and
-            software engineering milestones over 10+ years building scalable web
+            software engineering milestones over 12+ years building scalable web
             platforms and mission-critical systems.
           </p>
         </header>
@@ -130,7 +125,6 @@ useSeoMeta({
               <li>
                 Built AI-powered solutions using OpenAI, LangChain, and MCP.
               </li>
-              <li>Created and open-sourced Cominnek CLI.</li>
             </ul>
 
             <div class="mt-4 flex flex-wrap gap-2">
@@ -276,11 +270,6 @@ useSeoMeta({
         class="border-border-subtle space-y-10 border-t pt-12 lg:sticky lg:top-28 lg:col-span-5 lg:border-t-0 lg:pt-0"
       >
         <header class="space-y-3">
-          <p
-            class="text-primary font-firacode text-xs font-semibold tracking-widest uppercase"
-          >
-            Stack & Competencies
-          </p>
           <h2
             class="text-text-primary text-3xl font-extrabold tracking-tight sm:text-4xl"
           >

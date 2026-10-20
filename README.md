@@ -1,6 +1,6 @@
-# Anthuan Vásquez | Full-Stack Engineer
+# Anthuan Vásquez | Software Engineer
 
-Personal website and professional portfolio built with bleeding-edge web technology. Focused on performance, fluid animations, and AI integration.
+Personal website and professional portfolio built with bleeding-edge web technology.
 
 ## 🚀 Tech Stack
 

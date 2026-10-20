@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const profile = {
   name: 'Anthuan Vásquez',
-  title: 'Full Stack Engineer',
+  title: 'Software Engineer',
   location: 'Dominican Republic',
-  bio: 'Building polished, innovative web experiences. Passionate about UI/UX and modern web technologies.',
+  bio: 'Building polished, innovative web experiences. Passionate about UI/UX, Accessibility and modern web technologies.',
   image: 'https://github.com/anthuanvasquez.png',
   handle: '@anthuanvasquez',
 };

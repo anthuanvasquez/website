@@ -30,11 +30,6 @@ useSeoMeta({
       </div>
 
       <div class="space-y-4">
-        <p
-          class="text-primary font-firacode text-xs font-semibold tracking-widest uppercase"
-        >
-          // {{ aboutPageData.eyebrow }}
-        </p>
         <h1
           id="about-website-heading"
           class="text-text-primary text-4xl font-extrabold tracking-tight sm:text-5xl"

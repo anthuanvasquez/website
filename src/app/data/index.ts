@@ -1,7 +1,7 @@
 export const seoData = {
   title: `Anthuan Vasquez`,
-  ogTitle: `Full Stack Engineer, Problem Solver, and Web Enthusiast | Anthuan Vasquez`,
-  description: `Hi I'm Anthuan. A Full Stack Engineer with over 10+ years experience in software development.`,
+  ogTitle: `Software Engineer, Problem Solver, and Web Enthusiast | Anthuan Vasquez`,
+  description: `Hi I'm Anthuan. A Software Engineer with over 12+ years experience in software development.`,
   twitterDescription: `Anthuan Vasquez, where I play around with Nuxt, Vue, and more and showcase my blog, resources, etc.`,
   image: 'https://anthuanvasquez.net/yo.jpeg',
   mySite: 'https://anthuanvasquez.net',
@@ -33,8 +33,7 @@ export const siteMetaData = [
 
 export const navigationData = {
   resumeLink: '/resume',
-  resumePdfUrl:
-    'https://drive.google.com/file/d/16fZm-nRlXgW_0c03_3_e4Pd1HshblZ4o/view?usp=sharing',
+  resumePdfUrl: 'https://shorturl.at/HLW6e',
   mainNavigation: [
     { name: 'Blog', href: '/blog', icon: 'i-lucide-book-open' },
     { name: 'Brain', href: '/brain', icon: 'i-lucide-brain' },
@@ -85,7 +84,7 @@ export const homePageData = {
     roleLine1: 'Anthuan',
     roleLine2: 'Vásquez',
     description:
-      'Architecting modern web applications, high-availability backends, and cloud systems with 10+ years of battle-tested production experience.',
+      'Architecting modern web applications, high-availability backends, and cloud systems with 12+ years of battle-tested production experience.',
     secondaryButton: "See what I've Built",
   },
   sections: {
@@ -223,7 +222,7 @@ export const aboutPageData = {
     location: 'Santiago, Dominican Republic',
     image: '/yo.jpeg',
     paragraphs: [
-      "I'm a Senior Software Engineer based in Santiago, Dominican Republic, with over 10+ years of experience building scalable web applications, mission-critical financial platforms, and high-traffic e-commerce ecosystems.",
+      "I'm a Senior Software Engineer based in Santiago, Dominican Republic, with over 12+ years of experience building scalable web applications, mission-critical financial platforms, and high-traffic e-commerce ecosystems.",
       'Throughout my career, I have led engineering teams, defined frontend and full-stack architecture standards, and worked across modern stacks including TypeScript, Vue, React, Angular, Node.js, Go, and Java EE.',
       'Beyond shipping production software, I enjoy building AI-powered developer tools, contributing to open-source projects, curating interconnected notes in my Second Brain, and producing music as Oído Perfecto.',
     ],
