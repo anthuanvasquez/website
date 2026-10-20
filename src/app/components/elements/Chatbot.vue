@@ -8,10 +8,10 @@ const isLoading = ref(false);
 const messages = ref<Message[]>([]);
 const currentMessage = ref('');
 const welcomeMessage = computed(
-  () => 'Hi! I am the Anthuan AI assistant. How can I help you today?'
+  () => 'Hi! I am Anton, the Anthuan AI assistant. How can I help you today?'
 );
 const placeholderText = computed(() => 'Type your message...');
-const chatbotTitle = computed(() => 'Anthuan Assistant');
+const chatbotTitle = computed(() => 'Anton Assistant');
 const errorMessage = computed(
   () => 'Oops! Something went wrong. Please try again later.'
 );

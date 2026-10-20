@@ -39,7 +39,7 @@ describe('Chatbot', () => {
     const component = await mountSuspended(Chatbot);
     await component.find('[data-testid="chatbot-trigger"]').trigger('click');
     await nextTick();
-    expect(document.body.innerHTML).toContain('Anthuan Assistant');
+    expect(document.body.innerHTML).toContain('Anton Assistant');
   });
 
   it('should send a message and show bot response', async () => {
