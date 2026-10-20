@@ -13,6 +13,17 @@ useSeoMeta({
   title: () => page.value?.title || 'Note',
   description: () => page.value?.description || 'A note from my second brain',
 });
+
+function onMarkdownClick(event: MouseEvent) {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey) return;
+  const href = (event.target as HTMLElement | null)
+    ?.closest('a')
+    ?.getAttribute('href');
+  if (href?.startsWith('/brain/')) {
+    event.preventDefault();
+    navigateTo(href);
+  }
+}
 </script>
 
 <template>
@@ -36,12 +47,26 @@ useSeoMeta({
       class="grid grid-cols-1 items-start gap-12"
       :class="hasToc ? 'lg:grid-cols-12' : ''"
     >
+      <UAlert
+        v-if="page.meta.language === 'es'"
+        description="The content of this note is written in Spanish."
+        color="neutral"
+        variant="outline"
+        class="text-muted lg:col-span-8 xl:col-span-9"
+        icon="i-lucide-info"
+        close
+      />
+
       <article
         class="prose prose-invert prose-blue max-w-none min-w-0"
         :class="hasToc ? 'lg:col-span-8 xl:col-span-9' : ''"
       >
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <div class="markdown-content" v-html="page.html" />
+        <div
+          class="markdown-content"
+          @click="onMarkdownClick"
+          v-html="page.html"
+        />
       </article>
 
       <TableOfContents

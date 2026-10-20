@@ -221,6 +221,10 @@ body {
   @apply text-primary decoration-primary/40 hover:text-secondary hover:decoration-secondary underline decoration-1 underline-offset-4 transition-colors;
 }
 
+.markdown-content .wikilink-unresolved {
+  @apply text-text-muted decoration-text-muted/50 cursor-not-allowed underline decoration-dashed decoration-1 underline-offset-4;
+}
+
 .markdown-content strong {
   @apply text-text-primary font-bold;
 }
@@ -344,11 +348,11 @@ body {
 
 /* Kindle-Style Highlights & Inline Notes (==highlight==^[note]) */
 .markdown-content .kindle-highlight {
-  @apply bg-accent/15 text-text-primary border-accent/60 rounded-sm border-b-2 px-1.5 py-0.5 font-normal transition-colors duration-200;
+  @apply bg-transparent text-text-primary border-accent/60 rounded-sm border-b-2 px-1.5 py-0.5 font-normal transition-colors duration-200;
 }
 
 .markdown-content .kindle-highlight.has-note {
-  @apply hover:bg-accent/25 cursor-help;
+  @apply bg-accent/15 hover:bg-accent/25 cursor-help;
 }
 
 .markdown-content .kindle-note-badge {

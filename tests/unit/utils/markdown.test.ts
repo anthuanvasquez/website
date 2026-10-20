@@ -27,6 +27,24 @@ describe('Markdown Utilities (Unit)', () => {
         '<span class="kindle-note-body">My Kindle note</span>'
       );
     });
+
+    it('should render published Obsidian wikilinks and mark missing notes as unresolved', () => {
+      const { html } = renderMarkdownHtml(
+        'Visit [[second-brain]], [[Second Brain|Mi Cerebro]], [[second-brain#¿Qué sigue?|el siguiente paso]], and [[nota-privada|Borrador]].'
+      );
+      expect(html).toContain(
+        '<a href="/brain/second-brain" class="wikilink">second-brain</a>'
+      );
+      expect(html).toContain(
+        '<a href="/brain/second-brain" class="wikilink">Mi Cerebro</a>'
+      );
+      expect(html).toContain(
+        '<a href="/brain/second-brain#que-sigue" class="wikilink">el siguiente paso</a>'
+      );
+      expect(html).toContain(
+        '<span class="wikilink-unresolved" title="Note not available yet">Borrador</span>'
+      );
+    });
   });
 
   describe('getAllMarkdown', () => {

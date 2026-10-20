@@ -52,6 +52,7 @@ export interface MarkdownMetadata {
   alt?: string;
   duration?: string;
   tags?: string[];
+  language?: string;
   published?: boolean;
   [key: string]: unknown;
 }
@@ -120,6 +121,51 @@ interface KindleHighlightToken {
   note?: string;
 }
 
+interface WikilinkToken {
+  type: 'wikilink';
+  raw: string;
+  target: string;
+  heading?: string;
+  label: string;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ponytail: scans content/brain directory per markdown render (cached by Nitro SWR in prod); if vault grows past ~1k notes without route cache, memoize at module scope with fs.watch invalidation.
+function getBrainSlugMap(): Map<string, string> {
+  const dir = path.join(CONTENT_DIR, 'brain');
+  const map = new Map<string, string>();
+  if (!fs.existsSync(dir)) return map;
+
+  for (const file of fs.readdirSync(dir)) {
+    if (!file.endsWith('.md')) continue;
+    const slug = normalizeSlug(file);
+    map.set(slug.toLowerCase(), slug);
+    map.set(slugifyHeading(slug), slug);
+  }
+
+  return map;
+}
+
+function resolveBrainSlug(
+  rawTarget: string,
+  slugMap: Map<string, string>
+): string | undefined {
+  const filePart = rawTarget.split('/').pop()?.trim() || '';
+  if (!filePart) return undefined;
+  const normalized = normalizeSlug(filePart);
+  return (
+    slugMap.get(normalized.toLowerCase()) ??
+    slugMap.get(slugifyHeading(normalized))
+  );
+}
+
 const kindleHighlightExtension = {
   name: 'kindleHighlight',
   level: 'inline' as const,
@@ -153,15 +199,59 @@ const kindleHighlightExtension = {
   },
 };
 
+function createWikilinkExtension(slugMap: Map<string, string>) {
+  return {
+    name: 'wikilink',
+    level: 'inline' as const,
+    start(src: string) {
+      return src.indexOf('[[');
+    },
+    tokenizer(src: string): WikilinkToken | undefined {
+      const match =
+        /^\[\[([^\]|#\n]+)(?:#([^\]|\n]+))?(?:\|([^\]\n]+))?\]\]/.exec(src);
+      if (!match || !match[1]) return undefined;
+
+      const target = match[1].trim();
+      const heading = match[2]?.trim();
+      const alias = match[3]?.trim();
+      const label = alias || (heading ? `${target}#${heading}` : target);
+
+      return {
+        type: 'wikilink',
+        raw: match[0],
+        target,
+        heading,
+        label,
+      };
+    },
+    renderer(token: WikilinkToken) {
+      const resolvedSlug = resolveBrainSlug(token.target, slugMap);
+      const safeLabel = escapeHtml(token.label);
+
+      if (!resolvedSlug) {
+        return `<span class="wikilink-unresolved" title="Note not available yet">${safeLabel}</span>`;
+      }
+
+      const hash = token.heading ? `#${slugifyHeading(token.heading)}` : '';
+      const href = escapeHtml(`/brain/${resolvedSlug}${hash}`);
+      return `<a href="${href}" class="wikilink">${safeLabel}</a>`;
+    },
+  };
+}
+
 export function renderMarkdownHtml(content: string): {
   html: string;
   toc: TocItem[];
 } {
   const toc: TocItem[] = [];
   const slugCounts = new Map<string, number>();
+  const brainSlugMap = getBrainSlugMap();
 
   const parser = new Marked({
-    extensions: [kindleHighlightExtension],
+    extensions: [
+      kindleHighlightExtension,
+      createWikilinkExtension(brainSlugMap),
+    ],
     renderer: {
       code({ text, lang }) {
         const language = lang && hljs.getLanguage(lang) ? lang : undefined;

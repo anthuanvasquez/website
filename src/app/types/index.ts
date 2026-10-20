@@ -86,6 +86,7 @@ export interface ContentItem {
   alt?: string;
   duration?: string;
   tags?: string[];
+  language?: string;
   published?: boolean;
 }
 

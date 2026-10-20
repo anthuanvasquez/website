@@ -12,6 +12,17 @@ useSeoMeta({
   ogImage: () => page.value?.meta?.image,
   twitterImage: () => page.value?.meta?.image,
 });
+
+function onMarkdownClick(event: MouseEvent) {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey) return;
+  const href = (event.target as HTMLElement | null)
+    ?.closest('a')
+    ?.getAttribute('href');
+  if (href?.startsWith('/brain/')) {
+    event.preventDefault();
+    navigateTo(href);
+  }
+}
 </script>
 
 <template>
@@ -52,8 +63,22 @@ useSeoMeta({
           />
         </div>
 
+        <UAlert
+          v-if="page.meta.language === 'es'"
+          description="The content of this post is written in Spanish."
+          color="neutral"
+          variant="outline"
+          class="text-muted mb-8"
+          icon="i-lucide-info"
+          close
+        />
+
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <div class="markdown-content" v-html="page.html" />
+        <div
+          class="markdown-content"
+          @click="onMarkdownClick"
+          v-html="page.html"
+        />
       </article>
 
       <TableOfContents
